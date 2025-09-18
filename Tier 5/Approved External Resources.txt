@@ -1,0 +1,334 @@
+approved_resources.txt
+
+───────────────────────────────────────────────────────────
+USE
+───────────────────────────────────────────────────────────
+This file catalogs community and OEM resources for BMW coding and troubleshooting.
+Each entry contains:
+ • Topic and link for quick navigation
+ • Use: field describing the appropriate troubleshooting context
+ • Known pitfalls: common failure points or conflicts
+ • Grade: reliability rating (A/B) with rationale  
+
+     Grades Key:  
+       A = High reliability / widely cited / very practical  
+       B = Useful background or model-specific context, but less authoritative  
+   
+ • Vehicle applicability: supported chassis or cross-platform scope
+ • Mode relevance: whether applicable in Basic Mode, Expert Mode, or both
+ • Risk note: quick risk assessment for coding attempts
+ • Last reviewed: date stamp for version control
+
+───────────────────────────────────────────────────────────
+REQUIRED DIRECTIVE
+───────────────────────────────────────────────────────────
+ • Direct quoting policy: Do not present forum snippets as authoritative instructions; 
+   paraphrase and clearly label them as community findings.  
+ • Unless otherwise stated, all references below are community- or forum-sourced.  
+ • All community/forum content must be explicitly flagged when cited, and cross-checked 
+   against Tier 1–3 OEM documentation before being recommended for implementation.  
+
+───────────────────────────────────────────────────────────
+PRACTICAL CODING GUIDES (Step-by-step & feature unlocks)
+───────────────────────────────────────────────────────────
+- F30 EBT Guide
+  https://f30.bimmerpost.com/forums/showthread.php?t=1474066&highlight=bimmercode
+  Topic: Enhanced Bluetooth (EBT) coding with BimmerCode
+  Use: Reference if issue is enabling Bluetooth audio/EBT
+  Known pitfalls: HU capability/iDrive version dependency; ensure vehicle supports EBT before coding.
+  Grade:             A
+  Rationale:         Clear step-by-step with consistent confirmations of success.
+  Vehicle applicability: F30/F32
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+- F30 Master Thread
+  https://f30.bimmerpost.com/forums/showthread.php?t=1414327&highlight=bimmercode
+  Topic: “Master” BimmerCode thread for F30
+  Use: Reference for broad list of modules and coding options
+  Search tips: Use in-page search for module names (FEM_BODY, HU_NBT, KOMBI) and keywords (“EBT”, “mirror fold”, “DRL”).
+  Known pitfalls: Some value names/paths changed across app/iDrive versions; regional option differences.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             A
+  Rationale:         Consolidated master thread with wide coverage and many verified reports.
+  Vehicle applicability: F30 (with overlap to F32)
+  Mode relevance:    Both
+  Risk note:         Medium (some Expert Mode notes appear)
+  Last reviewed:     2025-09
+
+- Popular Tweaks
+  https://f30.bimmerpost.com/forums/showthread.php?t=1573282&highlight=bimmercode
+  Topic: Popular tweaks collection (mirrors, chimes, lights)
+  Use: Reference if troubleshooting common F30 tweaks
+  Known pitfalls: Certain tweaks are model-year/trim dependent; app updates may move items between categories.
+  Grade:             B+
+  Rationale:         Wide set of tweaks but confirmations are mixed across app versions.
+  Vehicle applicability: F30/F32
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+───────────────────────────────────────────────────────────
+TROUBLESHOOTING & FIRST-TIME USE
+───────────────────────────────────────────────────────────
+- Coding Results Troubleshooting
+  https://f30.bimmerpost.com/forums/showthread.php?t=1592011&highlight=bimmercode
+  Topic: User reports of coding success/fail
+  Use: Reference if problem is “feature not sticking” or unexpected behavior after coding
+  Known pitfalls: Values reverting after ignition cycle; module not written due to sleep; need to clear faults/restore backup then re-code.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             B+
+  Rationale:         Practical troubleshooting but based on varied user experience, not consistent.
+  Vehicle applicability: General (F-series)
+  Mode relevance:    Both
+  Risk note:         Medium (trial/error cases, some Expert Mode implications)
+  Last reviewed:     2025-09
+
+- Reddit First-Time Notes
+  https://www.reddit.com/r/F30/comments/zci9fi/bimmercode_coding_successful_some_notes_fromto_a/
+  Topic: First-time coding notes (adapter issues, connection)
+  Use: Reference if problem is app connection, pairing, or choosing OBD adapter
+  Adapter/connection tags: Adapter compatibility; iOS connection steps; Bluetooth pairing pitfalls; airplane-mode advice.
+  Known pitfalls: Cheap adapters causing unstable sessions; failing to wait for module wake/handshake before coding.
+  Grade:             A
+  Rationale:         Strong first-time notes with clear adapter troubleshooting and confirmations.
+  Vehicle applicability: General
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+- Bimmerfest Beginner Walkthrough
+  https://www.bimmerfest.com/threads/using-bimmercode-for-the-first-time.1404585/
+  Topic: Beginner’s walkthrough
+  Use: Reference if problem is starting from scratch
+  Adapter/connection tags: Adapter compatibility; initial pairing procedure; common timeout causes; restore-backup overview.
+  Known pitfalls: App timeouts if ignition state not set correctly (ACC/ON); forgetting to disable phone auto-sleep.
+  Grade:             A-
+  Rationale:         Helpful beginner overview though lighter detail than forum master threads.
+  Vehicle applicability: General
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+───────────────────────────────────────────────────────────
+MODEL-SPECIFIC REFERENCES
+───────────────────────────────────────────────────────────
+- X3 BimmerCode Thread
+  https://x3.xbimmers.com/forums/showthread.php?t=1684257&highlight=bimmercode
+  Topic: BimmerCode on G01 X3
+  Use: Reference if troubleshooting X3 coding differences
+  Known pitfalls: Module naming and feature availability differ from F3x; verify chassis-specific paths.
+  Grade:             B
+  Rationale:         Useful for X3 specifics but scattered confirmations and limited depth.
+  Vehicle applicability: Cross-platform reference; confirm F32 parameter parity before use.
+  Mode relevance:    Both
+  Risk note:         Medium (varies with module differences)
+  Last reviewed:     2025-09
+
+- F32 Early Discussion
+  https://f30.bimmerpost.com/forums/showthread.php?t=992494&highlight=f32
+  Topic: Early F32 coding/feature discussions
+  Use: Background if problem relates to older F32 options
+  Known pitfalls: Some early posts predate current app/iDrive versions; settings may be deprecated/relocated.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             B
+  Rationale:         Early community insights but some outdated or speculative info.
+  Vehicle applicability: F32
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+- F32 Enhancements Thread
+  https://f30.bimmerpost.com/forums/showthread.php?t=939963&highlight=f32
+  Topic: F32 enhancements thread
+  Use: Cross-check if problem is F32-specific coding
+  Known pitfalls: Expert Mode value edits reported; ensure exact module/parameter matches your car’s equipment.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             B
+  Rationale:         Good F32-specific coverage, but Expert Mode edits carry risk.
+  Vehicle applicability: F32
+  Mode relevance:    Both
+  Risk note:         Medium (mentions Expert Mode-style edits)
+  Last reviewed:     2025-09
+
+- G20 Coding Notes
+  https://g20.bimmerpost.com/forums/showthread.php?t=1709333
+  Topic: G20 coding notes
+  Use: Reference if problem is G20-series modules/ECUs
+  Known pitfalls: Feature parity differs from F3x; do not transpose values without platform check.
+  Grade:             A-
+  Rationale:         Clear notes for G20 basics, though fewer confirmations than F30 threads.
+  Vehicle applicability: Cross-platform reference; confirm F32 parameter parity before use.
+  Mode relevance:    Basic Mode
+  Risk note:         Low
+  Last reviewed:     2025-09
+
+- G20 Advanced Coding
+  https://g20.bimmerpost.com/forums/showthread.php?t=1789488
+  Topic: G20 advanced coding (comfort access, iDrive tweaks)
+  Use: Reference if troubleshooting G20 iDrive features
+  Known pitfalls: Comfort access and iDrive advanced edits can trigger faults; ensure backups and battery support.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             B+
+  Rationale:         Valuable advanced tweaks but higher complexity and mixed user outcomes.
+  Vehicle applicability: Cross-platform reference; confirm F32 parameter parity before use.
+  Mode relevance:    Expert Mode
+  Risk note:         High (comfort access, advanced iDrive tweaks)
+  Last reviewed:     2025-09
+
+───────────────────────────────────────────────────────────
+CAN BUS TECHNICAL / HACKING
+───────────────────────────────────────────────────────────
+- F-Series CAN Hacking
+  https://www.bimmerfest.com/threads/f-series-can-bus-hacking.904318/
+  Topic: CAN bus hacking for F-series
+  Use: Reference if problem involves raw CAN messages or going beyond BimmerCode presets
+  Known pitfalls: Bus flooding/spam can cause unpredictable module behavior; isolate test network when possible.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             A-
+  Rationale:         Strong technical depth but requires expert knowledge and manual validation.
+  Vehicle applicability: F-series
+  Mode relevance:    Expert Mode
+  Risk note:         High (requires raw CAN injection knowledge)
+  Last reviewed:     2025-09
+
+- CAN Bus Primer
+  https://medium.com/@chairface/talking-to-your-bmw-tapping-into-a-cars-communication-bus-4adff7ac640d
+  Topic: Intro to CAN bus & tapping vehicle networks
+  Use: Reference if problem is understanding bus concepts
+  Known pitfalls: General primer, not BMW-specific; map concepts to BMW modules before acting.
+  Validation Required: Cross-check values in Tier 1–3 before implementing.
+  Grade:             A
+  Rationale:         Excellent conceptual primer; widely cited, though not BMW-specific.
+  Vehicle applicability: General
+  Mode relevance:    Both (theory, not just Expert Mode)
+  Risk note:         Medium
+  Last reviewed:     2025-09
+
+- CAN ID Decoding
+  https://www.f800riders.org/threads/can-bus-message-ids-and-decoding.281769/
+  Topic: CAN message IDs/decoding (motorcycle but general)
+  Use: Reference if troubleshooting raw CAN ID meanings
+  Known pitfalls: Non-BMW platform examples; IDs and scaling may not transfer directly.
+  Grade:             B
+  Rationale:         Provides ID decoding examples but is non-BMW and loosely verified.
+  Vehicle applicability: General (motorcycle-derived but transferable)
+  Mode relevance:    Expert Mode
+  Risk note:         High
+  Last reviewed:     2025-09
+
+───────────────────────────────────────────────────────────
+PARTS CATALOG / OEM REFERENCE
+───────────────────────────────────────────────────────────
+- RealOEM Parts Catalog
+  https://www.realoem.com/bmw/enUS/partgrp?id=3N53-USA-06-2014-F32-BMW-428iX
+  Topic: OEM parts catalog for F32 428i xDrive
+  Use: Identify exact parts/ECUs and confirm compatibility.
+  Source: OEM
+  Defer navigation to RealOEM_Navigation_Map.txt
+  Grade:             A
+  Rationale:         Direct OEM database with authoritative diagrams and part numbers.
+  Vehicle applicability: F32 428i xDrive (2014)
+  Mode relevance:    Both
+  Risk note:         Low (OEM data, navigation complexity only)
+  Last reviewed:     2025-09
+
+───────────────────────────────────────────────────────────
+CATEGORIES
+───────────────────────────────────────────────────────────
+- Engine
+- Clutch
+- Manual Transmission / Automatic Transmission / Gearshift
+- Drive Shaft / Front Axle / Rear Axle / Steering / Brakes / Pedals / Wheels
+- Seats / Sliding Roof / Restraint System
+- Heating & A/C
+- Lighting
+- Engine Electrical System
+- Bodywork
+- Vehicle Trim
+- Vehicle Electrical System
+- Instruments, Measuring Systems
+- Audio, Navigation, Electronic Systems
+- Communication Systems
+- Fuel Preparation System
+- Fuel Supply
+
+For subcategories and step-by-step selection, see RealOEM_Navigation_Map.txt.
+
+───────────────────────────────────────────────────────────
+BIMMERCODE TROUBLESHOOTING DECISION TREE
+───────────────────────────────────────────────────────────
+START
+ |
+ |-- Is the issue that BimmerCode cannot CONNECT to the car
+ |   (OBD adapter, app, or Bluetooth)?
+ |        |-- Yes → Go to "Connection/Adapter Issues"
+ |        |-- No → Continue
+ |
+ |-- Is the issue a SPECIFIC FEATURE not working
+ |   (mirrors, chimes, lighting, Bluetooth, etc.)?
+ |        |-- Yes → Go to "Coding Features / Practical Guides"
+ |        |-- No → Continue
+ |
+ |-- Does the issue depend on your CAR MODEL
+ |   (F32 coupe, F30 sedan, G20, or X3)?
+ |        |-- Yes → Go to "Model-Specific References"
+ |        |-- No → Continue
+ |
+ |-- Is the issue about deeper CAN BUS analysis
+ |   or custom hacking beyond presets?
+ |        |-- Yes → Go to "CAN Bus Technical / Hacking"
+ |        |-- No → Continue
+ |
+ |-- Is the issue identifying PARTS or ECU NUMBERS?
+ |        |-- Yes → Go to "Parts Catalog / OEM Reference"
+ |        |-- No → Continue
+ |
+ |-- Is the issue outside these categories
+ |   (installation, hardware faults, software bugs)?
+ |        |-- Yes → Flag as “Out of scope for approved_resources.txt”
+ |                  and defer to Tier 1–3 documentation or user input.
+ |        |-- No → End
+
+───────────────────────────────────────────────────────────
+BRANCHES
+───────────────────────────────────────────────────────────
+Connection/Adapter Issues
+- Reddit First-Time Notes
+- Bimmerfest Beginner Walkthrough
+
+Coding Features / Practical Guides
+- F30 EBT Guide
+- F30 Master Thread
+- Popular Tweaks
+- Coding Results Troubleshooting
+
+Model-Specific References
+- X3 BimmerCode Thread
+- F32 Early Discussion
+- F32 Enhancements Thread
+- G20 Coding Notes
+- G20 Advanced Coding
+
+CAN Bus Technical / Hacking
+- F-Series CAN Hacking
+- CAN Bus Primer
+- CAN ID Decoding
+
+Parts Catalog / OEM Reference
+- RealOEM Parts Catalog
+
+───────────────────────────────────────────────────────────
+INTERACTIVE COLLABORATION PROTOCOL
+───────────────────────────────────────────────────────────
+- If doubt exists as to the correctness, completeness, or applicability of a source:
+  • The assistant must stop and explicitly flag the uncertainty.
+  • The assistant must clarify that the information comes from a forum/community unless it is from RealOEM.
+  • The assistant must then collaborate with the user by asking whether to proceed with the community-sourced information,
+    cross-check with Tier 1–3 OEM documents, or await user confirmation.
+  • Never assume correctness of forum/community-sourced data without validation.
+
+───────────────────────────────────────────────────────────
+END OF FILE
+───────────────────────────────────────────────────────────

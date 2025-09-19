@@ -12,150 +12,118 @@ Master reference file defining the hierarchy of authority, usage protocols, and 
 TIER 0 - META
 ───────────────────────────────────────────────────────────
 
-	1 Doc Use & Authority.txt: Master reference file defining document hierarchy and usage protocols.
+    1. Doc Use & Authority.txt: Master reference file defining document hierarchy and usage protocols.
 
-	2 E-Sys MacOSX Install.pdf: Platform-specific installation instructions [TEMPORARY - archive after installation]
+    2. E-Sys MacOSX Install.pdf: Platform-specific installation instructions [TEMPORARY - archive after installation].
 
-    3. E-Sys - Launcher Installation.pdf
+    3. E-Sys - Launcher Installation.pdf: E-Sys launcher setup and configuration guide
 
 ───────────────────────────────────────────────────────────
 TIER 1 - MASTER PROJECT AUTHORITY: BMW & OEM
 ───────────────────────────────────────────────────────────
 
-    1. BMW 428i Owners Manual.pdf
+    1. BMW 428i Owners Manual.pdf: Official BMW-issued Owner's Manual for the 2014 428i xDrive (F32). Defines core factory system operations, baseline behavior, and identifies safety procedures.
 
-    Official BMW-issued Owner's Manual for the 2014 428i xDrive (F32). Defines core factory system operations, baseline behavior, and identifies safety procedures.
+    2. BMW 428i VIN Specs.txt: Specific equipment compatibility verification, VIN-specific options, and installed system confirmation regarding the BMW that user will be coding.
 
-    2. BMW 428i VIN Specs.txt
+    3. BMW 428i Nav & Comm Manual.pdf: BMW-issued multimedia-specific manual focusing on the factory iDrive system operation, audio & video formatting specifications, NBT UI operation, and external device compatibility.
 
-    Specific equipment compatibility verification, VIN-specific options, and installed system confirmation regarding the BMW that user will be coding.
+    4. BMW 428i Engine Manual.pdf: Technical Training Manual for BMW's N20 Engine. Identifies the systems, Digital Motor Electronics (DME) coding parameters, and the diagnostic procedures related to the 2014 BMW 428i xDrive's engine.
 
-    3. BMW 428i Nav & Comm Manual.pdf
-
-    BMW-issued multimedia-specific manual focusing on the factory iDrive system operation, audio & video formatting specifications, NBT UI operation, and external device compatibility.
-
-    4. BMW 428i Engine Manual.pdf
-
-    Technical Training Manual for BMW's N20 Engine. Identifies the systems, Digital Motor Electronics (DME) coding parameters, and the diagnostic procedures related to the 2014 BMW 428i xDrive's engine.
-
-    5. BMW 428i RealOEM Map.txt
-
-    Structured navigation guide to BMW's online RealOEM interactive catalog, covering all main vehicle component categories and providing first-layer subcategories where organization is cluttered or ambiguous.
+    5. BMW 428i RealOEM Map.txt: Structured navigation guide to BMW's online RealOEM interactive catalog, covering all main vehicle component categories and providing first-layer subcategories where organization is cluttered or ambiguous.
 
 ───────────────────────────────────────────────────────────
 TIER 2 - PRIMARY CODING TOOLS: E-SYS & F-SERIES
 ───────────────────────────────────────────────────────────
 
-1. E-Sys Getting Started.pdf
+    1. E-Sys Getting Started.pdf: Step-by-step tutorial on complete FDL coding workflow.
 
-Step-by-step tutorial on complete FDL coding workflow
+    2. E-Sys Werte Values.pdf: Guide for modifying raw hex/numeric values in CAFD parameters.
 
-- E-Sys Werte Values.pdf
+    3. E-Sys FA Guide.pdf: Practical guide for Vehicle Order (FA/VO) editing and writing.
 
-Guide for modifying raw hex/numeric values in CAFD parameters
+    4. E-Sys CAF Defaults.pdf: Generate baseline .ncd coding files from FA/VO and SVT for offline exploration.
 
+    5. E-Sys Editors & Viewers.pdf: FDL Editor and CAF Viewer operation for hands-on coding implementation.
 
-*** - E-Sys FA Guide.pdf: Practical guide for Vehicle Order (FA/VO) editing and writing ***
+    6. E-Sys SG-D Guide.pdf: Advanced SG-D programming and structured coding action management.
 
-- E-Sys CAF Defaults.pdf
-Generate baseline .ncd coding files from FA/VO and SVT for offline exploration
+    7. E-Sys User Manual.pdf: Official reference manual for E-Sys Expert Mode, SVT, CAFD, and FDL editing.
 
-- E-Sys Editors & Viewers.pdf
-FDL Editor and CAF Viewer operation for hands-on coding implementation.
+    8. E-Sys VO Guide.pdf: Step-by-step walkthrough of VO (FA) editing and writing procedures.
 
-- E-Sys SG-D Guide.pdf
-Advanced SG-D programming and structured coding action management.
+    9. E-Sys Launcher Targets.pdf: Chassis family selection guide for correct psdzdata mappings.
 
-- E-Sys User Manual.pdf
-Official reference manual for E-Sys Expert Mode, SVT, CAFD, and FDL editing
+    10. ISTA-P I-Level Chart.pdf: Master chart linking ISTA/P versions to I-Level software packages across chassis.
 
-- E-Sys VO Guide.pdf
-Step-by-step walkthrough of VO (FA) editing and writing procedures
+    11. BMW CAFD IDs.pdf: Lookup table mapping ECU names to CAFD hex identifiers in psdzdata v3.61.5.
 
-### - E-Sys Launcher Targets.pdf
-Chassis family selection guide for correct psdzdata mappings***
+    12. F32 Code Cheatsheet.pdf: PRIMARY F32 coding reference with tested parameters, VO codes, and FDL mappings.
 
-- ISTA-P I-Level Chart.pdf
-Master chart linking ISTA/P versions to I-Level software packages across chassis
+    13. F36 Coding List.pdf: Working log of real-world FDL changes on near-identical vehicle to F32 428i.
 
-- BMW CAFD IDs.pdf: Lookup table mapping ECU names to CAFD hex identifiers in psdzdata v3.61.5
+    14. F22 Cheatsheet.xlsx: 2-Series coding parameters for syntax cross-checking.
 
-- F32 Code Cheatsheet.pdf
-PRIMARY F32 coding reference with tested parameters, VO codes, and FDL mappings
+    15. F25 Cheatsheet.xlsx: X3/X4 tested coding functions and value verification.
 
-- F36 Coding List.pdf
-Working log of real-world FDL changes on near-identical vehicle to F32 428i
-		
-- F22 Cheatsheet.xlsx
-2-Series coding parameters for syntax cross-checking
+    16. F10 Cheatsheet.pdf: 5-Series parameter cross-check for overlapping modules.
 
-- F25 Cheatsheet.slsx
-X3/X4 tested coding functions and value verification
+    17. F56 Cheatsheet.xlsx: MINI/BMW crossover coding syntax library (Use for F48).
 
- - F10 Cheatsheet.pdf
-5-Series parameter cross-check for overlapping modules
+    18. Fxx Model Ref Table.xlsm: Interactive Excel sheet with sortable F-series coding entries.
 
-- F56 Cheatsheet.xslx: MINI/BMW crossover coding syntax library
-(Use for F48)
+    19. F15 X5 Standalone Reference Pack: [SEPARATED DUE TO SIZE/COMPLEXITY]
 
-- Fxx Model Ref Table.xlsm
-Interactive Excel sheet with sortable F-series coding entries
+    20. Fxx Cheatsheet.pdf: Large-format SUV-specific coding parameters for BDC/FEM_BODY cross-validation.
 
-- F15 X5 Standalone Reference Pack [SEPARATED DUE TO SIZE/COMPLEXITY]
-
-- Fxx Cheatsheet.pdf: Large-format SUV-specific coding parameters for BDC/FEM_BODY cross-validation
-
-- F-Series Code Cross Reference Pack.pdf
+    21. F-Series Code Cross Reference Pack.pdf: Comprehensive F-series coding parameter cross-reference documentation.
 
 ───────────────────────────────────────────────────────────
 TIER 3 - FALLBACK CODING RESOURCE: BIMMERCODE
 ───────────────────────────────────────────────────────────
 NOTE: LIKELY TEMPORARY POSITIONING - Pending E-Sys operational status success, BimmerCode may be archived.
 
-- 1 BimmerCode QuickStart.txt
-Details BimmerCode's method of operation, iOS connection procedures, troubleshooting guides, and backup restoration protocols.
+    1. BimmerCode QuickStart.txt: Details BimmerCode's method of operation, iOS connection procedures, troubleshooting guides, and backup restoration protocols.
 
-- 2 BimmerCode F32-Code Options.txt
-Comprehensive list of all F32-specific modifications cataloged by BimmerCode with control unit requirements and defined option values.
+    2. BimmerCode F32-Code Options.txt: Comprehensive list of all F32-specific modifications cataloged by BimmerCode with control unit requirements and defined option values.
 
 ───────────────────────────────────────────────────────────
 TIER 4 - AFTERMARKET EQUIPMENT & FOCUSED COMPONENT SPECS
 ───────────────────────────────────────────────────────────
 
-- 1 BMW 428i Headunit Retrofit.pdf: Manual for Linux-based headunit retrofit for BMW F32 that adds CarPlay while integrating with the OEM CIC/NBT system, retains iDrive and steering wheel controls, and supports OEM/aftermarket front/rear cameras.
+    1. BMW 428i Headunit Retrofit.pdf: Manual for Linux-based headunit retrofit for BMW F32 that adds CarPlay while integrating with the OEM CIC/NBT system, retains iDrive and steering wheel controls, and supports OEM/aftermarket front/rear cameras.
 
-- 2 NGHBA Specs.pdf
-Technical explainer on adaptive "anti-dazzle" high beam system, hardware requirements, and retrofit considerations. NGHBA = "Non-glare High-Beam Assistant"
+    2. NGHBA Specs.pdf: Technical explainer on adaptive "anti-dazzle" high beam system, hardware requirements, and retrofit considerations. NGHBA = "Non-glare High-Beam Assistant".
 
-- HK Audio Settings.pdf
-Reference EQ profiles for flat response and soundstage improvements
+    3. HK Audio Settings.pdf: Reference EQ profiles for flat response and soundstage improvements.
 
-- iDrive Commands.pdf
-Command list for iDrive's built-in voice control across all system functions
+    4. iDrive Commands.pdf: Command list for iDrive's built-in voice control across all system functions.
 
 ───────────────────────────────────────────────────────────
 TIER 5 - SUPPLEMENTARY RESOURCES
 ───────────────────────────────────────────────────────────
-    5.1 BMW 428i Suppl Info.pdf: BMW manual specifying warranty coverage details, tire pressure and other specifications, and part compatibility guidelines.
 
-    5.2 BMW 428i Owners Quickref.pdf: Supplemental truncated Owner's manual that provides quick operational clarification and emergency procedures.
+    1. BMW 428i Suppl Info.pdf: BMW manual specifying warranty coverage details, tire pressure and other specifications, and part compatibility guidelines.
 
-    5.3 Approved External Resources.txt: Quick-reference mapping of external forums, Reddit, and technical resources pre-approved by Nick that relate to BimmerCode operation, coding guides, model-specific notes, CAN bus analysis, OEM part catalog references, and other troubleshooting activities.
+    2. BMW 428i Owners Quickref.pdf: Supplemental truncated Owner's manual that provides quick operational clarification and emergency procedures.
 
-	5.4 BimmerLink Sensor Value Master List.txt: Comprehensive sensor monitoring reference for BimmerLink application, categorized by system (engine management, oil, cooling, electrical, VVT, brake, transmission, etc.) for N20 turbocharged engine diagnostics and real-time monitoring.
+    3. Approved External Resources.txt: Quick-reference mapping of external forums, Reddit, and technical resources pre-approved by Nick that relate to BimmerCode operation, coding guides, model-specific notes, CAN bus analysis, OEM part catalog references, and other troubleshooting activities.
 
-	5.5 BimmerLink CarPlay Widgets.txt: Optimized sensor selection guide for real-time CarPlay widget display, prioritizing performance feedback, engine protection, and situational awareness with N20 turbo-specific monitoring requirements and widget layout recommendations.
+    4. BimmerLink Sensor Value Master List.txt: Comprehensive sensor monitoring reference for BimmerLink application, categorized by system (engine management, oil, cooling, electrical, VVT, brake, transmission, etc.) for N20 turbocharged engine diagnostics and real-time monitoring.
 
-5.6 BimmerLink Permanent Sensor Values.txt: Priority sensor selection guide for continuous background monitoring and historical data logging on BMW 428i xDrive F32 (N20 turbo), establishing diagnostic baselines, component wear tracking, and proactive maintenance scheduling protocols.
+    5. BimmerLink CarPlay Widgets.txt: Optimized sensor selection guide for real-time CarPlay widget display, prioritizing performance feedback, engine protection, and situational awareness with N20 turbo-specific monitoring requirements and widget layout recommendations.
+
+    6. BimmerLink Permanent Sensor Values.txt: Priority sensor selection guide for continuous background monitoring and historical data logging on BMW 428i xDrive F32 (N20 turbo), establishing diagnostic baselines, component wear tracking, and proactive maintenance scheduling protocols.
 ───────────────────────────────────────────────────────────
 TIER 6 - ARCHIVED / LOW UTILITY MATERIAL
 ───────────────────────────────────────────────────────────
-    6.1 BMW Radio.pdf: Legal licensing information and embedded software specifications.
+
+    1. BMW Radio.pdf: Legal licensing information and embedded software specifications.
 
 ───────────────────────────────────────────────────────────
 CORE DOCUMENT USAGE PROTOCOL & GUARDRAILS
 ───────────────────────────────────────────────────────────
-Always follow the document hierarchy: Tier 1 → 2 → 3 → 4 → 5 → 6.  
+Always follow the document hierarchy: Tier 1 → Tier 2 → Tier 3 → Tier 4 → Tier 5 → Tier 6.
     - Tier 1 OEM manuals define baseline operation and safety; cross-check before all coding.  
     - Tier 2 E-Sys & F-Series coding tools are the primary coding authority after Tier 1 validation.  
     - Tier 3 BimmerCode docs serve as a fallback resource if E-Sys is unavailable or impractical.  
@@ -194,42 +162,46 @@ BimmerCode F32-Code Options.txt:
 - Guardrails: Treat as definitive for available BimmerCode features. Do not recommend options absent from this file unless formally verified elsewhere.
 
 ───────────────────────────────────────────────────────────
-AFTERMARKET, SUPPLEMENTAL & COMMUNITY MATERIAL - USAGE PROTOCOL  & GUARDRAILS
+AFTERMARKET, SUPPLEMENTAL & COMMUNITY MATERIAL - USAGE PROTOCOL & GUARDRAILS
 ───────────────────────────────────────────────────────────
-# AFTERMARKET MATERIAL
-BMW 428i Headunit Retrofit.pdf:
-- Full aftermarket integration notes integrating CarPlay, front/rear view camera functionality, audio routing, AUX/USB/BT troubleshooting, and OEM System settings.  
-- Guardrail:
-    - Any change affecting HU/AUX/video paths requires pre-change risk/benefit review and post-change verification.
-    - Default "ignore headunit" stays enabled. If disabling is necessary, provide risks/benefits before proceeding and restore after.
-    - Confirm OEM Bluetooth for calls, correct screen resolution, camera type, AUX/iDrive settings, and proper AUX cable path (watch for ground loop noise)
 
-# SUPPLEMENTAL MATERIAL
+AFTERMARKET MATERIAL:
+
+BMW 428i Headunit Retrofit.pdf:
+    - Full aftermarket integration notes integrating CarPlay, front/rear view camera functionality, audio routing, AUX/USB/BT troubleshooting, and OEM System settings.
+    - Guardrails:
+        - Any change affecting HU/AUX/video paths requires pre-change risk/benefit review and post-change verification.
+        - Default "ignore headunit" stays enabled. If disabling is necessary, provide risks/benefits before proceeding and restore after.
+        - Confirm OEM Bluetooth for calls, correct screen resolution, camera type, AUX/iDrive settings, and proper AUX cable path (watch for ground loop noise).
+
+SUPPLEMENTAL MATERIAL:
+
 BMW 428i Suppl Info.pdf:
-- Provides supplemental BMW-issued compatibility notes, warranty references, and technical specs such as tire pressure.  
-- Guardrails: Use only to supplement Tier 1 manuals. Never substitute for OEM Owner's Manual guidance; consult when warranty or compatibility constraints arise.
+    - Provides supplemental BMW-issued compatibility notes, warranty references, and technical specs such as tire pressure.
+    - Guardrails: Use only to supplement Tier 1 manuals. Never substitute for OEM Owner's Manual guidance; consult when warranty or compatibility constraints arise.
 
 BMW 428i Owners Quickref.pdf:
-- Quick reference and emergency operation manual. Summarizes essential owner's manual procedures.  
-- Guardrails: Use only for fast checks or emergency features. Always confirm details in the full Owner's Manual.
+    - Quick reference and emergency operation manual. Summarizes essential owner's manual procedures.
+    - Guardrails: Use only for fast checks or emergency features. Always confirm details in the full Owner's Manual.
 
 BimmerLink Sensor Value Master List.txt:
-- Comprehensive sensor reference catalog for BimmerLink application diagnostic monitoring and real-time display configuration.
-- Guardrail:
-  - Reference material only; does not override OEM specifications or safety parameters defined in BMW manuals.
-  - Sensor selections must be validated against BMW 428i VIN Specs.txt for equipment compatibility before implementation.
-  - Use for diagnostic baseline establishment and monitoring strategy development, not as coding authority.
+    - Comprehensive sensor reference catalog for BimmerLink application diagnostic monitoring and real-time display configuration.
+    - Guardrails:
+        - Reference material only; does not override OEM specifications or safety parameters defined in BMW manuals.
+        - Sensor selections must be validated against BMW 428i VIN Specs.txt for equipment compatibility before implementation.
+        - Use for diagnostic baseline establishment and monitoring strategy development, not as coding authority.
 
 BimmerLink CarPlay Widgets.txt & BimmerLink Permanent Sensor Values.txt:
-- Application-specific sensor selection guides for widget configuration and continuous monitoring on N20 turbocharged engine.
-- Guardrail:
-  - Supplementary to BimmerLink application operation; always verify sensor compatibility with installed control units per BMW 428i VIN Specs.txt.
-  - Widget and monitoring selections must not interfere with primary vehicle operations as defined in BMW 428i Owners Manual.pdf.
-  - For diagnostic enhancement only; never override safety-critical monitoring or engine protection parameters.
+    - Application-specific sensor selection guides for widget configuration and continuous monitoring on N20 turbocharged engine.
+    - Guardrails:
+        - Supplementary to BimmerLink application operation; always verify sensor compatibility with installed control units per BMW 428i VIN Specs.txt.
+        - Widget and monitoring selections must not interfere with primary vehicle operations as defined in BMW 428i Owners Manual.pdf.
+        - For diagnostic enhancement only; never override safety-critical monitoring or engine protection parameters.
 
-# COMMUNITY MATERIAL
+COMMUNITY MATERIAL:
+
 Approved External Resources.txt:
-- Use its decision tree to triage issues.
-- Grades A–B indicate reliability for surfacing references.
-- Guardrails:
-    - Consult only after Tier 1–3. Always treat as community-sourced.
+    - Use its decision tree to triage issues.
+    - Grades A–B indicate reliability for surfacing references.
+    - Guardrails:
+        - Consult only after Tier 1–3. Always treat as community-sourced.

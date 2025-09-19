@@ -1,9 +1,0 @@
-VIN: WBA3N7C57EK123456
-I-Level: F020-20-07-530
-Headunit: NBTevo ID5
-Navigation: Yes
-Engine: N20
-Bluetooth: Yes
-CarPlay: Yes
-xDrive: Yes
-Production Date: 2014-03

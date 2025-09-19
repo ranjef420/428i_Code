@@ -1,0 +1,274 @@
+ADC voltage Lambda probe behind catalytic converter
+Accepted generator torque
+Actual ignition angle
+Actual inlet spread
+Actual operating mode
+Actual value exhaust spread BMW
+Actual value intake spread BMW
+Actual value of the eccentric angle VVT
+Actual value of the outlet spread
+Adjustment of throttle valve model (factor)
+Adjustment of throttle valve model (offset)
+Adjustment range of the eccentric angle
+Air damper - actual position in degrees
+Air damper - actual position in steps
+Air damper - target position in degrees
+Air damper - target position in steps
+Air flap - lower air flap status
+Air flap - upper air flap status
+Air mass flow filtered
+Ambient pressure
+Ambient pressure from sensor
+Ambient pressure sensor voltage (10-bit from ADC)
+Ambient temperature
+Angle inlet valve opens based on LWOT
+Automatic start condition
+Correction factor for the amount of fuel
+Correction factor fuel mixture for injection time
+Correction factor height
+Correction value of the LSU voltage before CAT
+Correction value shutdown
+Crankshaft adaptation exhaust takes place
+Crankshaft adaptation intake takes place
+Difference throttle valve angle setpoint - actual value
+Differential pressure in front of the throttle valve between the start and the end of the dynamic
+Dynamic value of the LSU
+Exhaust gas temperature according to KAT from model
+Exhaust gas temperature behind main catalyst from model
+Exhaust valve angle closes based on LWOT
+Factor from lambda control adaptation for bank 1
+Fast mean value of the lambda control factor
+Filtered rail pressure actual value (absolute pressure)
+Filtering pressure difference ambient pressure - intake manifold pressure
+Fuel consumption since the last oil change
+Fuel mass flow
+Fuel tank level
+Fuel temperature
+Idle control condition
+Idle speed learned
+Ignition angle output
+Injection mode cylinder 1
+Injection mode cylinder 2
+Injection mode cylinder 3
+Injection mode cylinder 4
+Inlet camshaft position
+Inlet valve lift setpoint filtered
+Intake air temperature
+Intake air temperature at start
+Intake air temperature before throttle valve, measured
+Intake air temperature, linearized and converted
+Intake manifold absolute pressure
+Intake manifold absolute pressure measured
+Intake manifold pressure measured with pressure sensor on the intake manifold (DS-S)
+Intake manifold pressure sensor voltage
+Interval counter for emissions-related misfires
+Is position electrical wastegate
+KW angular offset when starting the engine
+Lambda actual value
+Lambda controller output
+Lambda probe actual value
+Lambda setpoint based on the installation location of the lambda sensor
+Lambda target limitation
+Low pass filtered intake manifold pressure
+Mass flow HFM
+Mass flow of tank ventilation into the intake manifold
+Mass flow through throttle valve bank 1
+Medium voltage rail pressure sensor
+Motor manager filling setpoint
+Motor speed, high resolution
+Motor temperature, linearized and converted
+Multiplicative mixture correction of the mixture adaptation
+Normalized accelerator pedal angle
+Normalized heating output of the lambda probe
+Number of dense EVAP systems recognized by diagnosis
+Offset corrected probe voltage in front of the catalyst of a broadband lambda probe
+Output duty cycle for the tank ventilation valve
+Overrun shutdown condition
+Oxygen storage capacity CAT
+Period duration for mass flow from HFM
+Pressure at the suction jet pump
+Probe voltage in front of the catalyst of a broadband lambda probe (ADC value)
+Raw value position of the lower mechanical stop from the electrical wastegate (WG closed)
+Raw value position of upper mechanical stop from electrical wastegate (flat share open)
+Raw value position sensor electrical wastegate
+Relative air filling
+Remaining distance derived from fuel consumption
+Saved camshaft target angle exhaust
+Sensor voltage position sensor electrical wastegate
+Setpoint eccentric angle VVT
+Setpoint inlet spread variable NWS
+Setpoint outlet spread variable NWS
+Setpoint stroke adjustment
+Setpoint throttle valve angle, rel. to the bottom stop
+Setpoint voltage of the VVT position controller
+Signal voltage of the coolant temperature sensor
+Spreading inlet VANOS
+Target air mass flow
+Target angle camshaft exhaust closes
+Target angle camshaft inlet opens
+Target angle inlet VANOS
+Target differential pressure intake manifold
+Target fuel mass cylinder 2
+Target fuel mass cylinder 3
+Target fuel mass cylinder 4
+Target fuel masses cylinder 1
+Target idle speed
+Target ignition angle from torque intervention
+Target intake manifold pressure
+Target temperature coolant
+Target value for throttle valve angle, based on (lower) stop
+Target value for throttle valve angle, based on lower stop
+Throttle angle of the emergency air position
+Throttle valve angle from potentiometer 1
+Throttle valve angle related to the lower stop
+Total air mass flow through the DK from the measured lambda and target fuel mass mean
+Total mass of gasoline and alcohol in the oil
+Unfiltered rail pressure actual value (abs.)
+Voltage fuel low pressure sensor in 1 ms grid
+Unfiltered low pressure raw value
+Voltage pressure sensor in front of throttle valve
+Voltage throttle valve potentiometer 1
+Voltage throttle valve potentiometer 2
+Actual oil pressure value (absolute pressure)
+Condition Oil level sensor fault
+Inlet temperature oil pressure regulator
+Kilometers of oil
+Oil condition sensor status
+Oil life
+Oil pressure
+Oil pressure control operating mode
+Oil pressure regulator D component
+Oil pressure regulator I component
+Oil pressure regulator P component
+Oil sump temperature
+Oil temperature
+Oil temperature after filter
+Oil temperature unfiltered
+Oil temperature valid
+Raw value oil level
+Relative level of the engine oil
+Sensor raw value oil level
+Sensor raw value oil temperature
+Setpoint oil pressure
+Status request for oil level measurement
+Unfiltered oil level
+Actual speed electr. water pump
+Condition emergency running water pump
+Cooler outlet temperature
+Current consumption electr. water pump
+Duty cycle electric fan
+Setpoint speed E-fan default WM
+Setpoint speed of electric water pump for cooling the turbocharger bearing chair
+Status message electr. water pump
+Supply voltage electr. water pump
+Target speed water pump
+Chip temperature generator 1
+Current battery voltage
+DC-DC converter status
+Degree of utilization generator 1
+Discharge during quiescent current violation
+Generator current
+Generator speed
+Nominal voltage regulator generator 1
+Output current of the machine
+Relative state of charge NV battery
+Status Stand Consumer Registered Part 1
+Status Stand consumer registered part 2
+Status of terminal 15
+Terminal voltage of the electric machine
+Time in which quiescent current is 200-1000 mA
+Time in which the quiescent current is 80-200 mA
+Time in which the quiescent current is greater than 1000 mA
+Utilization of the DC-DC converter
+Condition Vanos entrance at the ready
+Number of VVT emergency runs
+Number of VVT emergency runs until replacement
+Rel. Eccentric angle
+Rel. Eccentric angle on the lower mech. attack
+Rel. Eccentric angle on the upper mech. attack
+Set current supply to VVT motor
+Status error overload VVT1
+VVT electricity
+VVT motor rotor position
+VVT overload, stuck actuator
+VVT overloaded
+VVT position control, vibration detected
+VVT stop learning status
+Voltage behind VVT relay
+Brake vacuum voltage
+Condition brake light switch actuated
+Condition brake test switch actuated
+Current brake pressure
+Difference between ambient pressure and brake booster pressure from pressure sensor
+Clutch motor torque actual value
+Condition clutch pedal pressed
+Duty cycle zero gear sensor
+Modeled transmission oil temperature at the converter outlet (8HP)
+Period of the zero sensor signal
+Torque consumption of the converter via CAN
+Ceramic temperature of the LSU
+Duty cycle of waste gate control
+Operating status of the electrical wastegate
+Filtered spark burning time cylinder 1
+Filtered spark burning time cylinder 2
+Filtered spark burning time cylinder 3
+Filtered spark burning time cylinder 4
+Firing angle cylinder 1
+Firing angle cylinder 2
+Firing angle cylinder 3
+Firing angle cylinder 4
+Voltage behind ignition / injection relay
+Normalized reference level knock control cylinder 1
+Normalized reference level knock control cylinder 2
+Normalized reference level knock control cylinder 3
+Normalized reference level knock control cylinder 4
+Super knock
+Voltage knock value cylinder 1
+Voltage knock value cylinder 3
+Voltage knock value cylinder 4
+Voltage knock values cylinder 2
+Misfire detection counter cylinder 1
+Misfire detection counter cylinder 2
+Misfire detection counter cylinder 3
+Misfire detection counter cylinder 4
+Reference torque for misfire detection
+Relative moment for misfire detection
+Torque loss monitoring
+Uneven running of cylinder 1
+Uneven running cylinder 2
+Uneven running cylinder 3
+Uneven running cylinder 4
+Condition exhaust flap with resonator
+Voltage of rear cat sensor Lambda HEGO 
+Cross slope estimated
+Lateral acceleration
+Longitudinal slope of the road estimated
+Quality longitudinal slope
+Quality road slope
+Route of the vehicle as information via CAN
+Vehicle acceleration
+Vehicle speed
+Vehicle speed on the front or rear axle or in the vehicle's center of gravity
+Condition crankshaft is rotating
+Coordinated moment for filling
+Distance to starting ability
+Operating hours counter
+Operating hours counter accurate to the second
+Shutdown time
+Shutdown time from relative minute counter until engine start
+Start condition for frictional connection fulfilled
+Time after the start
+Time counter for engine operation from the end of the start (over the entire control unit cycle)
+Time counter from end of start
+Time since the last refueling
+Total number of starts at the last starter exchange
+Total reflex start number at the last starter exchange
+Condition The probe behind the catalyst is sufficiently heated
+Duty cycle for lambda probe heating
+Pedometer throttle return spring test
+Raw sensor value permittivity
+Status manipulation
+Status of fault memory entry without critical DMF fault
+Status zeroing sensor
+Voltage PWG potentiometer 1
+Voltage PWG potentiometer 2

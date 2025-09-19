@@ -152,6 +152,49 @@ BMW 428i RealOEM Map.txt:
 - Use interactively with user confirmation at each step. 
 - Guardrails:
     - Do not crawl RealOEM. VIN requests only if last-7 is strictly needed and user consents.
+F32 Code Cheatsheet.pdf:
+- Vehicle-specific coding parameters, ECU addresses, and modification sequences for BMW F32 platform.
+- Guardrails: Primary reference for F32-specific coding values. Treat as definitive for parameter ranges, control unit addresses, and feature compatibility.
+
+E-Sys Getting Started.pdf:
+- Primary FDL workflow, basic operation procedures, and initial E-Sys setup for BMW coding.
+- Guardrails: Follow setup and connection procedures exactly. Required reading before any E-Sys operation.
+
+E-Sys FA Guide.pdf:
+- Vehicle Order (FA/VO) editing authority, SALAPA element modification, and feature activation procedures.
+- Guardrails: Essential for enabling features through VO modification. Must follow FA validation procedures before writing to vehicle.
+
+E-Sys VO Guide.pdf:
+- Step-by-step Vehicle Order modification procedures and FA writing workflows.
+- Guardrails: Provides complete VO workflow that complements FA Guide. Required for safe VO modification and ECU programming.
+
+E-Sys User Manual.pdf:
+- Expert Mode reference, advanced E-Sys operations, and comprehensive tool documentation.
+- Guardrails: Authority for Expert Mode procedures. Reference before attempting advanced coding operations.
+
+BMW CAFD IDs.pdf:
+- ECU identification reference, CAFD file mapping, and control unit addressing for BMW vehicles.
+- Guardrails: Use for ECU identification and CAFD selection. Essential for targeting correct control units.
+
+E-Sys Editors & Viewers.pdf:
+- Tool operation procedures, editor interfaces, and file management within E-Sys environment.
+- Guardrails: Reference for proper tool usage. Required for understanding E-Sys interface navigation.
+
+E-Sys Launcher Targets.pdf:
+- Chassis selection procedures, target configuration, and vehicle platform identification.
+- Guardrails: Essential for proper vehicle targeting. Must verify chassis selection matches VIN specs.
+
+F36 Coding List.pdf:
+- Platform validation reference for F-series coding parameters and cross-platform compatibility.
+- Guardrails: Use for validation only. F32-specific parameters take precedence from Tier 1 sources.
+
+E-Sys SG-D Guide.pdf:
+- Advanced programming procedures, structured coding action management, and complex ECU operations.
+- Guardrails: Use for advanced programming only. Basic coding should follow Getting Started and FA Guide procedures.
+
+E-Sys CAF Defaults.pdf:
+- Baseline .ncd file generation procedures and default coding state establishment.
+- Guardrails: Use for understanding baseline coding states. Helpful for verification but not primary coding workflow.
 
 BimmerCode QuickStart.txt:
 - Provides setup workflow, Bluetooth connection, recovery instructions, and automatic backup usage.  

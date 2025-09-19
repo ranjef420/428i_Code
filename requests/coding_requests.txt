@@ -1,0 +1,4 @@
+# one feature per line, optional tags after " :: "
+CarPlay fullscreen :: HU_NBTEVO, CarPlay, ID5+
+Disable legal disclaimer :: HU_NBTEVO
+Door handle LEDs comfort access :: FEM_BODY

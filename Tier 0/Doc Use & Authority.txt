@@ -36,47 +36,51 @@ TIER 1 - MASTER PROJECT AUTHORITY: BMW & OEM
 TIER 2 - PRIMARY CODING TOOLS: E-SYS & F-SERIES
 ───────────────────────────────────────────────────────────
 
-    1. E-Sys Getting Started.pdf: Step-by-step tutorial on complete FDL coding workflow.
+───────────────────────────────────────────────────────────
+TIER 2 - PRIMARY CODING AUTHORITY & E-SYS WORKFLOW
+───────────────────────────────────────────────────────────
 
-    2. E-Sys Werte Values.pdf: Guide for modifying raw hex/numeric values in CAFD parameters.
+    1. F32 Code Cheatsheet.pdf: Vehicle-specific coding parameters, ECU addresses, and modification sequences for BMW F32 platform. Primary reference for F32-specific coding values and feature compatibility verification.
 
-    3. E-Sys FA Guide.pdf: Practical guide for Vehicle Order (FA/VO) editing and writing.
+    2. E-Sys Getting Started.pdf: Step-by-step tutorial on complete FDL coding workflow, basic operation procedures, and initial E-Sys setup for BMW coding applications.
 
-    4. E-Sys CAF Defaults.pdf: Generate baseline .ncd coding files from FA/VO and SVT for offline exploration.
+    3. E-Sys FA Guide.pdf: Practical guide for Vehicle Order (FA/VO) editing authority, SALAPA element modification, and feature activation procedures through VO modification.
 
-    5. E-Sys Editors & Viewers.pdf: FDL Editor and CAF Viewer operation for hands-on coding implementation.
+    4. E-Sys VO Guide.pdf: Step-by-step walkthrough of Vehicle Order modification procedures and FA writing workflows, providing complete VO workflow implementation.
 
-    6. E-Sys SG-D Guide.pdf: Advanced SG-D programming and structured coding action management.
+    5. E-Sys User Manual.pdf: Official reference manual for E-Sys Expert Mode operations, SVT management, CAFD editing, and comprehensive advanced tool documentation.
 
-    7. E-Sys User Manual.pdf: Official reference manual for E-Sys Expert Mode, SVT, CAFD, and FDL editing.
+    6. BMW CAFD IDs.pdf: Lookup table mapping ECU names to CAFD hex identifiers in psdzdata v3.61.5. Essential reference for ECU identification and control unit targeting.
 
-    8. E-Sys VO Guide.pdf: Step-by-step walkthrough of VO (FA) editing and writing procedures.
+    7. E-Sys Editors & Viewers.pdf: FDL Editor and CAF Viewer operation guide for hands-on coding implementation, editor interfaces, and file management within E-Sys environment.
 
-    9. E-Sys Launcher Targets.pdf: Chassis family selection guide for correct psdzdata mappings.
+    8. E-Sys Launcher Targets.pdf: Chassis family selection guide for correct psdzdata mappings, target configuration, and vehicle platform identification procedures.
 
-    10. ISTA-P I-Level Chart.pdf: Master chart linking ISTA/P versions to I-Level software packages across chassis.
+    9. F36 Coding List.pdf: Working log of real-world FDL changes on near-identical vehicle to F32 428i. Platform validation reference for F-series coding parameter cross-compatibility.
 
-    11. BMW CAFD IDs.pdf: Lookup table mapping ECU names to CAFD hex identifiers in psdzdata v3.61.5.
+    10. E-Sys SG-D Guide.pdf: Advanced SG-D programming and structured coding action management. Comprehensive guide for complex ECU operations and advanced programming procedures.
 
-    12. F32 Code Cheatsheet.pdf: PRIMARY F32 coding reference with tested parameters, VO codes, and FDL mappings.
+    11. E-Sys CAF Defaults.pdf: Generate baseline .ncd coding files from FA/VO and SVT for offline exploration. Procedures for default coding state establishment and verification workflows.
 
-    13. F36 Coding List.pdf: Working log of real-world FDL changes on near-identical vehicle to F32 428i.
+    12. ISTA-P I-Level Chart.pdf: Master chart linking ISTA/P versions to I-Level software packages across chassis. Integration level compatibility matrix for mixed toolchain operations.
 
-    14. F22 Cheatsheet.xlsx: 2-Series coding parameters for syntax cross-checking.
+    13. E-Sys Werte Values.pdf: Guide for modifying raw hex/numeric values in CAFD parameters. Reference for direct parameter editing and hexadecimal value modification.
 
-    15. F25 Cheatsheet.xlsx: X3/X4 tested coding functions and value verification.
+    14. F22 Cheatsheet.xlsx: 2-Series coding parameters for cross-platform syntax validation and parameter format reference.
 
-    16. F10 Cheatsheet.pdf: 5-Series parameter cross-check for overlapping modules.
+    15. F25 Cheatsheet.xlsx: X3/X4 tested coding functions and value verification. Cross-platform reference for parameter syntax validation.
 
-    17. F56 Cheatsheet.xlsx: MINI/BMW crossover coding syntax library (Use for F48).
+    16. F10 Cheatsheet.pdf: 5-Series parameter cross-check for overlapping modules and syntax validation across F-series platforms.
 
-    18. Fxx Model Ref Table.xlsm: Interactive Excel sheet with sortable F-series coding entries.
+    17. F56 Cheatsheet.xlsx: MINI/BMW crossover coding syntax library for general parameter format reference and cross-platform validation.
 
-    19. F15 X5 Standalone Reference Pack: [SEPARATED DUE TO SIZE/COMPLEXITY]
+    18. Fxx Model Ref Table.xlsm: Interactive Excel sheet with sortable F-series coding entries. General lookup table for cross-platform parameter mapping.
 
-    20. Fxx Cheatsheet.pdf: Large-format SUV-specific coding parameters for BDC/FEM_BODY cross-validation.
+    19. F15 X5 Standalone Reference Pack: Large SUV parameters for cross-platform validation. Comprehensive reference documentation for F15 platform coding parameters.
 
-    21. F-Series Code Cross Reference Pack.pdf: Comprehensive F-series coding parameter cross-reference documentation.
+    20. Fxx Cheatsheet.pdf: Large-format SUV-specific coding parameters for BDC/FEM_BODY cross-validation and general F-series coding principles.
+
+    21. F-Series Code Cross Reference Pack.pdf: Comprehensive F-series coding parameter cross-reference documentation for syntax validation and platform comparison.
 
 ───────────────────────────────────────────────────────────
 TIER 3 - FALLBACK CODING RESOURCE: BIMMERCODE
@@ -152,8 +156,9 @@ BMW 428i RealOEM Map.txt:
 - Use interactively with user confirmation at each step. 
 - Guardrails:
     - Do not crawl RealOEM. VIN requests only if last-7 is strictly needed and user consents.
+
 F32 Code Cheatsheet.pdf:
-- Vehicle-specific coding parameters, ECU addresses, and modification sequences for BMW F32 platform.
+- Exact vehicle-specific coding parameters, ECU addresses, and modification sequences for projext-target BMW F32 platform.
 - Guardrails: Primary reference for F32-specific coding values. Treat as definitive for parameter ranges, control unit addresses, and feature compatibility.
 
 E-Sys Getting Started.pdf:
@@ -195,6 +200,46 @@ E-Sys SG-D Guide.pdf:
 E-Sys CAF Defaults.pdf:
 - Baseline .ncd file generation procedures and default coding state establishment.
 - Guardrails: Use for understanding baseline coding states. Helpful for verification but not primary coding workflow.
+
+ISTA-P I-Level Chart.pdf:
+- Integration level compatibility matrix and version coordination for E-Sys and ISTA-P operations.
+- Guardrails: Reference for software version compatibility. Required for mixed toolchain operations.
+
+E-Sys Werte Values.pdf:
+- Hexadecimal and numeric value modification reference for direct parameter editing.
+- Guardrails: Use only for advanced modifications. Verify values against vehicle-specific documentation.
+
+F22 Cheatsheet.xlsx:
+- 2-Series coding parameters for cross-platform syntax validation.
+- Guardrails: Reference only for parameter syntax. F32-specific values always take precedence. Do not transpose values without platform verification.
+
+F25 Cheatsheet.xlsx:
+- X3/X4 coding parameters for cross-platform reference.
+- Guardrails: Cross-reference only. Not authoritative for F32 coding. Verify feature parity before use.
+
+F10 Cheatsheet.pdf:
+- 5-Series coding parameters for syntax cross-checking.
+- Guardrails: Reference only. F32 platform differences must be verified. Module compatibility not guaranteed.
+
+F56 Cheatsheet.xlsx:
+- MINI/BMW crossover parameters for syntax validation.
+- Guardrails: Limited applicability to F32. Use only for general parameter format reference.
+
+Fxx Model Ref Table.xlsm:
+- General F-series lookup table for cross-platform parameter mapping.
+- Guardrails: General reference only. Platform-specific documents take precedence.
+
+F15 X5 Standalone Reference Pack:
+- Large SUV parameters for cross-platform validation.
+- Guardrails: Reference only. F32 coupe parameters differ significantly from SUV platform.
+
+Fxx Cheatsheet.pdf:
+- SUV cross-validation reference for general F-series coding principles.
+- Guardrails: Cross-reference only. F32-specific documentation is authoritative.
+
+F-Series Code Cross Reference Pack.pdf:
+- Comprehensive cross-reference for F-series coding parameters and syntax validation.
+- Guardrails: Use for general reference only. Vehicle-specific documentation always takes precedence.
 
 BimmerCode QuickStart.txt:
 - Provides setup workflow, Bluetooth connection, recovery instructions, and automatic backup usage.  

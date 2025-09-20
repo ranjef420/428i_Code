@@ -91,7 +91,7 @@ Rollback/Notes: Restore to previous HEX value if visibility or longevity affecte
 ─────────────────────────────────────
 Cornering Lights & Fog Lamp Welcome Lights
 -----------------------------------
-Cornering Lights
+FA2) Cornering Lights
 Purpose: Enable fog lights to illuminate in steered direction.
 Coding Type: FDL
 ECU/Module: FEM_BODY 3073, 3066, 3062, 3063
@@ -114,7 +114,7 @@ Key Parameters:
 ─────────────────────────────────────
 Day-Running Lights & Rear Fog Lamps
 -----------------------------------
-Day-Running Lights & Activate Rear Fog Lamps
+FA2) Day-Running Lights & Activate Rear Fog Lamps
 Purpose: Enable DRL and rear fog lamp features, including iDrive options.
 Warning: Rear fog light button required; physical modification may be needed.
 Coding Type: FDL
@@ -133,7 +133,7 @@ Key Parameters:
 ─────────────────────────────────────
 Assorted Lighting Features
 -----------------------------------
-Assorted Lighting Features
+FA3) Assorted Lighting Features
 Purpose: Advanced control over lighting (blinkers, sidemarkers, ambient, etc.)
 Warning: Door handle illumination in Reverse active if Top-View Camera equipped.
 Coding Type: FDL

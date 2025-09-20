@@ -9,7 +9,7 @@ since VO coding will return values in that module to their defaults***
 FA Codes (VO Coding)
 ───────────────────────────────────────────────────────────
 
-Activate Active High Beam Assistant (Anti-Dazzle)
+VO1) Activate Active High Beam Assistant (Anti-Dazzle)
 Purpose: Enable automatic high beam control without dazzling other drivers.
 Warning: Requires vehicle equipped with High Beam Assistant. May also require Variable Light Distribution enabled.
 Coding Type: VO
@@ -20,13 +20,13 @@ Values: N/A
 Verify: High beam automatically adapts without blinding.
 Rollback/Notes: CAFD modifications available for HBA speed thresholds (see below).
 
-CAFD modifications after VO coding:
+CAFD modifications REQUIRED after VO coding:
 - Speed HBA Enables: FEM_BODY – C_HBA_ENA_V_HI (HEX value for kph)
 - Speed HBA Disables: FEM_BODY – C_HBA_ENA_V_LO (HEX value for kph)
 - Highway Mode Entry: FEM_BODY – C_HBA_HGWY_V_HI (Default: 8C = 140 kph)
 - Highway Mode Exit: FEM_BODY – C_HBA_HGWY_V_LO (Default: 5A = 90 kph)
 
-Activate Variable Light Distribution
+VO2) Activate Variable Light Distribution
 Purpose: Adapt low/high beam distribution based on speed.
 Warning: Requires FLA/KAFAS camera installed.
 Coding Type: VO
@@ -37,7 +37,7 @@ Values: N/A
 Verify: Light beam adapts as speed changes.
 Rollback/Notes: May be required for full Active High Beam Assistant functionality.
 
-Activate Enhanced Bluetooth
+VO3) Activate Enhanced Bluetooth
 Purpose: Enable Bluetooth audio streaming, album art, and USB music streaming.
 Warning: Requires HU_NBT or combox with HU_CIC/HU_ENTRY.
 Coding Type: VO
@@ -48,7 +48,7 @@ Values: N/A
 Verify: Pair device, stream music, check album art.
 Rollback/Notes: Revert FA codes to default for rollback.
 
-Activate iDrive Office
+VO4) Activate iDrive Office
 Purpose: Enable Office menu in iDrive (contacts, email, SMS receiving).
 Warning: Sometimes disabled by Country Controllers.
 Coding Type: VO
@@ -59,7 +59,7 @@ Values: N/A
 Verify: Office menu options available.
 Rollback/Notes: Revert Country Controller code if needed.
 
-Activate Sport Automatic Transmission (SAT)
+VO5) Activate Sport Automatic Transmission (SAT)
 Purpose: Enable faster/smoother shifts and Sport+ if not already active.
 Warning: Standalone BMW option; paddle shifters optional.
 Coding Type: VO
@@ -77,7 +77,7 @@ CAFD Codes Index (FDL Coding)
 ─────────────────────────────────────
 Angel LED Brightness
 -----------------------------------
-Angel LED Brightness
+1) Angel LED Brightness
 Purpose: Adjust brightness of Angel LEDs with Xenon/LED headlamps.
 Warning: Supposedly does not work on F32.
 Coding Type: FDL

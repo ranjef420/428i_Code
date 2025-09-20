@@ -56,7 +56,8 @@ This repository contains scripts, data files, reference manuals, and configurati
 
 ---
 
-## Authority Hierarchy
+## Documentation Authority Hierarchy
+See [docs/Authority.md] for how to use this repository’s documents.
 
 **Always follow the document hierarchy:**  
 Tier 1 (OEM manuals, VIN specs) → Tier 2 (Coding guides, cheatsheets) → Tier 3 (BimmerCode docs) → Tier 4 (Retrofit/Aftermarket) → Tier 5 (External forums) → Tier 6 (Archive)

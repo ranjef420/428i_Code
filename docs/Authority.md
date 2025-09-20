@@ -1,7 +1,7 @@
 docs/Authority.md
 ───────────────────────────────────────────────────────────
 
-DOCUMENT REFERENCE & HIERARCHY OF AUTHORITY
+DOCUMENT REFERENCE & HIERARCHY OF AUTHORITY: see docs/Doc Use & Authority.txt
 
 PURPOSE:
 Master reference file defining the hierarchy of authority, usage protocols, and guardrails for all other project documents.  

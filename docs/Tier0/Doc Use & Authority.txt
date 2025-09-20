@@ -33,10 +33,6 @@ TIER 1 - MASTER PROJECT AUTHORITY: BMW & OEM
     5. BMW 428i RealOEM Map.txt: Structured navigation guide to BMW's online RealOEM interactive catalog, covering all main vehicle component categories and providing first-layer subcategories where organization is cluttered or ambiguous.
 
 ───────────────────────────────────────────────────────────
-TIER 2 - PRIMARY CODING TOOLS: E-SYS & F-SERIES
-───────────────────────────────────────────────────────────
-
-───────────────────────────────────────────────────────────
 TIER 2 - PRIMARY CODING AUTHORITY & E-SYS WORKFLOW
 ───────────────────────────────────────────────────────────
 

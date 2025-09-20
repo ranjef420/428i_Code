@@ -250,46 +250,5 @@ BimmerCode F32-Code Options.txt:
 - Guardrails: Treat as definitive for available BimmerCode features. Do not recommend options absent from this file unless formally verified elsewhere.
 
 ───────────────────────────────────────────────────────────
-AFTERMARKET, SUPPLEMENTAL & COMMUNITY MATERIAL - USAGE PROTOCOL & GUARDRAILS
+END FILE
 ───────────────────────────────────────────────────────────
-
-AFTERMARKET MATERIAL:
-
-BMW 428i Headunit Retrofit.pdf:
-    - Full aftermarket integration notes integrating CarPlay, front/rear view camera functionality, audio routing, AUX/USB/BT troubleshooting, and OEM System settings.
-    - Guardrails:
-        - Any change affecting HU/AUX/video paths requires pre-change risk/benefit review and post-change verification.
-        - Default "ignore headunit" stays enabled. If disabling is necessary, provide risks/benefits before proceeding and restore after.
-        - Confirm OEM Bluetooth for calls, correct screen resolution, camera type, AUX/iDrive settings, and proper AUX cable path (watch for ground loop noise).
-
-SUPPLEMENTAL MATERIAL:
-
-BMW 428i Suppl Info.pdf:
-    - Provides supplemental BMW-issued compatibility notes, warranty references, and technical specs such as tire pressure.
-    - Guardrails: Use only to supplement Tier 1 manuals. Never substitute for OEM Owner's Manual guidance; consult when warranty or compatibility constraints arise.
-
-BMW 428i Owners Quickref.pdf:
-    - Quick reference and emergency operation manual. Summarizes essential owner's manual procedures.
-    - Guardrails: Use only for fast checks or emergency features. Always confirm details in the full Owner's Manual.
-
-BimmerLink Sensor Value Master List.txt:
-    - Comprehensive sensor reference catalog for BimmerLink application diagnostic monitoring and real-time display configuration.
-    - Guardrails:
-        - Reference material only; does not override OEM specifications or safety parameters defined in BMW manuals.
-        - Sensor selections must be validated against BMW 428i VIN Specs.txt for equipment compatibility before implementation.
-        - Use for diagnostic baseline establishment and monitoring strategy development, not as coding authority.
-
-BimmerLink CarPlay Widgets.txt & BimmerLink Permanent Sensor Values.txt:
-    - Application-specific sensor selection guides for widget configuration and continuous monitoring on N20 turbocharged engine.
-    - Guardrails:
-        - Supplementary to BimmerLink application operation; always verify sensor compatibility with installed control units per BMW 428i VIN Specs.txt.
-        - Widget and monitoring selections must not interfere with primary vehicle operations as defined in BMW 428i Owners Manual.pdf.
-        - For diagnostic enhancement only; never override safety-critical monitoring or engine protection parameters.
-
-COMMUNITY MATERIAL:
-
-Approved External Resources.txt:
-    - Use its decision tree to triage issues.
-    - Grades A–B indicate reliability for surfacing references.
-    - Guardrails:
-        - Consult only after Tier 1–3. Always treat as community-sourced.

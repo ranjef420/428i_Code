@@ -1,0 +1,934 @@
+BimmerCode Expert Codes.txt
+───────────────────────────────────────────────────────────
+CODE INDEX - EXPERT MODE
+───────────────────────────────────────────────────────────
+
+*** Do VO coding first before doing any CAFD coding, 
+since VO coding will return values in that module to their defaults***
+
+───────────────────────────────────────────────────────────
+FA Code Index
+───────────────────────────────────────────────────────────
+(*** VO CODING ***)
+- Activate Active High Beam Assistant (Anti-Dazzle)
+- Activate Variable Light Distribution
+- Activate Enhanced Bluetooth
+- Activate iDrive Office
+- Activate Sport Automatic Transmission
+(*** VO CODING ***)
+
+───────────────────────────────────────────────────────────
+CAFD Codes Index (FDL Coding)
+───────────────────────────────────────────────────────────
+- Angel LED Brightness
+- Cornering Lights & Fog Lamp Welcome Lights
+- Day-Running Lights & Rear Fog Lamps
+- Assorted Lighting Features
+- LED Replacement Turn Signal Bulbs Activation
+- Instrument Cluster
+- Safety Features & Precautions
+- Vehicle Drivetrain & Sport Features (Active Sound Design)
+- Locking/Window & Convenience Features
+- iDrive Features
+- Video in Motion & Playback Features
+- Advanced Real-Time Traffic Info Activation
+- Heads-Up Display
+- BMW Live Enabling
+- Seat Heating Temperature Levels/Memory Seats
+- Headlamp Washers Configuration
+- Codes that need testing/checking
+- Ineffective or unavailable codes
+
+
+───────────────────────────────────────────────────────────
+CODING INSTRUCTIONS - EXPERT MODE
+───────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────
+FA Codes (VO Coding)
+───────────────────────────────────────────────────────────
+(*** VO CODING ***)
+
+Activate Active High Beam Assistant (Anti-Dazzle)
+- Requires the vehicle to be equipped with High Beam Assistant.
+- Enables the system to move high beams independently without blinding other drivers.
+- MODIFY THE READ FA: Remove 5AP from the vehicle FA.
+- VO CODE: FEM_BODY and FLA/KAFAS2 (depending on equipment).
+
+CAFD modifications of HBA functionality after VO coding in FEM_BODY and FLA/KAFAS2:
+- Speed HBA Enables: FEM_BODY – C_HBA_ENA_V_HI (value in HEX for kph)
+- Speed HBA Disables: FEM_BODY – C_HBA_ENA_V_LO (value in HEX for kph)
+- Speed to immediately enter Highway Mode: FEM_BODY – C_HBA_HGWY_V_HI (Default: Werte = 8C = 140 kph)
+- Speed to leave Highway Mode: FEM_BODY – C_HBA_HGWY_V_LO (Default: Werte = 5A = 90 kph)
+
+Note: It may be required to enable Variable Light Distribution for Active High Beam Assistant to function fully.
+
+Activate Variable Light Distribution
+- Requires an FLA/KAFAS camera installed in the vehicle.
+- Adapts light beam based on vehicle speed.
+- City: low beam to illuminate close road without dazzling oncoming drivers.
+- Highway: lamps raise to increase visibility.
+- MODIFY THE READ FA: Remove 8S4 from the vehicle FA.
+- VO CODE: FEM_BODY.
+
+Activate Enhanced Bluetooth
+- Requires HU_NBT or combox with HU_CIC or HU_ENTRY.
+- Enables Bluetooth audio streaming, artwork, and USB music streaming.
+- MODIFY THE READ FA: Change 6NH to 6NK (without BMW Assist) or 6NS (with BMW Assist).
+- VO CODE: CMB_MEDIA and HU_CIC/HU_ENTRY or HU_NBT.
+
+Activate iDrive Office
+- Sometimes disabled by Country Controllers.
+- Enables Office Menu in iDrive (Contacts, Email, Text Message Receiving, etc.).
+- MODIFY THE READ FA: Remove Country Controller code (SL8Ax) from vehicle FA.
+- VO CODE: CMB_MEDIA and HU_CIC/HU_ENTRY or HU_NBT.
+
+Activate Sport Automatic Transmission (SAT)
+- Standalone option offered by BMW (paddle shifters optional).
+- Enables faster, smoother shifts with ZF8HP Transmission.
+- Enables Sport+ if not already active.
+- MODIFY THE READ FA: Change 205 to 2TB in the vehicle FA.
+- VO CODE: EGS, ICM, and KOMBI.
+
+(*** VO CODING ***)
+
+───────────────────────────────────────────────────────────
+CAFD Coding Instructions (FDL Coding)
+───────────────────────────────────────────────────────────
+It’s recommended to VO code first before doing any CAFD coding, 
+since VO coding will return values to their defaults.
+
+Highlight References
+- Blue Highlight = Enabled/Working on my vehicle
+- Yellow Highlight = Check Section Description
+- Red Highlight = Issue
+
+HEX Information
+- Most values (werte) will be in HEX. Convert to Decimal for true value.
+  Examples: 08 = 8 ; 1F = 31 ; 32 = 50 ; 64 = 100 ; FF = 255
+- Units: Speed = km/h ; Time = seconds/hours ; Distance = meters
+
+Angel LED Brightness (Xenon Headlamps or LED Headlamps required)
+- Adjusts the brightness of the Angel LEDs.
+- Values are in HEX. Example:
+  0% = 00, 25% = 19, 50% = 32, 100% = 64
+- Note: Supposedly does not work on F32.
+
+Cornering Lights (Fog Lamps) & Fog Lamp Welcome Lights
+- Fog lights illuminate in the steered direction.
+- Front fog lights are required for all features below.
+
+Modules and Parameters:
+FEM_BODY 3062 - MAPPING_PARKL_V_L_PWM_LEVEL_1 = 32 (default 8) 
+  Change Parking Light Brightness (Left)
+FEM_BODY 3062 - MAPPING_PARKL_V_R_PWM_LEVEL_1 = 32 (default 8) 
+  Change Parking Light Brightness (Right)
+FEM_BODY 3062 - MAPPING_STANDL_V_L_PWM_LEVEL_1 = 32 (default 8) 
+  Change Angel Eye Brightness when headlamps on (Left)
+FEM_BODY 3062 - MAPPING_STANDL_V_R_PWM_LEVEL_1 = 32 (default 8) 
+  Change Angel Eye Brightness when headlamps on (Right)
+FEM_BODY 3062 - MAPPING_TAGFAHRL_V_L_PWM_LEVEL_1 = 32 (default 64) 
+  Change Day-Running Light Brightness (Left)
+FEM_BODY 3062 - MAPPING_TAGFAHRL_V_R_PWM_LEVEL_1 = 32 (default 64) 
+  Change Day-Running Light Brightness (Right)
+
+FEM_BODY 3073 - C_CLC_ENA = F030enable / F030disable 
+  Enables cornering lights (Part 1)
+FEM_BODY 3073 - C_BLC_ENA = aktiv / nicht_aktiv 
+  Enables cornering lights (Part 2)
+FEM_BODY 3066 - KL_ENABLE_LI = KL_Ein / KL_Aus 
+  Enables cornering lights (Part 3)
+FEM_BODY 3073 - KL_ENABLE_RE = KL_Ein / KL_Aus 
+  Enables cornering lights (Part 4)
+FEM_BODY 3062 - MAPPING_abbiegel_L_output = nsw_l / Off 
+  Enables cornering lights (Part 5)
+FEM_BODY 3062 - MAPPING_abbiegel_R_output = nsw_r / Off 
+  Enables cornering lights (Part 6)
+
+FEM_BODY 3063 - MAPPING_NEBELSCHW_L_PART_OF_WL = Soft_On / nicht_aktiv 
+  Turns on Left Fog Lamp with Welcome Lights
+FEM_BODY 3063 - MAPPING_NEBELSCHW_R_PART_OF_WL = Soft_On / nicht_aktiv 
+  Turns on Right Fog Lamp with Welcome Lights
+
+───────────────────────────────────────────────────────────
+Day-Running Lights & Activate Rear Fog Lamps
+───────────────────────────────────────────────────────────
+- Rear fog lights require a working rear fog light button.
+- This can be enabled by using the plastic piece in place of the button 
+  and breaking the plastic stopper inside (no parts need to be bought).
+
+Modules and Parameters:
+HU_NBT 3000 - Daydriving_light = aktiv / standard  
+  Shows Day-Running Lights option in iDrive Settings (Lighting)
+
+FEM_BODY 3060 - TFL_MODUS = Tfl_s (0, A) or Drl_s (0, A, P) / Off  
+  Enables Day-Running Lights. Letters: 0 = Off, A = Auto, P = Parking
+
+REM 3062 - MAPPING_TAGFAHRL_H2_L_OUTPUT = sl_2_l / off  
+  Turns On Left Tail-light (Inner Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H2_R_OUTPUT = sl_2_r / off  
+  Turns On Right Tail-light (Inner Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H_L_OUTPUT = sl_l / off  
+  Turns On Left Tail-light (Outer Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H_R_OUTPUT = ls_r / off  
+  Turns On Right Tail-light (Outer Part) on with DRL
+
+FEM_BODY 3060 - NSL_Verbaut = Verbaut / Nicht Verbaut  
+  Activate Rear Fog Lamp Switch - Part 1
+
+REM 3063 - Mapping_Nebelschlussl_L_output = nsl_l / off  
+  Activate Rear-Left Fog Lamp - Part 2
+
+REM 3063 - Mapping_Nebelschlussl_L_Function = nebelschlusslicht  
+  Activate Rear-Left Fog Lamp - Part 3
+
+REM 3063 - Mapping_Nebelschlussl_R_output = nsl_r / off  
+  Activate Rear-Right Fog Lamp - Part 4
+
+REM 3063 - Mapping_Nebelschlussl_R_Function = nebelschlusslicht  
+  Activate Rear-Right Fog Lamp - Part 5
+
+───────────────────────────────────────────────────────────
+Assorted Lighting Features
+───────────────────────────────────────────────────────────
+- Door handle illumination in Reverse is already active on vehicles 
+  equipped with Top-View Camera.
+
+Translation for Auto Headlamp Code:
+- empfindlich = sensitive
+- sehr_empfindlich = very sensitive
+- unempfindlich = insensitive
+- Tagfahrlicht = DRL
+
+Modules and Parameters:
+HU_NBT 3000 - Daydriving_light = aktiv / standard  
+  Shows DRL option in iDrive Settings (Lighting)
+
+FEM_BODY 3060 - BLINKZYKLEN_ANZAHL_TIPP = werte = X-1 (default 02)  
+  Change the triple blinker blinks to any amount.
+
+FEM_BODY 3060 - ESS_AKTIVIERBARER_AUSGANG = bremslicht_blinkend / flachenvergroesserung  
+  Change Emergency Brake Light from Inner Brake Lights to Flashing Lights.
+
+FEM_BODY 3060 - ESS_AKTIVIERUNG_GESCHW = user value (default werte = 02 = 5 km/h)  
+  Threshold Speed for activating Emergency Brake Light.
+
+FEM_BODY 3063 - MAPPING_SIDEMARKER_L_OUTPUT = off / fra_v_l  
+  Turns off the left front side-marker (blinker remains active).
+
+FEM_BODY 3063 - MAPPING_SIDEMARKER_R_OUTPUT = off / fra_v_r  
+  Turns off the right front side-marker (blinker remains active).
+
+FEM_BODY 3070 - OVT_BEI_RUECKFAHRLICHT = aktiv / nicht_aktiv  
+  Door handle LEDs light up when engaged in Reverse.
+
+FEM_BODY 3050 - NSW_AUS_BEI_FL = nicht_aktiv / aktiv  
+  Allows Fog Lights to remain on when high beams are active.
+
+FEM_BODY 3060 - NSW_EIN_AUF_LDS_STL = aktiv / nicht_aktiv  
+  Allows Fog Lights to turn on while only parking lights are on.
+
+FEM_BODY 3070 - Ambiente_Helligkeit = user value (default 64 HEX)  
+  Brightness of Interior Ambient Lighting.
+
+FEM_BODY 3070 - Ambiente_Nachfuehrung = nicht_aktiv / aktiv  
+  Separates Ambient Light Level and Instrument Cluster Light Level.
+
+FEM_BODY 3070 - IB_Einschalt_begr_lok = user value (default 8 HEX)  
+  Time interior lights stay illuminated while locking.
+
+FEM_BODY 3070 - IB_Einschalt_begr_ulok = user value (default 8 HEX)  
+  Time interior lights stay illuminated while unlocking.
+
+FEM_BODY 3070 - WL_HELLIGKEIT = user value (default 64 HEX)  
+  Brightness of Welcome Lights.
+
+───────────────────────────────────────────────────────────
+Day-Running Lights & Activate Rear Fog Lamps
+───────────────────────────────────────────────────────────
+- Rear fog lights require a working rear fog light button.
+- This can be enabled by using the plastic piece in place of the button 
+  and breaking the plastic stopper inside (no parts need to be bought).
+
+Modules and Parameters:
+HU_NBT 3000 - Daydriving_light = aktiv / standard  
+  Shows Day-Running Lights option in iDrive Settings (Lighting)
+
+FEM_BODY 3060 - TFL_MODUS = Tfl_s (0, A) or Drl_s (0, A, P) / Off  
+  Enables Day-Running Lights. Letters: 0 = Off, A = Auto, P = Parking
+
+REM 3062 - MAPPING_TAGFAHRL_H2_L_OUTPUT = sl_2_l / off  
+  Turns On Left Tail-light (Inner Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H2_R_OUTPUT = sl_2_r / off  
+  Turns On Right Tail-light (Inner Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H_L_OUTPUT = sl_l / off  
+  Turns On Left Tail-light (Outer Part) on with DRL
+
+REM 3062 - MAPPING_TAGFAHRL_H_R_OUTPUT = ls_r / off  
+  Turns On Right Tail-light (Outer Part) on with DRL
+
+FEM_BODY 3060 - NSL_Verbaut = Verbaut / Nicht Verbaut  
+  Activate Rear Fog Lamp Switch - Part 1
+
+REM 3063 - Mapping_Nebelschlussl_L_output = nsl_l / off  
+  Activate Rear-Left Fog Lamp - Part 2
+
+REM 3063 - Mapping_Nebelschlussl_L_Function = nebelschlusslicht  
+  Activate Rear-Left Fog Lamp - Part 3
+
+REM 3063 - Mapping_Nebelschlussl_R_output = nsl_r / off  
+  Activate Rear-Right Fog Lamp - Part 4
+
+REM 3063 - Mapping_Nebelschlussl_R_Function = nebelschlusslicht  
+  Activate Rear-Right Fog Lamp - Part 5
+
+───────────────────────────────────────────────────────────
+Assorted Lighting Features
+───────────────────────────────────────────────────────────
+- Door handle illumination in Reverse is already active on vehicles 
+  equipped with Top-View Camera.
+
+Translation for Auto Headlamp Code:
+- empfindlich = sensitive
+- sehr_empfindlich = very sensitive
+- unempfindlich = insensitive
+- Tagfahrlicht = DRL
+
+Modules and Parameters:
+HU_NBT 3000 - Daydriving_light = aktiv / standard  
+  Shows DRL option in iDrive Settings (Lighting)
+
+FEM_BODY 3060 - BLINKZYKLEN_ANZAHL_TIPP = werte = X-1 (default 02)  
+  Change the triple blinker blinks to any amount.
+
+FEM_BODY 3060 - ESS_AKTIVIERBARER_AUSGANG = bremslicht_blinkend / flachenvergroesserung  
+  Change Emergency Brake Light from Inner Brake Lights to Flashing Lights.
+
+FEM_BODY 3060 - ESS_AKTIVIERUNG_GESCHW = user value (default werte = 02 = 5 km/h)  
+  Threshold Speed for activating Emergency Brake Light.
+
+FEM_BODY 3063 - MAPPING_SIDEMARKER_L_OUTPUT = off / fra_v_l  
+  Turns off the left front side-marker (blinker remains active).
+
+FEM_BODY 3063 - MAPPING_SIDEMARKER_R_OUTPUT = off / fra_v_r  
+  Turns off the right front side-marker (blinker remains active).
+
+FEM_BODY 3070 - OVT_BEI_RUECKFAHRLICHT = aktiv / nicht_aktiv  
+  Door handle LEDs light up when engaged in Reverse.
+
+FEM_BODY 3050 - NSW_AUS_BEI_FL = nicht_aktiv / aktiv  
+  Allows Fog Lights to remain on when high beams are active.
+
+FEM_BODY 3060 - NSW_EIN_AUF_LDS_STL = aktiv / nicht_aktiv  
+  Allows Fog Lights to turn on while only parking lights are on.
+
+FEM_BODY 3070 - Ambiente_Helligkeit = user value (default 64 HEX)  
+  Brightness of Interior Ambient Lighting.
+
+FEM_BODY 3070 - Ambiente_Nachfuehrung = nicht_aktiv / aktiv  
+  Separates Ambient Light Level and Instrument Cluster Light Level.
+
+FEM_BODY 3070 - IB_Einschalt_begr_lok = user value (default 8 HEX)  
+  Time interior lights stay illuminated while locking.
+
+FEM_BODY 3070 - IB_Einschalt_begr_ulok = user value (default 8 HEX)  
+  Time interior lights stay illuminated while unlocking.
+
+FEM_BODY 3070 - WL_HELLIGKEIT = user value (default 64 HEX)  
+  Brightness of Welcome Lights.
+
+───────────────────────────────────────────────────────────
+LED Replacement Turn Signal Bulbs Activation
+
+- Traditional turn signal bulbs are checked every 4 minutes by sending a small pulse. 
+- With LEDs, this pulse causes flicker. The following codes remove pulse monitoring 
+  and enable LED bulb recognition.
+- Recommended bulb: CREE 30W XB-D5 LED.
+───────────────────────────────────────────────────────────
+
+Modules and Parameters:
+FEM_BODY 3061 - FRA_V_L_KALTUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Front-Left Turn Signal Bulb Cold Monitoring.
+
+FEM_BODY 3061 - FRA_V_L_WARMUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Front-Left Turn Signal Bulb Warm Monitoring.
+
+FEM_BODY 3061 - FRA_V_L_IS_LED = aktiv / nicht_aktiv  
+  Enables Front-Left LED bulb.
+
+FEM_BODY 3061 - FRA_V_R_KALTUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Front-Right Turn Signal Bulb Cold Monitoring.
+
+FEM_BODY 3061 - FRA_V_R_WARMUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Front-Right Turn Signal Bulb Warm Monitoring.
+
+FEM_BODY 3061 - FRA_V_R_IS_LED = aktiv / nicht_aktiv  
+  Enables Front-Right LED bulb.
+
+FEM_BODY/REM 3061 - FRA_H_L_KALTUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Rear-Left Turn Signal Bulb Cold Monitoring.
+
+FEM_BODY/REM 3061 - FRA_H_L_WARMUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Rear-Left Turn Signal Bulb Warm Monitoring.
+
+FEM_BODY/REM 3061 - FRA_H_L_IS_LED = aktiv / nicht_aktiv  
+  Enables Rear-Left LED bulb (may cause Check Engine Light).
+
+FEM_BODY/REM 3061 - FRA_H_R_KALTUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Rear-Right Turn Signal Bulb Cold Monitoring.
+
+FEM_BODY/REM 3061 - FRA_H_R_WARMUEBERWACHUNG = nicht_aktiv / aktiv  
+  Turns off Rear-Right Turn Signal Bulb Warm Monitoring.
+
+FEM_BODY/REM 3061 - FRA_H_R_IS_LED = aktiv / nicht_aktiv  
+  Enables Rear-Right LED bulb (may cause Check Engine Light).
+
+───────────────────────────────────────────────────────────
+Instrument Cluster
+───────────────────────────────────────────────────────────
+- Note: Disabling Speed Correction causes indicated speed to be about 
+  2 mph lower than Cruise Control set speed. 
+- Recommended not to set clock via GPS if equipped with BMW Online.
+- 6WA Cluster = Extended Instrument Cluster.
+
+Modules and Parameters:
+KOMBI 3000 - BC_AUTORESET_ZEIT = user choice (default 04h in HEX)  
+  Trip Computer auto-reset time (00 = 0 hours, FF = never).
+
+KOMBI 3000 - BC_DIGITAL_V = aktiv / nicht_aktiv  
+  Adds vehicle’s current speed to BC cycle list (shown on KOMBI screen).
+
+KOMBI 3000 - BC_V_KORREKTUR = nicht_aktiv / aktiv  
+  Turns off speed correction, displays actual speed.
+
+KOMBI 3000 - BMW_LOGO = mpm / ag  
+  Changes KOMBI/HUD startup to M Performance (M550d on updated cars).
+
+KOMBI 3000 - GPS_UHR = aktiv / nicht_aktiv  
+  Sets clock via GPS (intended for HU_CIC cars, needs close sync to GPS time).
+
+KOMBI 3000 - MSA_VERFUEGBARANZEIGE_ENABLE = nicht_aktiv / aktiv  
+  Enables “Auto Start-Stop Off” notification in KOMBI.
+
+KOMBI 3007 - DIM_NACHT_EIN = werte = FF (default 32 HEX)  
+  Changes orange night KOMBI colors to white at night (no Navi Night Switch).
+
+KOMBI 3000 - FDS_MENUE_TEXT_1/2/3/4 = menue_3 / menue_4  
+  Enables Sport+ image on KOMBI.
+
+KOMBI 3000 - FDS_MENUE_SIGNAL_1/2/3/4 = menue_3 / menue_4  
+  Enables Sport+ image on KOMBI.
+
+KOMBI 3003 - SLD_ENABLE = aktiv / nicht_aktiv  
+  Enables LIM Function (Cruise Control ‘Set’ button acts as ‘LIM’).
+
+ICM 3000 - SLD_Funktion = aktiv / nicht_aktiv  
+  LIM Function (Part 2).
+
+ICM 3000 - C_Umschaltung_ACC_DCC = zugelassen / unterdruecken  
+  LIM Function (Part 3).
+
+ICM 3000 - LDM_SET_Taste = nur_SET__O / SET_und_aktivieren__IO  
+  LIM Function (Part 4).
+
+───────────────────────────────────────────────────────────
+Safety Features & Precautions
+───────────────────────────────────────────────────────────
+- Specific coding options for seatbelt chimes/reminders and safety disclaimers in iDrive.
+- Do not set Active Blind Spot below 20 km/h.
+
+Modules and Parameters:
+HU_CIC/NBT 3001 - LEGAL_DISCLAIMER_TIME = kein_ld / ld_mit_timeout  
+  Removes iDrive Initial Disclaimer.
+
+HU_CIC/NBT 3001 - MACRO_CAM_LEGALDISCLAIMER = kein_ld / ld_mit_timeout  
+  Removes disclaimer for all cameras and PDC.
+
+KAFAS 3000 - ROAD_EDGE_WARNING_ENABLED = aktiv / nicht_aktiv  
+  Adds grass and curb detection to Lane Departure Warning.
+
+ICM 3000 - C_ZSW_Aktivierunggeschwindigkeit_Funktion_low = 20_kmh / 50_kmh  
+  Changes Active Blind Spot activation speed.
+
+ACSM 3001 - GWF_SBR_WARNDAUER = werte = 01 (1 second) / werte = 5A (90s default)  
+  Duration of seatbelt reminder warnings.
+
+ACSM 3000 - Gurtzustandsanzeige_Beifahrer_GWF_GZA_BF = nicht_aktiv / aktiv  
+  Disable seat belt status display - passenger.
+
+ACSM 3000 - Gurtzustandsanzeige_Fahrer_GWF_GZA_FA = nicht_aktiv / aktiv  
+  Disable seat belt status display - driver.
+
+ACSM 3000 - SBR_BF_GWF_SBR_BF = nicht_aktiv / aktiv  
+  Disable seat belt reminder - passenger.
+
+ACSM 3000 - SBR_FA_GWF_SBR_FA = nicht_aktiv / aktiv  
+  Disable seat belt reminder - driver.
+
+ACSM 3000 - SeatBeltReminder_SBR_Beifahrer = nicht_aktiv / aktiv  
+  Disable seat belt reminder - passenger.
+
+ACSM 3000 - SeatBeltReminder_SBR_Fahrer = nicht_aktiv / aktiv  
+  Disable seat belt reminder - driver.
+
+ACSM 3000 - SBR_PreWarning_Beifahrer / SPW_BF = nicht_aktiv / aktiv  
+  Disable sound on disconnect - passenger.
+
+ACSM 3000 - SBR_PreWarning_Fahrer / SPW_FA = nicht_aktiv / aktiv  
+  Disable sound on disconnect - driver.
+
+ACSM 3000 - Initialwarnung_GWF_IW = nicht_aktiv / aktiv  
+  Disable initial 3-chime seatbelt warning.
+
+───────────────────────────────────────────────────────────
+Vehicle Drivetrain Features, Sport Features, & Active Sound Design
+───────────────────────────────────────────────────────────
+- Active Sound Design (ASD) is available on 2014+ F3x models with N20 and some N55 engines.
+- If ECU is present, it can be modified.
+- ASD sound profiles:
+  F010 + S63B44 = M5/M6 sound
+  F080 + S55B30 = M3/M4 sound
+  F030 + N26B20 = 328i/428i sound
+  F020/F021 + S63B44 = ASD Off
+
+Modules and Parameters:
+ASD 3000 - Model Range = see above (default F030)  
+  Change Active Sound Design profile.
+
+ASD 3000 - Engine = see above (default N26B20)  
+  Change Active Sound Design engine profile.
+
+EGS 3000 - Applikation_LC / LC = aktiv / nicht_aktiv  
+  Enable Launch Control (requires Sport Auto Transmission in VO Coding).
+
+FEM_BODY 3023 - TCM_MSA_DEFAULT_OFF = aktiv / nicht_aktiv  
+  Auto Start-Stop set to Off at every startup.
+
+FEM_BODY 3023 - TCM_MSA_MEMORY = aktiv / nicht_aktiv  
+  Auto Start-Stop remembers last state (On/Off) from previous shutdown.
+
+HU_CIC 3000 - EFF_DYN_SPORT_CID = aktiv / nicht_aktiv  
+  Enables Sports Displays on non-Navi iDrive (does not work for diesel).
+
+HU_CIC 3000 - EFF_DYN_SPORT_UNIT = aktiv / nicht_aktiv  
+  Adds Sports Display units to Language/Units menu.
+
+HU_NBT 3000 - Macro_fds = popup_and_config / popup_only  
+  Configure Sport mode in iDrive (Part 1).
+
+ICM 3000 - ICMKOD_B_SPORTINDIVIDUALISIERBAR = ein (01) / aus (00)  
+  Configure Sport mode in iDrive (Part 2, optional for HU_CIC).
+
+ICM 3000 - C_Abstandsstufe_init = Stufe_1 / Stufe_4  
+  Initial following distance for Active Cruise Control (default = closest).
+
+ICM 3000 - ICMKOD_B_InitEco = verbaut / nicht_verbaut  
+  Vehicle will start in Eco Pro mode at every startup.
+
+ICM 3000 - ICMKOD_B_SPORTLENKUNG = aktiv / nicht_aktiv  
+  Enables Sport+ mode (not necessary with Sport Auto Transmission).
+
+KOMBI 3000 - R_GANG_AKUSTIK_ENABLE = aktiv / nicht_aktiv  
+  Enables Reverse Gear Gong (Japan market feature).
+
+───────────────────────────────────────────────────────────
+General Locking/Window Features & Convenience Features
+- Opening/Closing via Comfort Access is already enabled by default.
+- HKFM codes apply to F31 (Sports Wagon).
+- ASP_MAX_GESCHWINDIGKEIT_BEIKLAPPEN requires 
+  ASP_GESCHWINDIGKEIT_AUTO_AUSKLAPPEN to be same or higher value.
+- Some cars with MEMORY_OFF enabled may always have A/C defaulted to Off at startup.
+───────────────────────────────────────────────────────────
+
+Modules and Parameters:
+FEM_BODY 3040 - CLM_UNLOCK_KL15OFF_AFTER_PIA_AUTO_LOCK = aktiv / nicht_aktiv  
+  If Auto-Lock is enabled, all doors unlock at ignition shutoff.
+
+FEM_BODY 3050 - FH_TUERAUF_STOP_MAUT = nicht_aktiv / aktiv  
+  Allows front windows to roll up while door is open.
+
+REM 3050 - FH_TUERAUF_STOP_MAUT = nicht_aktiv / aktiv  
+  Allows rear windows to roll up while door is open.
+
+FEM_BODY 3053 - KOMFORT_OEFFNEN = werte = 0A (default 0F)  
+  Delay time for Comfort Opening via Key Fob/CA (HEX).
+
+FEM_BODY 3053 - KOMFORT_OEFF_HINTEN = user value (default 05 HEX)  
+  Delay between Front and Rear windows for Comfort Opening.
+
+FEM_BODY 3053 - KOMFORT_OEFF_SHD = user value (default 23 HEX)  
+  Delay between Rear windows and Moon Roof for Comfort Opening.
+
+FEM_BODY 3053 - KOMFORT_SCHLIESSEN = werte = 00 (default 0F)  
+  Delay time for Convenience Closing via Key Fob/CA (HEX).
+
+FEM_BODY 3053 - KOMFORT_SCHL_VORNE = user value (default 05 HEX)  
+  Delay between Front and Rear windows for Convenience Closing.
+
+FEM_BODY 3053 - KOMFORT_SCHL_SHD = user value (default 23 HEX)  
+  Delay between Front windows and Moon Roof for Convenience Closing.
+
+FEM_BODY 3053 - KOMFORTOEFFNUNG_FB = aktiv / nicht_aktiv  
+  Open Windows/Fold Mirrors by holding Unlock on Key Fob.
+
+FEM_BODY 3053 - KOMFORTSCHLIESSUNG_FB = aktiv / nicht_aktiv  
+  Close Windows/Fold Mirrors by holding Lock on Key Fob.
+
+FEM_BODY 3110 - ASP_AUSKLAPPEN_NACH_KOMFORTSCHLIESSEN = aktiv / nicht_aktiv  
+  Unfold Mirrors on vehicle unlock via Key Fob/CA.
+
+FEM_BODY 3110 - ASP_BEIKLAPPEN_BEI_KOMFORTSCHLIESSEN = aktiv / nicht_aktiv  
+  Fold Mirrors by holding Lock on Key Fob/CA.
+
+FEM_BODY 3110 - ASP_GESCHWINDIGKEIT_AUTO_AUSKLAPPEN = 14 HEX (20 km/h) / 28 HEX (40 km/h)  
+  Speed at which mirrors auto-unfold.
+
+FEM_BODY 3110 - ASP_MAX_GESCHWINDIGKEIT_BEIKLAPPEN = FF HEX (255 km/h) / 14 HEX (20 km/h)  
+  Max speed at which mirrors fold.
+
+FEM_BODY 3040 - CLM_TIME_PIA_LOCK_AT_TIMEOUT = 0C HEX (120s) / user value  
+  Time before auto-lock if no doors opened.
+
+FEM_BODY 3060 - QUITTBLK_ENTSCHAERFEN_ANZAHL = werte = X-1 (default 02)  
+  Number of signal flashes when unlocking.
+
+FEM_BODY 3060 - QUITTBLK_SICHERN_ANZAHL = werte = X-1 (default 01)  
+  Number of signal flashes when locking.
+
+FEM_BODY 3020 - TCM_LOGIC_R_OFF_DOOR = aktiv / nicht_aktiv  
+  Turns off radio/navigation when driver door opens.
+
+FEM_BODY 3040 - CLM_TIMEOUT_HK_SMO = wert_01 / wert_04  
+  Comfort Access trunk opening delay (0.1s units).
+
+FEM_BODY 3040 - CLM_SMO_INDICATOR = nicht_aktiv / aktiv  
+  Disable taillight flash when opening trunk via Comfort Access.
+
+HKFM 3010 - SCH_FBD = aktiv / nicht_aktiv  
+  Enables Key Fob button to CLOSE trunk.
+
+HKFM 3010 - SCH_TOEHKI = aktiv / nicht_aktiv  
+  Enables driver-side button to CLOSE trunk.
+
+HKFM 3010 - TASTER_FBD = aktiv / nicht_aktiv  
+  Required for SCH_FBD and SCH_TOEHKI to work.
+
+IHKA 3002 - MEMORY_OFF = aktiv / nicht_aktiv  
+  A/C remembers last state (On/Off).
+
+IHKA 3003 - MEMORY_UMLUFT = aktiv / nicht_aktiv  
+  Remembers air recirculation setting from previous shutdown.
+
+───────────────────────────────────────────────────────────
+iDrive Features
+- Feature set varies depending on iDrive functions (Vehicle Status, Navigation, Sound Settings, etc.).
+- CMB_MEDIA codes may appear under HU_NBT since combox is integrated.
+- HU_CIC and HU_NBT codes are not fully cross-compatible.
+───────────────────────────────────────────────────────────
+
+Startup Emblems
+- variant_0, variant_2, variant_6 = BMW ConnectedDrive
+- variant_1 = ///M
+- variant_3 = BMW i
+- variant_4 = Mini
+- variant_5 = Rolls Royce
+- variant_7 = BMW White Startup
+- variant_8 = BMW Brown Startup
+- variant_9 = BMW Merry Christmas/Happy New Year
+
+Modules and Parameters:
+CMB_MEDIA 3001 - INBAND_RINGING = aktiv / nicht_aktiv  
+  Plays ringtone streamed from cell phone (works on iPhone, not Android).
+
+CMB_MEDIA 3006 - MY_INFO_SUPPORTED_POIS = user value (default wert_25)  
+  Max stored messages/addresses (max 50, HU_CIC only).
+
+CMB_MEDIA 3000 - SYS_EIN_AUS = aktiv / nicht_aktiv  
+  Enables Basic Voice Recognition.
+
+CMB_MEDIA 3001 - RINGTONE = user choice (default ring_tone2)  
+  Set ringtone (if no inband ringing).
+
+HU_CIC 3000 - ACOUSTICAL_LOCK_CONFIRM = aktiv / nicht_aktiv  
+  Adds iDrive option for audible lock confirmation.
+
+HU_CIC 3000 - LOGIC7_SYMBOL = nicht_aktiv / aktiv  
+  Removes Logic7 logo from Tone Menu.
+
+HU_CIC 3001 - RDC_SAFETY = aktiv / nicht_aktiv  
+  Add Tire Pressure and Tire Temp to TPMS display.
+
+HU_CIC 3002 - RADIO_WEATHERBAND = aktiv / nicht_aktiv  
+  Adds NOAA Weatherband to Radio Sources.
+
+HU_CIC 3000 - ENTWICKLER_MENUE = aktiv / nicht_aktiv  
+  Adds Developer Menu to Settings (shows build/date/version).
+
+HU_CIC 3001 - AREA_CODE_DVD = user choice (country value)  
+  Changes DVD region code (locks after ~7 changes).
+
+HU_CIC 3000 - NAVI_FUELSTOP_PROPOSAL = aktiv / nicht_aktiv  
+  Proposes fuel stop in navigation route.
+
+HU_CIC 3000 - PIM_Macro = aktiv / nicht_aktiv  
+  Alternative way to enable Office (unknown on HU_NBT).
+
+HU_CIC 3002 - VOL_MAX_ON = 32 (default 19 HEX)  
+  Retains volume up to 100% rather than reset to 25%.
+
+HU_NBT 3003 - PIM_Driving_Text = whole_text / up_to_three_lines  
+  Displays full SMS text on iDrive.
+
+HU_NBT 3003 - CONTACTS_NAVI_SEPARATED = aktiv / nicht_aktiv  
+  Separates iDrive contacts from phone contacts.
+
+HU_NBT 3000 - VOLUME_POPUP_DISPLAY = aktiv / nicht_aktiv  
+  Show volume level on screen when adjusting.
+
+HU_NBT 3002 - SOUND_SIGNAL_SET = 03_BMW_i / 00_BMW  
+  Changes gong sound to BMW i, Mini, or Rolls Royce.
+
+HU_NBT 3001 - STARTUP_TYPE = black/splash/animation  
+  Sets HU_NBT startup behavior.
+
+HU_NBT 3001 - STARTUP_EMBLEM = variant_01 (default 0)  
+  Sets iDrive startup emblem (see list above).
+
+HU_NBT 3000 - M_VEHICLE = aktiv / nicht_aktiv  
+  Changes Sports Display gauges from amber to red/silver.
+
+HU_NBT 3000 - ROUTE_FLIGHT = aktiv / nicht_aktiv  
+  Enables "Route Preview" simulator (part 1).
+
+HU_NBT 3000 - NAVI_SCROLLING_ALONG_ROUTE = aktiv / nicht_aktiv  
+  Enables "Route Preview" simulator (part 2).
+
+HU_NBT 3000 - NAVI_ROAD_PREVIEW = aktiv / nicht_aktiv  
+  Enables Route Info (turn-by-turn list).
+
+HU_NBT 3001 - NAVI_TRIP_IMPORT = aktiv / nicht_aktiv  
+  Import trip into Navigation via USB.
+
+HU_NBT 3003 - CE_DEVICE_SPEECH_RECONGNITION = aktiv / nicht_aktiv  
+  Activates Siri Eyes-Free button (hold voice command button).
+
+HU_NBT 3000 - BASIS_KOMBI_MMI_LIST = aktiv / nicht_aktiv  
+  Allows watch-next-track on Basic KOMBI retrofitted with HU_NBT.
+
+HU_NBT 3000 - LANGUAGE_ENGLISH_UK = master / nicht_aktiv  
+  Changes Nav Voice to UK English (part 1).
+
+HU_NBT 3000 - LANGUAGE_ENGLISH_US = nicht_aktiv / master  
+  Changes Nav Voice to UK English (part 2).
+
+───────────────────────────────────────────────────────────
+Video in Motion & Playback Features, Owner’s Manual in Motion, and Camera in Motion
+───────────────────────────────────────────────────────────
+- Video in Motion is NOT available on HU_ENTRY.
+- Requires HU_CIC or HU_NBT.
+- USB video playback should already be enabled in HU_NBT.
+
+Modules and Parameters:
+HU_CIC 3000 - SPEEDLOCK_X_KMH_MAX = werte = FF (default 03)  
+  Disable DVD/USB video speedlock – Part 1 (HU_CIC/HU_NBT).
+
+HU_CIC 3000 - SPEEDLOCK_X_KMH_MIN = werte = FF (default 03)  
+  Disable DVD/USB video speedlock – Part 2 (HU_CIC/HU_NBT).
+
+HU_CIC 3000 - VIDEO_NUR_MIT_HANDBREMSE = nicht_aktiv / aktiv  
+  Removes handbrake requirement to watch videos – Part 3 (HU_CIC only).
+
+HU_NBT 3000 - VIDEO_FRONT_LOCKED = nicht_aktiv / aktiv  
+  Removes front lock (needed with VIDEO_HANDBRAKE) – Part 4.
+
+HU_NBT 3000 - VIDEO_HANDBRAKE = nicht_aktiv / aktiv  
+  Removes requirement for handbrake – Part 5.
+
+HU_NBT 3000 - VIDEO_SPEEDLOCK_CONDITION = none  
+  Removes speed requirement to watch videos – Part 6.
+
+HU_NBT 3000 - SERVICES_MESSAGES_SPEEDLOCK_CONDITION = none  
+  Removes speed requirement to read service messages – Part 7.
+
+HU_NBT 3000 - OFFICE_MESSAGES_SPEEDLOCK_CONDITION = none  
+  Removes speed requirement to read office messages – Part 8.
+
+HU_NBT 3003 - API_USB_VIDEO = both / none  
+  Enable USB video playback (.avi, .mp4, .mkv, .m4v, etc.).
+
+HU_NBT 3000 - ENT_MC_VIDEO_SUPPORT = aktiv / nicht_aktiv  
+  Enable MC video playback (internal HD save not supported).
+
+HU_NBT 3000 - ENT_CODEC_XVID = aktiv / nicht_aktiv  
+  Enable XVID codec for USB video.
+
+HU_NBT 3000 - ENT_CODEC_XVCD = aktiv / nicht_aktiv  
+  Enable XVCD codec for USB video.
+
+HU_NBT 3000 - ENT_CODEC_OGG = aktiv / nicht_aktiv  
+  Enable OGG codec during playback.
+
+HU_NBT 3000 - ENT_VIDEO_HMI = aktiv / nicht_aktiv  
+  Enables DVD Menu button when watching DVDs.
+
+HU_NBT 3000 - SL06_IBA_1 = nicht_aktiv / aktiv  
+  Owner’s Manual in Motion – Part 1 (HU_NBT tested).
+
+HU_NBT 3000 - SL07_IBA_2 = nicht_aktiv / aktiv  
+  Owner’s Manual in Motion – Part 2 (HU_NBT tested).
+
+HU_NBT 3000 - SL21_IBA_3 = nicht_aktiv / aktiv  
+  Owner’s Manual in Motion – Part 3 (HU_NBT tested).
+
+REM/PMA - V_SCHWELLE_1 = werte = FF (default 24)  
+  Auto-disable top camera view speed (FF = 255 km/h).
+
+REM/PMA - V_SCHWELLE_2 = werte = FF (default 0F)  
+  Auto-disable rear camera view speed (FF = 255 km/h).
+
+REM/PMA - D_SCHWELLE_1 = werte = FF (default 32)  
+  Auto-disable top camera view distance (FF = 255 m).
+
+REM/PMA - D_SCHWELLE_2 = werte = FF (default 0A)  
+  Auto-disable rear camera view distance (FF = 255 m).
+
+TRSVC 3000 - SV_Activate_Speed_Limit = werte = FF (default 0F)  
+  Activate Side View Camera at any speed – Part 1.
+
+TRSVC 3000 - SV_Deactivate_Speed_Limit = werte = FF (default 0F)  
+  Activate Side View Camera at any speed – Part 2.
+
+───────────────────────────────────────────────────────────
+Advanced Real-Time Traffic Information Activation
+───────────────────────────────────────────────────────────
+- To enable traffic-based routing, activate Traffic Info in Navigation 
+  and enable Dynamic Guidance in Route Preferences.
+
+Modules and Parameters:
+HU_CIC 3000 - NAVI_TRAFFIC_INFO_MAP = aktiv / nicht_aktiv  
+  Real-Time Traffic Info – Part 1.
+
+HU_CIC 3002 - TI_CA_TMC = aktiv / nicht_aktiv  
+  Real-Time Traffic Info – Part 2.
+
+HU_CIC 3002 - TI_VINFO = aktiv / nicht_aktiv  
+  Real-Time Traffic Info – Part 3.
+
+HU_CIC 3002 - TI_TMC_REGIONAL = aktiv / nicht_aktiv  
+  Real-Time Traffic Info – Part 4.
+
+HU_CIC 3002 - TI_FALLBACK_DISABLED = aktiv / nicht_aktiv  
+  Real-Time Traffic Info – Part 5.
+
+───────────────────────────────────────────────────────────
+Heads-Up Display
+- Most HUD functions are already active in 2013+ models.
+───────────────────────────────────────────────────────────
+
+Modules and Parameters:
+HU_NBT 3000 - JUNCTION_VIEW_HUD = aktiv / nicht_aktiv  
+  Displays HWY Junction images on HUD (works if updated, minor visual errors).
+
+HU_CIC 3000 - HUD_ENTERTAINMENTLIST = aktiv / nicht_aktiv  
+  Adds checkbox in HUD settings for Entertainment/Telephone.
+
+HU_CIC 3000 - HUD_DISTANCE_INFO = aktiv / nicht_aktiv  
+  Shows Active Cruise Control iBrake Distance in HUD (Part 1).
+
+KOMBI 3008 - HUD_PIA_IBRAKE = aktiv / nicht_aktiv  
+  Shows Active Cruise Control iBrake Distance in HUD (Part 2).
+
+KOMBI 3000 - IBRAKE_ABSTAND_ENABLE = aktiv / nicht_aktiv  
+  Shows Active Cruise Control iBrake Distance in HUD (Part 3).
+
+KOMBI 3000 - HUD_ENTERTAINMENT_ENABLE = aktiv / nicht_aktiv  
+  Enables Entertainment Menu in HUD.
+
+KOMBI 3000 - HUD_TELEFONANRUF_ENABLE = aktiv / nicht_aktiv  
+  Enables Telephone Recent Call List in HUD.
+
+KOMBI 3000 - HUD_SPRACHEINGABE_ENABLE = aktiv / nicht_aktiv  
+  Displays Voice Command in HUD.
+
+KOMBI 3000 - HUD_START_UP_SCREEN_ANZ_ZEIT = user value (default 3 seconds)  
+  Adjusts HUD startup screen display duration.
+
+───────────────────────────────────────────────────────────
+BMW Live Enabling
+───────────────────────────────────────────────────────────
+- Once enabled, you can tether phone data to vehicle for internet browser 
+  and BMW Live Access.
+- Warning: BMW Online/Assist functionality is lost if this is enabled.
+- Not recommended if car includes BMW Online/Assist.
+
+Modules and Parameters:
+HU_CIC 3000 - CONNECTED_DRIVE = aktiv / nicht_aktiv  
+  Enable BMW Live – Part 1.
+
+HU_CIC 3000 - ONLINE_BROWSER_LIVE = aktiv / nicht_aktiv  
+  Enable BMW Live – Part 2.
+
+HU_CIC 3003 - ONLINE_BROWSER = nur_bmw_internet_aktiv  
+  Enable BMW Live – Part 3.
+
+HU_CIC 3003 - ONLINE_SERVICES = nicht_aktiv / aktiv  
+  Enable BMW Live – Part 4.
+
+HU_CIC 3003 - ONLINE_SERVICES_GLS = nicht_aktiv / aktiv  
+  Enable BMW Live – Part 5.
+
+HU_CIC 3003 - DUN_PROFILE = aktiv / nicht_aktiv  
+  Enable BMW Live – Part 6.
+
+HU_CIC 3003 - PAN_PROFILE = aktiv / nicht_aktiv  
+  Enable BMW Live – Part 7.
+
+HU_CIC 3003 - BT_DATA_SERVICE = aktiv / nicht_aktiv  
+  Enable BMW Live – Part 8.
+
+───────────────────────────────────────────────────────────
+Codes That Need Testing / Checking
+-----------------------------------
+- The following codes have been identified but not fully verified.
+- Results may vary depending on build date, installed options, and modules.
+───────────────────────────────────────────────────────────
+HU_NBT 3000 - AM_Radio = aktiv / nicht_aktiv  
+  Toggle AM Radio availability (some regions disabled by default).
+
+HU_NBT 3000 - Ent_Bluetooth_Audio = aktiv / nicht_aktiv  
+  Alternative toggle for Bluetooth Audio Streaming.
+
+FEM_BODY 3060 - TFL_DRL_SML = aktiv / nicht_aktiv  
+  Potential alternative mapping for DRL with Side Marker Lights.
+
+KOMBI 3000 - Drehzahlbegrenzer_Anzeige = aktiv / nicht_aktiv  
+  Possible RPM Limit display in KOMBI (untested).
+
+IHKA 3003 - Klima_Sync = aktiv / nicht_aktiv  
+  Sync button behavior for dual-zone HVAC (may already be active by default).
+
+───────────────────────────────────────────────────────────
+Ineffective or Unavailable Codes
+───────────────────────────────────────────────────────────
+- The following codes have been tested and determined to be ineffective 
+  or unavailable on F30/F32 builds.  
+- Some only apply to other chassis, older modules, or non-U.S. builds.
+
+HU_CIC - 6NR (BMW Apps) cannot be coded on CIC head units 
+  if not originally installed (requires FSC code).
+
+HU_ENTRY - Video in Motion not available.  
+  Head unit hardware limitation.
+
+FEM_BODY - Adaptive LED Headlights cannot be coded if not factory-installed.  
+  Requires hardware (headlamps, modules, sensors).
+
+KOMBI - HUD retrofits not available by coding alone.  
+  Requires hardware HUD windshield and projector.
+
+CMB_MEDIA - Combox functions not available if vehicle was never 
+  equipped with combox hardware (applies to early F30 builds).

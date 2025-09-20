@@ -1,0 +1,208 @@
+# BimmerLink Permanent Sensor Values.txt
+## BMW 428i xDrive F32 (2014) – N20 Turbo Engine
+
+### Overview
+This document defines priority sensor selections for continuous background monitoring and historical data logging. These parameters establish diagnostic baselines, track component wear, and support proactive maintenance scheduling. All selections are optimized for the N20 turbocharged engine’s reliability and protection requirements.
+
+### Primary Monitoring (Critical, Continuous)
+Direct protection against catastrophic engine or turbo failure.
+
+- Oil Pressure – Lubrication and turbocharger safety  
+- Motor Temperature (linearized and converted) – Cooling system baseline  
+- Filtered Rail Pressure Actual Value – High-pressure fuel system health  
+- Wastegate Position (raw sensor value) – Turbo actuator function  
+- Lambda Actual Value – Air-fuel ratio for detonation prevention  
+
+### Secondary Monitoring (Frequent, Performance-Linked)
+Insight into performance, thermal stress, and wear.  
+
+- Oil Temperature – Lubrication thermal stress  
+- Electric Water Pump Speed – Cooling system reliability  
+- Duty Cycle of Wastegate Control – Boost regulation  
+- Actual Ignition Angle – Knock and timing detection  
+- Misfire Counter Cylinder 1 – Combustion and catalyst safety  
+
+### Tertiary Monitoring (Situational, Diagnostic Baseline)
+Useful for diagnostics, wear tracking, and situational awareness.  
+
+- Generator Current – Alternator and electrical load health  
+- Quiescent Current >1000 mA – Parasitic drain detection  
+- Transmission Oil Temperature (8HP outlet) – Gearbox thermal protection  
+- Brake Pressure – Hydraulic braking health  
+- Lateral Acceleration – Stability and performance feedback  
+- Knock Control Cylinder 1 (normalized reference) – Knock sensitivity baseline  
+- Torque Loss Monitoring – Misfire-related power loss  
+
+────────────────────────────
+### Critical Engine Health Parameters
+
+1. Filtered rail pressure actual value (absolute pressure) – High-pressure fuel pump health monitoring  
+2. Unfiltered rail pressure actual value (abs.) – Raw fuel pressure data for diagnostic analysis  
+3. Lambda actual value – Air-fuel ratio monitoring for emission control and engine protection  
+4. Lambda controller output – Fuel system adaptation tracking  
+5. Factor from lambda control adaptation for bank 1 – Long-term fuel trim monitoring  
+6. Multiplicative mixture correction of the mixture adaptation – Fuel system correction tracking  
+7. Intake manifold absolute pressure – Turbo boost monitoring and vacuum leak detection  
+8. Intake air temperature – Charge air cooling efficiency and knock protection  
+9. Mass flow HFM – Primary airflow measurement for engine health baseline  
+10. Throttle valve angle from potentiometer 1 – Electronic throttle body health monitoring  
+11. Exhaust gas temperature according to KAT from model – Catalytic converter protection  
+
+────────────────────────────
+### VANOS and Timing System Health
+
+12. Actual value of the eccentric angle VVT – VANOS health monitoring for known N20 timing issues  
+13. Inlet camshaft position – Baseline camshaft timing verification  
+14. Crankshaft adaptation exhaust takes place – Timing chain stretch monitoring  
+15. Crankshaft adaptation intake takes place – Timing chain health assessment  
+16. Number of VVT emergency runs – VANOS system stress tracking  
+17. Number of VVT emergency runs until replacement – Service limit monitoring  
+18. Status error overload VVT1 – VANOS motor overload detection  
+19. VVT overloaded – System stress monitoring  
+20. VVT overload, stuck actuator – Mechanical binding detection  
+21. VVT stop learning status – Adaptation process monitoring  
+22. Condition Vanos entrance at the ready – System readiness verification  
+23. VVT motor rotor position – Precise timing position monitoring  
+
+────────────────────────────
+### Turbocharger Monitoring
+
+24. Raw value position sensor electrical wastegate – Wastegate function monitoring  
+25. Sensor voltage position sensor electrical wastegate – Electrical actuator health  
+26. Duty cycle of waste gate control – Boost control system monitoring  
+27. Operating status of the electrical wastegate – Electronic actuator health  
+28. Ceramic temperature of the LSU – Lambda sensor protection in turbo environment  
+
+────────────────────────────
+### Engine Operating Conditions
+
+29. Actual ignition angle – Knock events and timing retard monitoring  
+30. Target idle speed – Idle control stability baseline  
+31. Idle speed learned – Idle adaptation change tracking  
+32. Interval counter for emissions-related misfires – Catalytic converter protection  
+33. Motor speed, high resolution – Precise RPM monitoring for diagnostics  
+34. Total mass of gasoline and alcohol in the oil – Oil contamination tracking  
+35. Operating hours counter – Engine runtime for maintenance scheduling  
+36. Operating hours counter accurate to the second – Precise runtime tracking  
+37. Total number of starts at the last starter exchange – Starter motor health  
+38. Condition crankshaft is rotating – Engine rotation verification  
+39. Distance to starting ability – Cranking performance degradation  
+40. Time since the last refueling – Fuel system and consumption monitoring  
+41. Shutdown time – Engine cool-down monitoring for turbo protection  
+
+────────────────────────────
+### Temperature and Cooling System
+
+42. Motor temperature, linearized and converted – N20 cooling system monitoring  
+43. Target temperature coolant – DME cooling strategy verification  
+44. Signal voltage of the coolant temperature sensor – Sensor health monitoring  
+45. Actual speed electr. water pump – Electric water pump health monitoring  
+46. Condition emergency running water pump – Pump emergency mode detection  
+47. Status message electr. water pump – Pump system alert monitoring  
+48. Current consumption electr. water pump – Pump electrical load tracking  
+49. Supply voltage electr. water pump – Electrical supply monitoring  
+50. Cooler outlet temperature – Charge air cooling efficiency  
+51. Target speed water pump – DME pump speed requirements  
+52. Duty cycle electric fan – Cooling fan operation monitoring  
+
+────────────────────────────
+### Oil System Health
+
+53. Oil pressure – Primary engine lubrication monitoring  
+54. Actual oil pressure value (absolute pressure) – Raw pressure diagnostic data  
+55. Oil temperature – Oil degradation and cooling monitoring  
+56. Oil sump temperature – Oil temperature at system low point  
+57. Oil life – Oil condition degradation tracking  
+58. Oil condition sensor status – Oil quality sensor functionality  
+59. Condition Oil level sensor fault – Electronic oil level system fault detection  
+60. Oil pressure control operating mode – Pressure regulation system monitoring  
+61. Relative level of the engine oil – Oil consumption pattern tracking  
+62. Kilometers of oil – Oil service interval tracking  
+63. Setpoint oil pressure – Target vs actual pressure comparison  
+64. Oil pressure regulator P component – Proportional control monitoring  
+65. Oil pressure regulator I component – Integral control monitoring  
+66. Oil pressure regulator D component – Derivative control monitoring  
+
+────────────────────────────
+### Electrical System Health
+
+67. Current battery voltage – Electrical system baseline health  
+68. Relative state of charge NV battery – Battery degradation tracking  
+69. Generator current – Alternator output monitoring  
+70. Degree of utilization generator 1 – Alternator load stress analysis  
+71. Output current of the machine – Total electrical system load  
+72. Chip temperature generator 1 – Alternator electronics protection  
+73. DC-DC converter status – Converter operation monitoring  
+74. Utilization of the DC-DC converter – Converter load efficiency  
+75. Terminal voltage of the electric machine – Alternator voltage regulation  
+76. Time in which quiescent current is greater than 1000 mA – Critical parasitic drain detection  
+77. Time in which quiescent current is 200-1000 mA – Moderate drain tracking  
+78. Time in which the quiescent current is 80-200 mA – Normal standby monitoring  
+79. Discharge during quiescent current violation – Battery drain event tracking  
+80. Status of terminal 15 – Ignition circuit diagnostic monitoring  
+
+────────────────────────────
+### Brake System Safety
+
+81. Current brake pressure – Brake system performance monitoring  
+82. Difference between ambient pressure and brake booster pressure – Vacuum assist health  
+83. Brake vacuum voltage – Brake booster electrical monitoring  
+
+────────────────────────────
+### Transmission Health
+
+84. Modeled transmission oil temperature at the converter outlet (8HP) – 8HP automatic protection  
+85. Torque consumption of the converter via CAN – Torque converter efficiency  
+
+────────────────────────────
+### Ignition and Combustion Systems
+
+86. Filtered spark burning time cylinder 1 – Combustion quality and coil health  
+87. Filtered spark burning time cylinder 2 – Per-cylinder ignition monitoring  
+88. Filtered spark burning time cylinder 3 – Spark duration optimization  
+89. Filtered spark burning time cylinder 4 – Complete ignition analysis  
+90. Voltage behind ignition / injection relay – Ignition electrical supply  
+
+────────────────────────────
+### Knock Control and Engine Protection
+
+91. Normalized reference level knock control cylinder 1 – N20 turbo knock protection baseline  
+92. Normalized reference level knock control cylinder 2 – Per-cylinder knock sensitivity  
+93. Normalized reference level knock control cylinder 3 – Cylinder-specific knock detection  
+94. Normalized reference level knock control cylinder 4 – Complete knock monitoring  
+95. Super knock – Severe knock event detection  
+96. Voltage knock value cylinder 1 – Raw knock sensor diagnostic data  
+97. Voltage knock value cylinder 2 – Knock sensor signal integrity  
+98. Voltage knock value cylinder 3 – Knock detection system verification  
+99. Voltage knock value cylinder 4 – Complete knock sensor monitoring  
+
+────────────────────────────
+### Misfire Detection and Emission Protection
+
+100. Misfire detection counter cylinder 1 – Catalyst protection monitoring  
+101. Misfire detection counter cylinder 2 – Cylinder-specific misfire tracking  
+102. Misfire detection counter cylinder 3 – Combustion quality monitoring  
+103. Misfire detection counter cylinder 4 – Complete misfire coverage  
+104. Reference torque for misfire detection – Misfire calculation baseline  
+105. Torque loss monitoring – Power loss detection from misfires  
+106. Voltage of rear cat sensor Lambda HEGO – Catalyst efficiency monitoring  
+
+────────────────────────────
+### Vehicle Dynamics and System Status
+
+107. Lateral acceleration – Stability control system monitoring  
+108. Vehicle acceleration – Drivetrain performance monitoring  
+109. Vehicle speed – Dynamic calculation baseline  
+110. Cross slope estimated – Road banking detection  
+111. Longitudinal slope of the road estimated – Hill detection for engine management  
+112. Quality longitudinal slope – Slope calculation accuracy verification  
+113. Condition The probe behind the catalyst is sufficiently heated – Lambda sensor readiness  
+114. Status of fault memory entry without critical DMF fault – Dual-mass flywheel health  
+115. Status manipulation – Tampering detection  
+116. Duty cycle for lambda probe heating – Lambda sensor heater monitoring  
+117. Voltage PWG potentiometer 1 – Primary throttle position sensor  
+118. Voltage PWG potentiometer 2 – Secondary throttle position redundancy  
+
+────────────────────────────
+END
+────────────────────────────

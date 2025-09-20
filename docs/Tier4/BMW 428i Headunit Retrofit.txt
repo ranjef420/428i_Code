@@ -1,0 +1,260 @@
+PEMP 9213 Linux Retrofit Head Unit — Owner's Manual
+BMW F30 / F32 / F36 / F80 / F82 (2012–2017)
+
+Disclaimer
+This manual is based on owner experience, PEMP product documentation, Amazon listing details, and community advice. Disconnect the vehicle battery before unplugging or inserting Quadlock harnesses. Incorrect installation may damage the headunit, wiring, or vehicle electronics.
+
+───────────────────────────────────────────────
+# Section 1. Compatibility & Core Notes
+
+OEM Headunit (2014 BMW 428i xDrive, F32)
+- Headunit: NBT Evo ID5
+- System Type: OEM BMW NBT Evo
+- Interface: ID5 (defines graphical interface look/feel)
+- HU_NBT_EVO supports CarPlay cleanly via coding/FSC.
+
+PEMP Linux Retrofit Screen
+- Independent system running Linux OS.
+- CarPlay/Android Auto handled by ZLink app (not OEM coding).
+- Fullscreen CarPlay is managed entirely by PEMP software, not BMW firmware.
+
+Conflict Note (Critical)
+Running OEM CarPlay and PEMP CarPlay simultaneously can cause:
+  • No audio output
+  • Blank source switching
+  • Routing conflicts (BMW Bluetooth/MOST vs. PEMP AUX/ZLink)
+
+Recommendation
+- Pick one system:
+    - OEM CarPlay → cleaner, codable, fully integrated into NBT Evo.
+    - PEMP CarPlay → bigger 10.25” touchscreen, Android features.
+- Avoid mixing both for stability.
+
+Decision
+- OEM CarPlay chosen for clean integration, FSC activation, and avoidance of routing conflicts. Apple CarPlay > 11-year-old OEM features and aesthetics.
+
+Real-World Experience (Owner Log)
+- Symptom: After dealership visit, no audio.
+- Cause: Phone was still paired to OEM Bluetooth while using PEMP CarPlay.
+- Fix: Disconnected phone from OEM Bluetooth → instant sound restored.
+- Preventative Step: Forgot OEM device in iPhone Bluetooth settings to avoid re-pairing conflicts.
+
+Amazon Listing Clarification (Applies to F32 Owner)
+- Supported: F20/F21, F22, F30/F31/F34/F35, F32/F33/F36, F80/F82 (2012–2017).
+- CIC and NBT with 6-pin LVDS supported.
+- Not supported: 4-pin CIC systems and EVO systems with 6-pin LVDS.
+- Screen: 1920×720 HD capacitive, knob + touchscreen control.
+- Reversing camera: OEM + aftermarket CVBS supported; AHD not supported.
+- Current Status: Reverse camera purchased but not yet installed.
+
+───────────────────────────────────────────────
+# Section 2. Features Overview
+
+- CarPlay & Android Auto (wired + wireless, via ZLink)
+- Fast boot (reverse cam video in ~2 seconds)
+- HD screen (1920×720, capacitive touch)
+- OEM Info Display retained, steering wheel buttons supported
+- Switch interfaces by long pressing MENU button
+- USB playback (audio, video, image formats supported)
+- Camera Support: OEM + CVBS aftermarket
+
+───────────────────────────────────────────────
+# Section 3. Installation & Wiring (Expanded)
+
+3.1 Overview
+The PEMP 9213 retrofit head unit connects in parallel with your OEM BMW NBT Evo headunit. It does not replace the NBT — instead, it intercepts LVDS video and uses its own Linux system to provide CarPlay/Android Auto.
+
+- Main Harness: ISO-type adapter plugs into OEM Quadlock harness.
+- LVDS Cable: Video signal path (6-pin) between BMW HU and PEMP screen.
+- USB Ports: For wired CarPlay, media, updates.
+- Antennas: GPS (if provided), optional 4G.
+- AUX / Audio Integration: Uses OEM AUX channel (or MOST bus pass-through on NBT Evo).
+- CANBUS / iDrive: Passed through main harness for steering wheel & knob control.
+
+3.2 Main Harness (BMW Quadlock → PEMP ISO Adapter)
+
+Layout:
+[OEM Quadlock] ⇄ [PEMP Harness] ⇄ [OEM Headunit]
+
+- The PEMP harness plugs inline:
+  • One end connects to the car’s Quadlock (from the wiring loom).
+  • The other goes back into the OEM headunit.
+  • Middle branch connects to the PEMP screen.
+
+Power & CAN Lines:
+Pin | Signal       | Function
+----+--------------+---------------------------------------
+15  | +12V IGN     | Ignition power feed
+16  | +12V BAT     | Constant battery feed
+12  | GND          | Ground
+9/11| CAN-H / CAN-L| CAN bus for steering wheel, iDrive knob
+Note: CAN-H/L usually located in Quadlock section B (black insert).
+
+3.3 LVDS Video Connection
+BMW NBT Evo uses 6-pin LVDS (Low Voltage Differential Signaling).
+
+Diagram:
+[NBT Evo HU LVDS Out] ⇄ [PEMP Screen LVDS In]
+
+- If CIC 4-pin LVDS → not supported.
+- If EVO 6-pin LVDS → not supported.
+- Only NBT/NBT Evo 6-pin LVDS supported.
+
+3.4 USB Routing
+Two USB tails are usually provided:
+- USB1 (primary, white): For CarPlay/Android Auto (use this for iPhone/Android connection).
+- USB2 (secondary, black): For flash drives, updates, secondary phone.
+
+Tip: Route one cable to glovebox for media, one to center console for quick access.
+
+3.5 GPS Antenna (if supplied)
+- Mount near passenger side A-pillar or windshield corner.
+- Run cable behind trim to PEMP screen.
+- Not strictly required if you only use OEM GPS, but improves ZLink location accuracy.
+
+3.6 Audio Routing (AUX / MOST Integration)
+- On NBT Evo (your F32): Audio passes digitally via MOST → routed cleanly through OEM HU.
+- On CIC cars: AUX input is required. PEMP harness feeds audio through AUX channel.
+
+3.7 Reverse Camera Input
+- OEM Camera: Supported natively.
+- Aftermarket Camera: Only CVBS format supported. AHD cameras not supported.
+
+Reverse Trigger Wire:
+- Usually pink or labeled “REVERSE”.
+- Connect to reverse lamp +12V to auto-switch video when gear is engaged.
+
+3.8 Pin Reference Table (PEMP Harness)
+
+Connector   | Pin | Signal           | Notes
+------------+-----+------------------+----------------------------------
+LVDS        |1–6  | Video differential| 6-pin NBT/NBT Evo only
+Quadlock A  | 15  | +12V IGN         | Ignition switched power
+Quadlock A  | 16  | +12V BAT         | Constant battery
+Quadlock A  | 12  | GND              | Ground
+Quadlock B  | 9   | CAN High         | Control signals
+Quadlock B  | 11  | CAN Low          | Control signals
+AUX-IN      | L/R/GND | Audio        | CIC requires this
+CAM-IN      | CVBS+/CVBS– | Reverse camera input | Not AHD compatible
+
+3.9 Wiring Flow (Simplified Block Diagram)
+
+            +-------------------+
+            |   OEM Quadlock    |
+            +-------------------+
+                     |
+           ---------------------
+           |                   |
+   To OEM HU             To PEMP Harness
+                              |
+                +-------------------------+
+                |     PEMP Retrofit       |
+                |   (Linux OS + ZLink)    |
+                +-------------------------+
+                   |       |       |
+               LVDS Out  USB1/2  CAM-IN
+                   |
+              +----------+
+              | Screen   |
+              | 10.25"   |
+              +----------+
+
+3.10 Installation Checklist
+- [ ] Disconnect battery before working on Quadlock harness.
+- [ ] Verify your HU uses 6-pin NBT/NBT Evo LVDS.
+- [ ] Connect Quadlock inline with PEMP harness.
+- [ ] Connect LVDS cable between HU and PEMP screen.
+- [ ] Connect USB1/2 cables to glovebox or console.
+- [ ] Install GPS antenna (optional but recommended).
+- [ ] Connect reverse camera (CVBS format only).
+- [ ] Test MENU long-press switch function.
+- [ ] Confirm audio routing (OEM BT for calls, PEMP AUX/ZLink for media).
+
+───────────────────────────────────────────────
+# Section 4. System Settings (Linux Manual)
+
+- System: Language, drive side, firmware update, factory reset.
+- Display: Brightness, contrast, chromaticity, saturation, day/night dimming.
+- Audio: Volume for media/phone/ringtone, EQ presets, mic gain, echo cancellation.
+- Car Settings: OEM resolution, reversing camera type, iDrive config, headlamp detection, song/track button swap.
+- Connectivity: Smartphone list, Bluetooth pairing (CAR-BT-eedc), Wi-Fi (if supported).
+
+───────────────────────────────────────────────
+# Section 5. Operation
+
+- Switch to CarPlay/AA: Long press MENU → toggles OEM ↔ PEMP interface.
+- Wired CarPlay/AA: Use USB1 with quality cable.
+- Wireless CarPlay/AA: Pair via Bluetooth → CAR-BT-eedc → follow ZLink prompts.
+- USB Media: Insert drive into USB1/USB2. Supported: mp3, wav, flac, avi, mkv, jpeg, png, etc.
+- AirPlay/AutoLink: Screen mirroring for iOS/Android.
+
+───────────────────────────────────────────────
+# Section 6. Bluetooth Audio Streaming (BMW HU)
+
+- Works with HU_NBT and HU_NBT_EVO.
+- Requires both halves of BT audio streaming (1 of 2 + 2 of 2).
+- If HU_CIC → needs Combox_Media to activate.
+- Not possible without Combox on CIC.
+
+───────────────────────────────────────────────
+# Section 7. Troubleshooting (Symptom → Cause → Fix)
+
+a. No Audio Output
+   → Cause: Phone still paired to OEM Bluetooth while using PEMP CarPlay.
+   → Fix: Disconnect OEM Bluetooth; ensure phone is paired only with PEMP (CAR-BT-eedc).
+   → Preventative: Forget OEM Bluetooth in phone settings.
+   → Additional Check: Verify iDrive source is set to AUX when using PEMP.
+
+b. No Sound in OEM Mode After Using PEMP
+   → Cause: Audio routing stuck on AUX.
+   → Fix: Toggle MENU back to OEM, power-cycle unit; verify OEM source not muted.
+
+c. Blank Screen or No Signal
+   → Cause: Wrong LVDS type (4-pin CIC or EVO variant not supported).
+   → Fix: Confirm NBT/NBT Evo 6-pin LVDS; replace harness if mismatch.
+
+d. Reverse Camera Doesn’t Display
+   → Cause: Camera format mismatch or trigger wire not connected.
+   → Fix: Must use CVBS format; connect pink “REVERSE” wire to +12V reverse lamp feed.
+
+e. Reverse Camera Delay (>2s)
+   → Cause: Wiring resistance or poor grounding.
+   → Fix: Check harness continuity; shorten ground; ensure CVBS set in Car Settings.
+
+f. Echo During Calls
+   → Cause: Mic gain too high or echo cancellation off.
+   → Fix: Lower mic gain (coarse/fine in Audio menu); enable “Echo Cancellation.”
+
+g. Screen Too Dim/Bright
+   → Cause: Day/Night dimmer levels not calibrated.
+   → Fix: Adjust Display → Dimmer (Day/Night) settings.
+
+h. ZLink/CarPlay Fails to Connect (Wireless)
+   → Cause: Old pairing cache or unstable Bluetooth.
+   → Fix: Delete ZLink from phone; re-pair via CAR-BT-eedc; reboot PEMP if needed.
+
+i. USB CarPlay/Android Auto Not Detected
+   → Cause: Poor cable or wrong port.
+   → Fix: Use OEM-quality USB cable in USB1 port (white); avoid USB2 for phones.
+
+j. No OEM Interface When Pressing MENU
+   → Cause: CAN bus or harness mis-seated.
+   → Fix: Reseat Quadlock inline harness; check CAN pins (9/11) continuity.
+
+k. Video Lag or Stutter
+    → Cause: USB bandwidth or poor Wi-Fi handshake.
+    → Fix: Use wired CarPlay/AA (USB1) for smoother performance.
+
+l. System Frozen / Touchscreen Unresponsive
+    → Cause: Linux app crash.
+    → Fix: Hold physical power button (if present) or reset via Setup → Reboot.
+
+───────────────────────────────────────────────
+# Section 8. Quick Reference for F32 (2014 428i xDrive, NBT Evo ID5)
+
+- Compatible with PEMP 9213 via 6-pin LVDS NBT Evo.
+- OEM CarPlay already supported via FSC — choose either OEM CarPlay or PEMP CarPlay, not both.
+- Long-press MENU to switch OEM ↔ PEMP.
+- Audio calls remain on BMW’s OEM Bluetooth.
+- PEMP handles ZLink CarPlay/AA media.
+- Reverse camera works if CVBS (camera purchased but not yet installed).

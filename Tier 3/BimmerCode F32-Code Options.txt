@@ -1,4 +1,4 @@
-### Supported Bimmercode coding options for: BMW 4 Series, M4; F32 ####
+### Bimmercode coding options for: BMW 4 Series F32 ####
 
 
 Acoustic pedestrian protection

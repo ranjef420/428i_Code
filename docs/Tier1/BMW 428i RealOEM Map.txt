@@ -1,0 +1,325 @@
+──────────────────────────────────────────────────────────────
+RealOEM_Navigation_Map.txt
+──────────────────────────────────────────────────────────────
+Purpose:
+This file provides structured guidance for navigating the RealOEM
+interactive parts catalog for the BMW F32 428i xDrive (2014).
+Because RealOEM requires user interaction and cannot be fully
+automated, the assistant must act as a guide rather than a crawler.
+
+Maintenance Note:
+This navigation map reflects a snapshot of RealOEM’s interactive
+structure. Subcategory names or groupings may change over time.
+When in doubt, verify subcategory labels directly against the
+current RealOEM interface. This file is not authoritative; it is
+assistant-authored guidance only.
+
+Usage Protocol:
+1. Use this map when the user requests part identification,
+   diagrams, or compatibility checks in RealOEM.
+2. Suggest the most logical main group or subcategory based on the
+   part described.
+3. At each step:
+   • Ask the user to confirm they see the suggested category.
+   • If not, request the visible subcategory list from the user.
+   • Refine navigation step-by-step until the correct diagram is
+     reached.
+   • When ambiguous, present the top 2–3 most likely options and ask the user which one they see.
+4. Once the diagram is confirmed, provide interpretation,
+   compatibility analysis, and cross-referencing.
+5. Always identify RealOEM as an OEM source. This navigation map is
+   an assistant-authored guide, not an official BMW document.
+6. When interpreting diagrams or part references, always cross-check
+   first against Tier 1–3 project documents (OEM manuals, technical
+   references, compatibility files). Use approved_resources.txt
+   only as a supplementary reference after Tier 1–3 verification.
+
+Scope:
+• Top-Level Groups – categories where the main label is usually
+  enough to guide the user:
+  - Engine
+  - Clutch
+  - Manual Transmission / Automatic Transmission / Gearshift
+  - Drive Shaft / Front Axle / Rear Axle / Steering / Brakes / Pedals / Wheels
+  - Seats / Sliding Roof / Restraint System
+  - Heating & A/C
+  - Lighting
+
+• Sub-Level Guidance – detailed first-layer maps are provided for
+  broad or confusing categories where additional navigation is often
+  required:
+  - Engine Electrical System
+  - Fuel Preparation System
+  - Fuel Supply
+  - Bodywork
+  - Vehicle Trim
+  - Vehicle Electrical System
+  - Instruments, Measuring Systems
+  - Audio/Navigation/Electronics
+  - Communication Systems
+
+Integration:
+• This file is Tier 4 in the project document hierarchy. References
+  from approved_resources.txt direct the assistant here whenever
+  RealOEM navigation is required.
+• Always remember: This map is assistant-authored guidance and not an
+  official BMW/OEM document. It supports navigation but does not
+  replace OEM technical references.
+
+──────────────────────────────────────────────────────────────
+PARTS CATALOG / OEM SECTION REFERENCE
+──────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────
+TOP-LEVEL GROUPS
+──────────────────────────────────────────────────────────────
+• Engine
+• Clutch
+• Manual Transmission / Automatic Transmission / Gearshift
+• Drive Shaft / Front Axle / Rear Axle / Steering / Brakes / Pedals / Wheels
+• Seats / Sliding Roof / Restraint System
+• Heating & A/C
+• Lighting
+
+──────────────────────────────────────────────────────────────
+FIRST-LAYER GUIDANCE
+──────────────────────────────────────────────────────────────
+• Engine Electrical System
+    Subcategories:
+      • Ignition System – general ignition assemblies and layouts
+      • Ignition Coil / Spark Plug – coil packs, spark plugs, and brackets
+      • Sensors – engine management sensors (temperature, camshaft, crankshaft, etc.)
+      • Control Units (DME / MEVD172P) – digital motor electronics, engine ECU
+      • Alternator – charging system alternators and mounts
+      • Starter – starter motor assemblies and components
+      • Engine Wiring Harness – full harness assemblies for engine systems
+      • Battery Cable – primary battery cables and terminals
+      • Cable, Starter – dedicated starter power cables
+      • Cable Harness Fixings – clips, mounts, and retention parts
+      • Plugs and Connectors – electrical connector housings and terminals
+      • Laminated Contacts / Spring Contacts – specialized electrical contacts
+      • Contact System MLK – locking/contact system modules
+      • Splash Protection Cap – protective covers for electrical components
+──────────────────────────────────────────────────────────────
+• Bodywork
+    Subcategories:
+      • Body Skeleton – primary structural frame and chassis body shell
+      • Bodywork Additions, Mounted Parts – bumpers, trim, and attached exterior fittings
+      • Front Body – complete front-end assemblies
+      • Wheelhouse / Engine Support – inner wheel arches and engine bay supports
+      • Front Body Bracket (Left/Right) – mounting brackets and supports
+      • Splash Wall Parts – firewall and splash shield assemblies
+      • Front Side Panel – fenders and exterior side sheet metal
+      • Body Side Panel – quarter panels and exterior side shells
+      • Partition Trunk / Floor Parts – trunk floor, partitions, and reinforcements
+      • Body-Side Frame – side structural framing components
+      • Side Frame Section (Center/Inner) – inner reinforcement frame sections
+      • Cavity Shielding, Side Frame – shielding panels for side structures
+      • Rear Body – rear-end body shell and components
+      • Mounting Parts for Trunk Floor Panel – trunk floor mounting hardware
+      • Rear Wheelhouse / Floor Parts – rear inner arches and floorpan parts
+      • Side Panel / Tail Trim – rear side and tail trim panels
+      • Fill-In Flap – fuel filler door assemblies
+      • Roof – roof panels and associated parts
+      • Hood – hood main panels and assemblies
+      • Engine Hood / Mounting Parts – hood brackets, supports, and latches
+      • Hood Locking System – hood locks, strikers, and release hardware
+      • Hood Seals – hood gaskets and weather seals
+      • Door, Front – full front door assemblies
+      • Front Door-Hinge / Door Brake – hinges and door brake mechanisms
+      • Master Key Locking / Key – lock cylinders and mechanical keys
+      • Radio Remote Control / FEM – remote locking units and FEM modules
+      • Trunk Lid – boot/trunk lid assemblies
+      • Tailgate Closing System – trunk latch and powered closing systems
+      • Connecting Elements – generic connecting hardware
+      • Mechanical Connection Elements – fasteners, brackets, and mounts
+──────────────────────────────────────────────────────────────
+• Vehicle Trim
+    Subcategories:
+      • Glazing – front, rear, and side window glass assemblies
+      • Window Mounting Parts – seals, guides, and retaining hardware
+      • Outside Mirror – complete external mirror housings
+      • Mirror Glass – replacement mirror glass inserts
+      • Mirror Lens (S430A) – option-specific mirror lens components
+      • Exterior Mirror (S760A) – M-sport or option-specific mirror assemblies
+      • Door, Front – front interior door trims and assemblies
+      • Locking System, Door, Front – lock actuators and door locks
+      • Door Window Lifting Mechanism, Front – window regulators and lifters
+      • Trim and Seals for Door, Front – door trim panels and sealing gaskets
+      • Bumper, Front – complete front bumper assemblies
+      • Trim Cover, Front – bumper fascia panels and covers
+      • Carrier, Front – bumper reinforcement carriers
+      • Trim, Decor Elements, Front – decorative trims and elements
+      • M Trim, Front – M-sport specific trim parts
+      • Air Ducts – air channeling ducts for front or engine bay
+      • Cover Door Sill / Wheel Arch – sill covers and arch trims
+      • M Cover for Rocker Panel / Wheel Arch – M-sport rocker and arch trims
+      • Bumper, Rear – rear bumper assemblies
+      • Trim Cover, Rear – rear bumper fascia panels
+      • Carrier, Rear – rear bumper reinforcement carriers
+      • M Trim, Rear – M-sport specific rear trim
+      • Exterior Trim / Grill – grilles and exterior decorative trims
+      • Emblems / Letterings – BMW roundels, model designations, and badges
+      • Instrument Carrier / Mounting Parts – dashboard carriers and supports
+      • Carrier Instrument Panel – instrument panel structural supports
+      • Glove Box – glove compartment assemblies
+      • Mounting Parts, Instrument Panel Bottom – lower dash supports
+      • Trim Panel Dashboard – dashboard decorative panels
+      • Mounting Parts, Instrument Panel Top – upper dash supports
+      • Center Armrest / Storage Trays – center console armrests and storage trays
+      • Mount, Center Console – console mounting hardware
+      • Decor Trims, Centre Console – console decorative trims
+      • Mounting Parts, Center Console – general mounting parts for console
+      • Mounting Parts, Center Console Rear – rear console mounting hardware
+      • Armrest, Centre Console – complete console armrest assemblies
+      • Interior Equipment, Upper – upper trim parts and overhead equipment
+      • Headliner Controls Trim / Front Dome Lamp – dome lamp trims and control surrounds
+      • Sun Visors – sunshade visors and mounts
+      • Headlining – full roof headliner panels
+      • Trim Panel A- / B- / C-Column – A-/B-/C-pillar trims
+      • Rear Window Shelf – rear parcel shelf assemblies
+      • Interior Mirror – rearview mirrors and mounts
+      • Door Trim Panels / Lateral Trim Panels – general interior door/side trims
+      • Door Trim Panel, Front – front-specific interior door panels
+      • Surface-Mounted Parts, Door Panel, Front – attached trims for front door panels
+      • Lateral Trim Panel, Rear – rear-specific side trim panels
+      • Mounting Parts, Side Trim, Rear – hardware for rear side trims
+      • Warning Vest – storage compartments for safety vests
+      • Interior Equipment, Lower – lower interior trim panels and parts
+      • Trim Panel Leg Room – footwell panels and coverings
+      • Floor Covering – carpets and coverings
+      • Floor Mats, Velours – velour-style floor mats
+      • Edge Protector / Trim for Entry – entry guards and sill trims
+      • Luggage Compartment – trunk interior panels and assemblies
+      • Trunk Lid Trim Panel – trim panels for trunk lids
+      • Trim Panel, Trunk Floor – trunk floor trim coverings
+      • Left Trunk Trim – left-side trunk trim panels
+      • Right Trunk Trim – right-side trunk trim panels
+      • Insulation – acoustic and thermal insulation parts
+      • Wheelarch Trim – protective arch liners and trims
+      • Sound Insulating, Front – front soundproofing panels
+      • Heat Insulation – thermal insulation shields
+      • Sound Insulating, Rear – rear soundproofing panels
+      • Mounting Parts, Engine Compartment – interior trim hardware for engine bay
+      • Trim, Windshield Cowl, Outer – exterior cowl trims
+      • Underhood Shield – under-engine protective shields
+      • Underfloor Coating – underbody protection and coatings
+      • Various Body Parts – miscellaneous body trim pieces
+      • Front Panel – front body panel structures
+      • Reinforcement for Body, Front – reinforcement elements for front body
+      • Sealing Cap / Plug – sealing plugs and caps for trim parts
+──────────────────────────────────────────────────────────────
+• Vehicle Electrical System
+    Subcategories:
+      • Main Wiring Harness – complete vehicle wiring harnesses
+      • Repair Cable Main Harness / Various Repair Cables – service cables and repair kits
+      • Supplementary Cable Sets – add-on harnesses and wiring kits
+      • Repair Cable, Airbag – SRS/airbag-specific wiring repairs
+      • Additional Wiring Sets / Cable Harnesses – auxiliary harness groups
+      • HSD Wire – high-speed data cabling for infotainment systems
+      • Wiring Harness, Instrument Panel – dash-related wiring harnesses
+      • Wiring Set, Seat – seat-specific harness assemblies
+      • Main Muffler / Cable for Head Unit – multimedia head unit cabling
+      • Door Cable Harnesses – wiring harnesses for front and rear doors
+      • Wiring Set – smaller grouped wiring assemblies
+      • Cable-Yarded Material – bulk rolls of wiring cable
+      • Harness Repair Components – repair terminals and leads
+      • Plug Terminals (ELO, Power, etc.) – connector terminals for various systems
+      • Circular / Pin / Blade / Microtimer Contacts – connector pin and socket types
+      • Cable Ties, Holders, Fixings – securing and organizing hardware
+      • Diagnosis Plug – OBD diagnostic connectors
+      • Repair Parts, Coaxial Cable / Antenna FAKRA – coaxial repair parts for antenna
+      • Wiring Harness Covers / Cable Ducts – protective covers and conduits
+      • Repair Kits, Socket Housing (2/3/4/12 Pin) – socket repair kits
+      • Bus Interface – CAN/LIN bus connection modules
+      • Comb Type Connector – multi-branch connectors
+      • Contact Systems (MCP, MQS, MAK8, SLK, etc.) – specialized contact systems
+      • Fuse Housing / Fuse Allocation Diagram – fuse housings and diagrams
+      • Power Distribution Box – distribution and fuse modules
+      • Control Units, Modules, Sensors – ECU and control modules including:
+          - FEM (Front Electronic Module)
+          - REM (Rear Electronic Module)
+          - Trailer Control Module
+          - Steering Wheel Electronics Module
+          - Seat Control Module
+          - Smart Opener Module with Sensor Wire
+          - LCPA Module (Lane Change / Parking Assist)
+          - Rain, Light, Solar, Condensation Sensors
+          - Radio Remote Control Receiver
+      • Battery – battery assemblies, IBS systems, B+ terminal, and cables
+      • Switches & Controls – vehicle interior switchgear including:
+          - Center Console Operating Units
+          - Steering Wheel Heater, Start/Stop, Roof Function, Trunk Lock, Seat Adjustment
+          - Power Window Switches and Window Lifter Controls
+          - Multifunction Steering Wheel Switches (Sport/M-Sport)
+          - Gear Shift Paddles
+          - Cigarette Lighter and 12V Sockets
+          - Driver Assistance Control Switches
+      • Relays – electrical relays including fan motor, supply, and control relays
+      • Integrated Supply Module – integrated fuse and relay blocks
+      • Horn – horn assemblies and related wiring
+      • Windshield Wiper / Headlamp Cleaning – washer systems, wipers, pumps, reservoirs
+──────────────────────────────────────────────────────────────
+• Instruments, Measuring Systems
+    Subcategories:
+      • Instrument Cluster – base instrument cluster assemblies
+      • Instrument Cluster (Modern Line) – trim-specific cluster variant (Modern Line)
+      • Instrument Cluster (Sport Line) – trim-specific cluster variant (Sport Line)
+      • Head-Up Display – HUD projector, glass, and mounting components
+──────────────────────────────────────────────────────────────
+• Audio, Navigation, Electronic Systems
+    Subcategories:
+      • Radio / Multi-Information Display – standard audio system radios
+      • Head Unit for Audio (Chrome) – chrome-option head units
+      • Operating Unit, Audio – audio system operating panels
+      • Radio BMW Professional CD – CD-based head unit modules
+      • Enabling Code, Retrofit SDARS – satellite radio retrofit codes
+      • Loudspeakers – front, rear, panel, door, and bass speaker assemblies
+      • Audio Wiring Harness – harnesses for audio and speaker systems
+      • Amplifier / Bracket – amplifier units and mounting brackets
+      • Active Sound Design – ASD modules and related components
+      • Antennas – base units, comfort access antennas, amplifiers
+      • On Board Monitor / TV Amplifier – display/TV amplifier units
+      • Central Information Display – primary iDrive screens
+      • Navigation System – navigation modules and GPS units
+      • Enabling Codes (Professional/Business/GPS/Nav HU-B/HU-H2) – navigation activation codes
+      • Head Unit, High / Head Unit High 2 – premium iDrive head units
+      • Head Unit, Basic Media – entry-level iDrive head units
+      • USB Stick, Navigation Map Update – media sticks for map updates
+      • Controller – iDrive rotary controller assemblies
+      • Alarm Systems – vehicle alarm modules and sensors
+      • Electrical Parts, Airbag – airbag-related electrical components
+      • Temperature Sensor – temperature sensors for cabin/electronic systems
+──────────────────────────────────────────────────────────────
+• Communication Systems
+    Subcategories:
+      • Car Telephone, Built-In – integrated vehicle telephone systems
+      • Combox, Media – multimedia communication modules
+      • Base Plate – telephony/combox mounting plates
+      • Combox, Telematics – telematics-specific combox units
+      • TCB (Telematics Control Box) – telematics control box assemblies
+      • USB Socket – USB ports for input/output media connections
+      • Hands-Free Telephone – Bluetooth and hands-free phone modules
+      • Single Parts, Hands-Free Facility – microphones, wiring, and fittings
+      • Communication Units – general telephony/electronic communication modules
+      • Telephony Components, WCA/NFC – wireless charging and NFC components
+──────────────────────────────────────────────────────────────
+• Fuel Preparation System
+    Subcategories:
+      • Fuel Injection System – injectors, fuel rails, and fittings
+      • High-Pressure Rail / Injector / Bracket – high-pressure fuel rail and brackets
+      • High-Pressure Pump / Tubing – high-pressure pump units and fuel tubing
+      • Throttle Housing Assembly – throttle body and electronic controls
+      • Fuel Tank Breather Valve – breather and vent valve assemblies
+      • Intake Muffler – intake silencers and associated housings
+      • Air Duct, Intake Silencer – intake ducting and piping
+      • Charge Air Induction Tract – intercooler piping and charge air ducts
+──────────────────────────────────────────────────────────────
+• Fuel Supply
+    Subcategories:
+      • Fuel Tank / Mounting Parts – tank assemblies, straps, and mounts
+      • Ventilation – fuel tank venting assemblies
+      • Activated Charcoal Filter / Fuel Ventilation – EVAP filters and related parts
+      • Fuel Feed – low-pressure fuel delivery systems
+      • Control Unit, Fuel Pump – electronic pump control modules
+      • Fuel Filter / Pump / Fuel Level Sensor – in-tank fuel module assemblies
+      • Fuel Pipe / Mounting Parts – fuel delivery and return lines, fittings

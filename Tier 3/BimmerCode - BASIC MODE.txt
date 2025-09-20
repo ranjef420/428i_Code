@@ -1,0 +1,2161 @@
+BimmerCode F32 Cheat Sheet - BASIC MODE.txt
+───────────────────────────────────────────────────────────
+RULE
+───────────────────────────────────────────────────────────
+
+Always Reference ‘BimmerCode QuickStart.txt’ and follow the instructions listed in that file i. order to prevent external interference during coding and to avoid problems.
+
+───────────────────────────────────────────────────────────
+CODE INDEX - BASIC MODE
+───────────────────────────────────────────────────────────
+
+-----------------------------------
+Acoustics/Confirmaton
+-----------------------------------
+1) Acoustic Pedestrian Protection – Checkbox in iDrive
+Purpose: Expose the OEM checkbox to enable/disable acoustic pedestrian protection in iDrive.
+Coding Type: FDL
+ECU/Module: HU_NBT_EVO (Headunit)
+Prerequisites: Vehicle hardware supports acoustic pedestrian protection.
+iDrive Impact: Adds/retains a toggle in Settings; does not itself force the feature on/off unless toggled in iDrive.
+Values: Active | Not active
+Verify: iDrive → Settings → Sound/Driving Assistance (path may vary) → Checkbox visible and functional
+Rollback/Notes: Revert FDL to default. Check local regulations for use.
+
+2) Acoustical Confirmation (Lock/Unlock Chirp)
+Purpose: Enable/disable acoustic confirmation when locking/unlocking.
+Coding Type: FDL
+ECU/Module: FZD (Roof Function Center) or Alarm-related ECU (confirm exact name as shown in your tool)
+Prerequisites: Alarm/confirmation hardware fitted.
+iDrive Impact: Controls behavior; may not expose a checkbox unless separately enabled.
+Values: Active | Not active
+Verify: Lock/unlock with key fob; listen for chirp per setting
+Rollback/Notes: If no chirp after activation, confirm alarm presence and country restrictions.
+
+3) Checkbox – Acoustical Lock Confirmation (Expose UI Toggle)
+Purpose: Expose an iDrive checkbox to allow the driver to enable/disable lock confirmation.
+Coding Type: FDL
+ECU/Module: HU_CIC or HU_NBT or HU_NBT_EVO (Headunit)
+Prerequisites: OEM alarm system; FZD/Alarm ECU acoustical confirmation should also be Active
+iDrive Impact: Adds checkbox in Doors/Key settings; user controls chirp thereafter
+Values: Active | Not active
+Verify: iDrive → Settings → Doors/Key → “Acoustic confirmation” appears and is selectable
+Rollback/Notes: If checkbox is gray/inactive, set acoustical confirmation Active in FZD/Alarm ECU.
+
+4) Confirmation Sound – Duration
+Purpose: Set duration of lock/unlock confirmation sound.
+Coding Type: FDL
+ECU/Module: FZD (Roof Function Center) or Alarm-related ECU
+Prerequisites: Acoustical confirmation enabled and functional
+iDrive Impact: No new menu item; behavior changes immediately
+Values: Short | Normal | Long | Very long
+Verify: Lock/unlock and compare chirp length
+Rollback/Notes: Restore to Normal if unsure.
+
+5) Confirmation Sound – Frequency
+Purpose: Set frequency (pitch) of the confirmation sound.
+Coding Type: FDL
+ECU/Module: FZD (Roof Function Center) or Alarm-related ECU
+Prerequisites: Acoustical confirmation enabled and functional
+iDrive Impact: No new menu item; behavior changes immediately
+Values: Low | Normal | High
+Verify: Lock/unlock and compare pitch
+Rollback/Notes: Some markets limit audible confirmations.
+
+6) Confirmation Sound – Volume
+Purpose: Set volume of the confirmation sound.
+Coding Type: FDL
+ECU/Module: FZD (Roof Function Center) or Alarm-related ECU
+Prerequisites: Acoustical confirmation enabled and functional
+iDrive Impact: No new menu item; behavior changes immediately
+Values: Low | Normal | High | Very high
+Verify: Lock/unlock and compare loudness
+Rollback/Notes: Use prudent settings in residential areas.
+
+7) Active Cruise Control – Default Distance
+Purpose: Set default following distance level when ACC is activated.
+Coding Type: FDL
+ECU/Module: ICMQL (Integrated Chassis Management)
+Prerequisites: Vehicle equipped with Active Cruise Control hardware
+iDrive Impact: Default distance on activation; driver can still adjust during use
+Values: Level 1 | Level 2 | Level 3 | Level 4  (Level numbering per ECU mapping)
+Verify: Engage ACC; observe default gap indicator
+Rollback/Notes: If nonfunctional, verify ACC option code and radar presence.
+
+8) Active Sound Design – Deactivation
+Purpose: Disable Active Sound Design engine sound augmentation.
+Coding Type: FDL
+ECU/Module: ASD_01 (Active Sound Design)
+Prerequisites: ASD fitted
+iDrive Impact: No menu item; behavior changes immediately
+Values: Deactivated (or Not active, per parameter naming)
+Verify: Compare interior engine sound before/after under load
+Rollback/Notes: Make and retain a full NCD/CAF backup before change; some firmware requires restoring the exact backup to re-enable.
+
+─────────────────────────────────────
+Air Conditioning
+-----------------------------------
+Air Circulation Setting Memory
+Purpose: Store last used air recirculation setting for restoration on next start.
+Coding Type: FDL
+ECU/Module: IHKA_VA01 or IHKA_VA02 (Air Conditioning)
+Prerequisites: None beyond standard IHKA hardware.
+iDrive Impact: If Active, last setting is retained; if Not active, defaults each start.
+Values: Active | Not active
+Verify: Adjust recirculation, shut off ignition, restart; check if setting is preserved.
+Rollback/Notes: Restore default if HVAC behavior becomes inconsistent.
+
+Air Conditioning ON in AUTO Mode
+Purpose: Automatically enable A/C compressor when AUTO mode is activated.
+Coding Type: FDL
+ECU/Module: IHKA_VA01 or IHKA_VA02
+Prerequisites: AUTO mode enabled in iDrive.
+iDrive Impact: AUTO → A/C toggles per setting.
+Values: Active | Not active
+Verify: Enable AUTO mode; confirm A/C turns on/off based on coding.
+Rollback/Notes: Default is Active; disable only if you prefer manual A/C control.
+
+Air Conditioning Setting Memory
+Purpose: Store last A/C ON/OFF state for restoration on next start.
+Coding Type: FDL
+ECU/Module: IHKA_VA01 or IHKA_VA02
+Prerequisites: None.
+iDrive Impact: Restores last A/C state.
+Values: Active | Not active
+Verify: Turn A/C ON or OFF, shut down vehicle, restart; observe restored state.
+Rollback/Notes: Revert if undesired carryover occurs.
+
+Automatic Air Recirculation
+Purpose: Enable or disable automatic air recirculation (sensor-based).
+Coding Type: FDL
+ECU/Module: IHKA_VA02
+Prerequisites: IHKA_VA02 hardware.
+iDrive Impact: Automatic recirculation behavior changes; no checkbox exposed.
+Values: Active | Not active
+Verify: Drive in traffic; confirm recirculation auto-switches if Active.
+Rollback/Notes: Market-dependent; disable if fogging issues occur.
+
+Display Color Change
+Purpose: Enable/disable display color change (white ↔ orange).
+Coding Type: FDL
+ECU/Module: IHKA_VA02
+Prerequisites: IHKA_VA02 hardware.
+iDrive Impact: Alters HVAC display illumination behavior.
+Values: Active | Not active
+Verify: Observe display when coding applied.
+Rollback/Notes: Cosmetic only; revert if readability is reduced.
+
+-----------------------------------
+Alarm system
+-----------------------------------
+Alarm Sound
+Purpose: Select region-specific alarm siren sound.
+Coding Type: FDL
+ECU/Module: FZD__07 (Roof Function Center) or Alarm ECU (CANS2)
+Prerequisites: OEM alarm installed.
+iDrive Impact: None; behavior changes when alarm is triggered.
+Values: Alarm sound Europe | Great Britain | USA
+Verify: Trigger alarm intentionally (test with windows open).
+Rollback/Notes: Region compliance may apply; default is market-specific.
+
+Interior Motion Detection
+Purpose: Enable/disable ultrasonic motion detection inside vehicle.
+Coding Type: FDL
+ECU/Module: Alarm ECU (CANS2)
+Prerequisites: OEM alarm with interior motion sensors.
+iDrive Impact: Affects alarm detection scope.
+Values: Active | Not active
+Verify: Arm alarm with windows down, insert hand; alarm should trigger if Active.
+Rollback/Notes: Disable if false alarms occur with pets.
+
+OBD Alarm
+Purpose: Trigger alarm when locked vehicle detects OBD activity.
+Coding Type: FDL
+ECU/Module: Alarm ECU (CANS2)
+Prerequisites: OEM alarm.
+iDrive Impact: Adds protection against OBD-based theft.
+Values: Active | Not active
+Verify: Simulate OBD access with alarm armed (if safe).
+Rollback/Notes: Must confirm compatibility; disable if diagnostic access is needed while locked.
+
+-----------------------------------
+Ambient lighting
+-----------------------------------ness
+Purpose: Adjust brightness of ambient interior lighting.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Ambient lighting package installed.
+iDrive Impact: Brightness level changes directly.
+Values: 10% | 20% | 30% | 40% | 50% | 60% | 70% | 80% | 90% | 100%
+Verify: Cycle lighting; confirm brightness matches coding.
+Rollback/Notes: Some increments may appear subtle; revert if mismatched.
+
+Ambient Lighting Brightness Decoupling from Instrument Cluster
+Purpose: Separate ambient lighting brightness from cluster dimming.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Ambient lighting package.
+iDrive Impact: Ambient brightness remains constant, independent of cluster.
+Values: Active | Not active
+Verify: Adjust cluster dimmer; check if ambient remains unaffected.
+Rollback/Notes: Default is coupled; decoupling can improve nighttime visibility.
+
+-----------------------------------
+Angel Eyes
+-----------------------------------
+Angel Eyes Brightness (FLE)
+Purpose: Set Angel Eyes brightness with low beam/parking lights.
+Coding Type: FDL
+ECU/Module: FLE_02 (Front Light Electronics)
+Prerequisites: Angel Eyes equipped.
+iDrive Impact: No UI; direct lighting change.
+Values: 100% (fixed)
+Verify: Switch on parking/low beams; confirm full brightness.
+Rollback/Notes: Use backups; firmware-specific.
+
+Angel Eyes Brightness Low Beam (TMS)
+Purpose: Adjust Angel Eyes brightness with low beam, per headlamp.
+Coding Type: FDL
+ECU/Module: TMS_03 (Left & Right Headlight Driver Modules)
+Prerequisites: Angel Eyes equipped.
+iDrive Impact: No UI.
+Values: 10–100% (in 10% increments)
+Verify: Activate low beams; check intensity per side.
+Rollback/Notes: Must code both modules for uniform output.
+
+Angel Eyes Brightness Low Beam (FEM)
+Purpose: Adjust Angel Eyes brightness with low beam via FEM.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Angel Eyes equipped.
+iDrive Impact: No UI.
+Values: 8% | 10% | 12% | 20% | 30% | 40% | 50% | 60% | 70% | 80% | 90% | 100%
+Verify: Enable low beams; confirm brightness change.
+Rollback/Notes: Lower values may impact DRL visibility.
+
+Angel Eyes Brightness Parking Lights (TMS)
+Purpose: Adjust Angel Eyes brightness with parking lights, per headlamp.
+Coding Type: FDL
+ECU/Module: TMS_03 (Left & Right)
+Prerequisites: Angel Eyes equipped.
+iDrive Impact: No UI.
+Values: 10–100% (in 10% increments)
+Verify: Activate parking lights; check output per side.
+Rollback/Notes: Must code both modules.
+
+Angel Eyes Brightness Parking Lights (FEM)
+Purpose: Adjust Angel Eyes brightness with parking lights via FEM.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Angel Eyes equipped.
+iDrive Impact: No UI.
+Values: 8% | 10% | 12% | 20% | 30% | 40% | 50% | 60% | 70% | 80% | 90% | 100%
+Verify: Enable parking lights; confirm change.
+Rollback/Notes: Must align with DRL visibility regulations.
+
+-----------------------------------
+Audio
+-----------------------------------
+Bluetooth Audio Streaming
+Purpose: Enable Bluetooth audio streaming.
+Coding Type: FDL
+ECU/Module: HU_NBT or HU_NBT_EVO
+Prerequisites: Bluetooth hardware.
+iDrive Impact: Adds BT audio source option.
+Values: Active
+Verify: Pair device; stream audio via iDrive.
+Rollback/Notes: Use backup; coding may vary with firmware.
+
+Bluetooth Audio Streaming (1 of 2 – Headunit)
+Purpose: Enable BT audio streaming in HU_CIC; pair with Combox setting.
+Coding Type: FDL
+ECU/Module: HU_CIC
+Prerequisites: Combox if fitted.
+iDrive Impact: Adds BT audio.
+Values: Active
+Verify: Pair device; test audio.
+Rollback/Notes: Enable both HU and Combox entries for full function.
+
+Bluetooth Audio Streaming (2 of 2 – Combox)
+Purpose: Enable BT audio streaming in Combox; pair with HU_CIC setting.
+Coding Type: FDL
+ECU/Module: Combox_Media
+Prerequisites: HU_CIC with Combox.
+iDrive Impact: Adds BT audio.
+Values: Active
+Verify: Pair device; confirm streaming.
+Rollback/Notes: Both HU and Combox must be Active.
+
+Maximum Volume at Start-Up
+Purpose: Set limit for startup volume restoration.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Limits initial playback volume.
+Values: 10% | 20% | 25% | 30% | 40% | 50%
+Verify: Shut down at high volume, restart; confirm capped value.
+Rollback/Notes: Market defaults differ.
+
+Ringtone (Combox)
+Purpose: Select ringtone for incoming calls.
+Coding Type: FDL
+ECU/Module: Combox_Media
+Prerequisites: Combox present.
+iDrive Impact: Ringtone changes for calls.
+Values: Ringtone 1 | Ringtone 2 | Ringtone 3 | Smartphone ringtone
+Verify: Receive call; confirm sound.
+Rollback/Notes: Limited to provided options.
+
+Ringtone (NBT/NBT EVO)
+Purpose: Select ringtone for incoming calls.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Alters call ringtone.
+Values: BMW i | BMW | Mini | Smartphone ringtone
+Verify: Receive call.
+Rollback/Notes: Cosmetic only.
+
+Shut Off iDrive When Driver Door Opens
+Purpose: Power down iDrive automatically upon driver door opening.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: None.
+iDrive Impact: System shuts when door opens.
+Values: Active | Not active
+Verify: Open driver door after ignition off.
+Rollback/Notes: Disable if undesired.
+
+Warning Chime
+Purpose: Select vehicle warning sound.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Changes chime sound.
+Values: BMW i | BMW | Mini | Rolls Royce
+Verify: Trigger low fuel or seatbelt warning.
+Rollback/Notes: Purely cosmetic.
+
+-----------------------------------
+Auto Start Stop function
+-----------------------------------
+Auto Start Stop in ECO Mode
+Purpose: Enable/disable automatic Auto Start Stop in ECO PRO.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Auto Start Stop hardware.
+iDrive Impact: Behavior in ECO PRO mode.
+Values: Active | Not active
+Verify: Drive in ECO PRO; confirm engine shutoff behavior.
+Rollback/Notes: Default Active; disable only if undesired.
+
+Auto Start Stop Memory
+Purpose: Save last Auto Start Stop state across key cycles.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Auto Start Stop hardware.
+iDrive Impact: Restores last selection.
+Values: Active | Not active
+Verify: Change state, shut down, restart; check restoration.
+Rollback/Notes: Reverts automatically in ECO PRO.
+
+Auto Start Stop Off by Default
+Purpose: Set Auto Start Stop OFF at startup (except ECO PRO).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Auto Start Stop hardware.
+iDrive Impact: Defaults OFF unless ECO PRO reactivates.
+Values: Active | Not active
+Verify: Restart vehicle; confirm default OFF.
+Rollback/Notes: Ensure ECO PRO override noted.
+
+-----------------------------------
+Battery
+-----------------------------------
+Battery Type
+Purpose: Define installed 12 V battery type/capacity.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Only code after physical battery replacement.
+iDrive Impact: None directly; affects charging and monitoring.
+Values: 20 Ah | 40 Ah AGM | 46 Ah | 55 Ah | 70 Ah | 70 Ah AGM | 80 Ah | 80 Ah AGM | 90 Ah | 90 Ah AGM | 105 Ah AGM
+Verify: Check BimmerLink/BMW diagnostics for proper registration.
+Rollback/Notes: Must register new battery in FEM after coding.
+
+
+Blind Spot Detection Activation Speed
+Purpose: Set threshold speed at which blind spot detection activates.
+Coding Type: FDL
+ECU/Module: ICMQL (Integrated Chassis Management)
+Prerequisites: Blind spot hardware installed.
+iDrive Impact: Alters when feature becomes active.
+Values: 10 km/h | 20 km/h | 30 km/h | 50 km/h
+Verify: Drive above threshold; check mirror indicators.
+Rollback/Notes: Market restrictions may apply.
+
+-----------------------------------
+Brake Force Display
+-----------------------------------
+Brake Force Display – Activation Brake Force
+Purpose: Set the brake deceleration threshold at which BFD activates.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Standard braking system.
+iDrive Impact: None; behavior only during braking.
+Values: Weak (5 m/s²) | Medium (7 m/s²) | Hard (8 m/s²)
+Verify: Perform controlled braking at each threshold; observe rear light behavior.
+Rollback/Notes: Use default Medium for balanced safety.
+
+Brake Force Display – Activation Speed
+Purpose: Define minimum vehicle speed at which BFD activates.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: None.
+iDrive Impact: None.
+Values: 5 | 10 | 20 | 30 | 40 | 50 km/h
+Verify: Test BFD at specified speeds; confirm correct trigger point.
+Rollback/Notes: Default usually 10 or 20 km/h.
+
+Brake Force Display – Flashing Frequency
+Purpose: Set frequency of rear brake light flashing during BFD.
+Coding Type: FDL
+ECU/Module: REM_01 (Rear Electronic Module)
+Prerequisites: BFD enabled in FEM.
+iDrive Impact: None.
+Values: 3 Hz (3 times/sec) | 5 Hz (5 times/sec)
+Verify: Hard brake at speed; observe rear light flash rate.
+Rollback/Notes: Excessive flashing may conflict with local regulations.
+
+Brake Force Display – Lights
+Purpose: Select which rear lights are used for BFD.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: BFD enabled.
+iDrive Impact: None.
+Values: Brake lights | Not active
+Verify: Hard brake at speed; confirm which lights flash.
+Rollback/Notes: Must align with “BFD Type” coding.
+
+Brake Force Display – Type
+Purpose: Define BFD behavior (area enlargement vs. flashing).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Set “BFD Lights” in REM to Brake lights.
+iDrive Impact: None.
+Values: Area enlargement | Flashing | Not active
+Verify: Hard brake at speed; observe chosen BFD effect.
+Rollback/Notes: Market-specific legality; flashing preferred for visibility.
+
+-----------------------------------
+CarPlay
+-----------------------------------
+CarPlay Fullscreen Mode
+Purpose: Enable or disable fullscreen CarPlay display.
+Coding Type: FDL
+ECU/Module: HU_NBT_EVO (Headunit)
+Prerequisites: NBTevo_X or NBTevo_Y firmware version required.
+iDrive Impact: CarPlay displays in fullscreen mode when Active.
+Values: Active | Not active
+Verify: Connect iPhone via CarPlay; check if fullscreen enabled.
+Rollback/Notes: Not available on NBTevo_N through NBTevo_W; requires iLevel update first.
+
+-----------------------------------
+Convenient opening/closing
+-----------------------------------
+
+Convenient Closing
+Purpose: Enable/disable convenient closing of windows and folding mirrors by holding remote lock. Not for convertibles.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power windows and mirror folding.
+iDrive Impact: User convenience feature.
+Values: Active | Not active
+Verify: Hold lock on remote; confirm windows/mirrors close.
+Rollback/Notes: Disable on convertibles to avoid top interference.
+
+Convenient Closing Delay
+Purpose: Set delay before windows close during convenient closing.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Convenient closing enabled.
+iDrive Impact: Alters time-to-close.
+Values: 0.5s | 1s | 1.5s | No delay
+Verify: Hold lock; measure delay.
+Rollback/Notes: No delay is most responsive; longer delays reduce accidental triggers.
+
+Convenient Closing Delay – Front Windows
+Purpose: Set delay for front windows during convenient closing.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Convenient closing enabled.
+iDrive Impact: Affects front windows only.
+Values: 0.5s | 1s | 1.5s | No delay
+Verify: Hold lock; observe front window timing.
+Rollback/Notes: Must align with driver preference.
+
+Convenient Closing Delay – Sunroof
+Purpose: Set delay before sunroof closes during convenient closing.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Panoramic sunroof.
+iDrive Impact: Affects sunroof only.
+Values: 0.5s | 1s | 1.5s | 3.5s | No delay
+Verify: Hold lock; observe sunroof response.
+Rollback/Notes: Sunroof closing times may vary by hardware.
+
+Convenient Closing with Comfort Access
+Purpose: Enable/disable convenient closing via Comfort Access handle ribbed area. Not for convertibles.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Comfort Access option.
+iDrive Impact: Adds feature to CA handles.
+Values: Active | Not active
+Verify: Hold hand on ribbed area; confirm windows/mirrors close.
+Rollback/Notes: Market-specific; disable if false triggers.
+
+Convenient Closing with Remote Control
+Purpose: Enable/disable convenient closing via remote (lock button).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power windows and mirrors.
+iDrive Impact: Adds remote function.
+Values: Active | Not active
+Verify: Hold lock; confirm operation.
+Rollback/Notes: Same restrictions as above.
+
+Convenient Opening
+Purpose: Enable/disable convenient opening of windows/unfolding mirrors via remote or CA handle.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Comfort Access or compatible remote.
+iDrive Impact: Adds convenience feature.
+Values: Active | Not active
+Verify: Hold unlock; confirm windows/mirrors open.
+Rollback/Notes: Not recommended in extreme weather.
+
+Convenient Opening Delay
+Purpose: Delay before windows open during convenient opening.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Convenient opening enabled.
+iDrive Impact: Alters activation time.
+Values: 0.5s | 1s | 1.5s | 2s | 2.5s
+Verify: Hold unlock; observe delay.
+Rollback/Notes: Longer delays prevent accidental triggers.
+
+Convenient Opening Delay – Rear Windows
+Purpose: Delay for rear windows during convenient opening.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Convenient opening enabled.
+iDrive Impact: Affects rear windows only.
+Values: 0.5s | 1s | 1.5s | No delay
+Verify: Hold unlock; confirm rear window timing.
+Rollback/Notes: Align with front settings for consistency.
+
+Convenient Opening Delay – Sunroof
+Purpose: Delay before sunroof opens during convenient opening.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Sunroof present.
+iDrive Impact: Affects sunroof only.
+Values: 0.5s | 1s | 1.5s | 3.5s | No delay
+Verify: Hold unlock; observe sunroof timing.
+Rollback/Notes: Must be tested per vehicle.
+
+Convenient Opening with Remote Control
+Purpose: Enable/disable convenient opening via remote (unlock button).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Compatible remote.
+iDrive Impact: Adds remote feature.
+Values: Active | Not active
+Verify: Hold unlock; confirm windows/mirrors open.
+Rollback/Notes: Disable if prone to accidental activation.
+
+-----------------------------------
+Daytime running light
+-----------------------------------
+Checkbox Daytime Running Light
+Purpose: Expose a checkbox in iDrive lighting settings to toggle daytime running lights.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO (Headunit)
+Prerequisites: Vehicle equipped with DRL-capable hardware.
+iDrive Impact: Adds/removes checkbox in iDrive menu.
+Values: Active | Not active
+Verify: iDrive → Settings → Lighting; confirm checkbox available.
+Rollback/Notes: Checkbox may be greyed out if DRL inactive in FEM/REM.
+
+Daytime Running Light Brightness
+Purpose: Adjust brightness level of DRLs.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: DRLs equipped.
+iDrive Impact: No menu item; brightness changes directly.
+Values: 10% | 20% | 30% | 40% | 50% | 60% | 70% | 80% | 90% | 100%
+Verify: Observe DRL intensity after coding.
+Rollback/Notes: 100% yields maximum visibility; lower values improve lifespan.
+
+Daytime Running Light Mode
+Purpose: Define DRL operating mode.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: DRL hardware.
+iDrive Impact: Alters DRL operation with other lights.
+Values: Active | Active also with parking lights | Not active
+Verify: Switch between low beam/parking lights; check DRL behavior.
+Rollback/Notes: “Active with parking lights” may conflict with market rules.
+
+Daytime Running Light Tail Lights – Inner
+Purpose: Enable or disable inner tail light elements with DRL.
+Coding Type: FDL
+ECU/Module: REM_01 (Rear Electronic Module)
+Prerequisites: LED or multi-part tail light clusters.
+iDrive Impact: No menu; directly affects rear light behavior.
+Values: Active | Not active
+Verify: Observe tail lamp inner section when DRL active.
+Rollback/Notes: Cosmetic/visibility; disable if undesired.
+
+Daytime Running Light Tail Lights – Outer
+Purpose: Enable or disable outer tail light elements with DRL.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: As above.
+iDrive Impact: No menu; directly affects rear light behavior.
+Values: Active | Not active
+Verify: Observe tail lamp outer section when DRL active.
+Rollback/Notes: Same considerations as inner section.
+
+-----------------------------------
+Display options iDrive system
+-----------------------------------
+Display Full Text Messages
+Purpose: Enable display of complete text messages while driving.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: Messaging integration enabled.
+iDrive Impact: Expands message display content.
+Values: Active
+Verify: Receive SMS/email; confirm full text shows.
+Rollback/Notes: Market restrictions may apply.
+
+Pressure and Temperature in TPM
+Purpose: Show tire pressure and temperature values in iDrive TPM menu.
+Coding Type: FDL
+ECU/Module: HU_CIC
+Prerequisites: TPM sensors supporting pressure and temperature.
+iDrive Impact: Adds detail in TPM menu.
+Values: Active | Not active
+Verify: iDrive → Vehicle Info → Tire Pressure; confirm values.
+Rollback/Notes: If sensors missing, values may not display.
+
+Rear View Camera Zoom
+Purpose: Enable zoom view of rear camera focused on trailer hitch.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: Rear view camera equipped.
+iDrive Impact: Adds zoom option in camera view.
+Values: Active | Not active
+Verify: Engage reverse; check for zoom toggle.
+Rollback/Notes: Revert if unavailable in UI.
+
+Service History
+Purpose: Enable service history display in iDrive.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Prerequisites: Vehicle must support service data storage.
+iDrive Impact: Adds service history menu entry.
+Values: Active | Not active
+Verify: iDrive → Vehicle Info → Service History.
+Rollback/Notes: Availability may depend on regional data.
+
+Start Animation (NBT)
+Purpose: Set animation displayed when iDrive (NBT) boots.
+Coding Type: FDL
+ECU/Module: HU_NBT
+Prerequisites: None.
+iDrive Impact: Cosmetic change on startup.
+Values: ALPINA | BMW 1 | BMW 2 | BMW i | Christmas | Connected Drive 1 | Connected Drive 2 | M variant 1 | MINI variant 1 | Rolls Royce
+Verify: Restart headunit; observe animation.
+Rollback/Notes: Some variants brand-specific.
+
+Start Animation (NBT EVO)
+Purpose: Set animation displayed when iDrive (NBT EVO) boots.
+Coding Type: FDL
+ECU/Module: HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Cosmetic change on startup.
+Values: ALPINA | BMW i | Connected Drive | M variant 1 | M variant 2 | MINI JCW | MINI variant 1 | MINI variant 2 | Rolls Royce
+Verify: Restart headunit; observe animation.
+Rollback/Notes: Same notes as NBT.
+
+Start Screen
+Purpose: Choose type of start screen on headunit startup.
+Coding Type: FDL
+ECU/Module: HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Alters what is shown immediately after boot.
+Values: Animation | Welcome screen
+Verify: Restart iDrive; confirm displayed screen.
+Rollback/Notes: Cosmetic only.
+
+Tire Pressure Control (TPM)
+Purpose: Define values displayed in Tire Pressure Monitor menu.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: TPM sensors supporting pressure and/or temperature.
+iDrive Impact: Changes displayed data in TPM menu.
+Values: Display pressure only | Display temperature and pressure | Not active
+Verify: iDrive → Vehicle Info → Tire Pressure; confirm displayed data.
+Rollback/Notes: Not active hides data entirely.
+
+Volume Popup
+Purpose: Enable/disable volume popup when volume knob or steering wheel buttons are used.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: None.
+iDrive Impact: Toggles popup overlay when volume is adjusted.
+Values: Active | Not active
+Verify: Adjust volume; confirm popup behavior.
+Rollback/Notes: Cosmetic preference only.
+
+xView Display
+Purpose: Enable/disable xView off-road display (roll, tilt, power distribution).
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: xDrive-equipped vehicle.
+iDrive Impact: Adds/removes xView menu.
+Values: Active | Not active
+Verify: iDrive → Vehicle Info → xView.
+Rollback/Notes: Cosmetic/diagnostic feature only.
+
+-----------------------------------
+Display Options – Instrument Cluster
+-----------------------------------
+
+Average Values Reset
+Purpose: Set automatic reset timing for average consumption/speed values.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO | KOMBI_CT_RD1
+Prerequisites: Trip computer enabled.
+iDrive Impact: Affects how averages reset in cluster menus.
+Values: After 4 hours | After 8 hours | After every ride | Never
+Verify: Drive cycles; confirm reset behavior.
+Rollback/Notes: Choose based on personal tracking preference.
+
+Date in Board Computer
+Purpose: Enable/disable date display in board computer.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS
+Prerequisites: None.
+iDrive Impact: Adds/removes date field.
+Values: Active | Not active
+Verify: Toggle BC screens; confirm presence of date.
+Rollback/Notes: Cosmetic.
+
+Digital Speed in Board Computer
+Purpose: Show digital speed readout in board computer.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO | KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Adds/removes digital speed screen.
+Values: Active | Not active
+Verify: Cycle through BC displays; check speed shown.
+Rollback/Notes: Common mod; leave Active for convenience.
+
+Empty Menu Item in Board Computer
+Purpose: Enable/disable blank placeholder menu item in BC.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO | KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Removes filler entry when Not active.
+Values: Active | Not active
+Verify: Scroll BC menu; check for blank item.
+Rollback/Notes: Cosmetic only.
+
+Fuel Consumption Display – Maximum Value
+Purpose: Define maximum scale value for consumption display.
+Coding Type: FDL
+ECU/Module: KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Alters BC consumption scale.
+Values: 20 l/100km | 30 l/100km
+Verify: View consumption gauge in BC.
+Rollback/Notes: May distort scale interpretation.
+
+M Performance Logo
+Purpose: Display model-specific M Performance logo in cluster.
+Coding Type: FDL
+ECU/Module: KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Adds logo to startup/cluster graphics.
+Values: Not active | 135i | 140i | 235i | 240i | 340i | 50d | 550d | Plugin Hybrid Electric Vehicle | X2 M40i
+Verify: Restart cluster; confirm logo.
+Rollback/Notes: Purely cosmetic.
+
+Start Logo (KOMBI L7_BASIS)
+Purpose: Select startup logo displayed in cluster center.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS
+Prerequisites: None.
+iDrive Impact: Cosmetic startup graphic.
+Values: 50d | 135i | 140i | 235i | 240i | 340i | AG | M Performance | M2 | M3 | M4 | M4 GTS | Plugin Hybrid Electric Vehicle
+Verify: Restart ignition; check logo.
+Rollback/Notes: Cosmetic preference only.
+
+Start Logo (KOMBI_CT_RD1)
+Purpose: Select startup logo displayed in cluster center.
+Coding Type: FDL
+ECU/Module: KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Cosmetic startup graphic.
+Values: 50d | 135i | 140i | 235i | 240i | 340i | AG | M Performance | M2 | M2 Competition | M2 CS | M3 | M4 | M4 GTS | Plugin Hybrid Electric Vehicle | X2 M35i
+Verify: Restart ignition; check logo.
+Rollback/Notes: Cosmetic preference only.
+
+-----------------------------------
+Doors / Windows
+-----------------------------------
+Horn Signal When Locking with Engine Running
+Purpose: Enable horn signal if doors are locked while engine remains on.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: None.
+iDrive Impact: Audible confirmation when locking engine-on vehicle.
+Values: Active | Not active
+Verify: Lock car with engine running; confirm horn.
+Rollback/Notes: Disable to avoid nuisance honking.
+
+Lock After Pulling Away
+Purpose: Enable/disable “lock after pulling away” checkbox in iDrive.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Prerequisites: Central locking system.
+iDrive Impact: Adds/removes checkbox.
+Values: Active | Not active
+Verify: iDrive → Settings → Doors/Key.
+Rollback/Notes: Cosmetic only; functional only if FDL also set.
+
+Time Until Automatic Lock
+Purpose: Define auto-relock delay when vehicle unlocked but no door opened.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Central locking system.
+iDrive Impact: None; direct behavior change.
+Values: 10s | 30s | 1 min | 2 min | 5 min | 10 min
+Verify: Unlock without opening; confirm auto-relock timing.
+Rollback/Notes: Set longer to prevent accidental relockouts.
+
+Unlock Doors Automatically
+Purpose: Enable automatic door unlock when ignition turned off.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Central locking system.
+iDrive Impact: Adds unlock-on-shutdown.
+Values: Active | Not active
+Verify: Shut down ignition; confirm unlock.
+Rollback/Notes: Disable for higher security.
+
+Window Lifter Interruption When Opening Door
+Purpose: Stop window movement when door opens.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power windows.
+iDrive Impact: Direct hardware behavior.
+Values: Active | Not active
+Verify: Open window and door simultaneously; observe interruption.
+Rollback/Notes: Disable if inconvenient.
+
+-----------------------------------
+Driving Mode
+-----------------------------------
+SPORT Driving Mode Configurable (1 of 2)
+Purpose: Enable “Configure SPORT” in iDrive for user customization (engine, steering, chassis).
+Coding Type: FDL
+ECU/Module: ICMQL (Integrated Chassis Management)
+Prerequisites: SPORT mode hardware. Requires 2 of 2 in headunit.
+iDrive Impact: Adds SPORT config menu.
+Values: Active
+Verify: iDrive → Driving Modes → SPORT → Configure.
+Rollback/Notes: Must pair with HU coding.
+
+SPORT Driving Mode Configurable (2 of 2)
+Purpose: Enable SPORT configuration menu in iDrive. Requires 1 of 2 in ICMQL.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Prerequisites: ICMQL SPORT config Active.
+iDrive Impact: Exposes configuration menu.
+Values: Active
+Verify: As above.
+Rollback/Notes: Must match ECU counterpart.
+
+SPORT+ Driving Mode (1 of 2)
+Purpose: Add SPORT+ mode if not factory equipped. Requires 2 of 2 in cluster.
+Coding Type: FDL
+ECU/Module: ICMQL
+Prerequisites: SPORT+ not already present.
+iDrive Impact: Adds SPORT+ option in Driving Modes.
+Values: Active
+Verify: Cycle Driving Modes; confirm SPORT+ appears.
+Rollback/Notes: Do not use if already factory-coded.
+
+SPORT+ Driving Mode (2 of 2)
+Purpose: Add SPORT+ mode in cluster if not factory equipped. Requires 1 of 2 in ICMQL.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO
+Prerequisites: Same as above.
+iDrive Impact: Cluster supports SPORT+ display.
+Values: Active
+Verify: Cycle Driving Modes.
+Rollback/Notes: Must match ECU counterpart.
+
+Start in ECO Mode
+Purpose: Set ECO PRO as default startup mode.
+Coding Type: FDL
+ECU/Module: ICMQL
+Prerequisites: ECO PRO package.
+iDrive Impact: Defaults driving mode at startup.
+Values: Active | Not active
+Verify: Restart car; check ECO default.
+Rollback/Notes: ECO PRO fuel-saving default.
+
+-----------------------------------
+Easy Entry
+-----------------------------------
+Easy Entry Protection Area
+Purpose: Define protected rearward distance seat will not exceed during easy entry.
+Coding Type: FDL
+ECU/Module: CBFS_PLX_1 (Passenger Seat Module) | CFAS_PLX_1 (Driver Seat Module)
+Prerequisites: Power seats with memory.
+iDrive Impact: Limits seat travel.
+Values: 0–100 mm (in 10 mm increments)
+Verify: Activate easy entry; check rearward limit.
+Rollback/Notes: Prevents collision with rear passengers.
+
+Easy Entry Seat Movement
+Purpose: Move seat rearward when unlocking, then restore when ignition on.
+Coding Type: FDL
+ECU/Module: CBFS_PLX_1 | CFAS_PLX_1
+Prerequisites: Power seats with memory.
+iDrive Impact: Adds auto seat movement.
+Values: Active
+Verify: Unlock and lock cycles; observe seat travel.
+Rollback/Notes: Disable if inconvenient.
+
+Easy Entry Seat Travel
+Purpose: Define rearward travel distance for easy entry.
+Coding Type: FDL
+ECU/Module: CBFS_PLX_1 | CFAS_PLX_1
+Prerequisites: Power seats with memory.
+iDrive Impact: Affects seat travel distance.
+Values: 10–100 mm (increments)
+Verify: Unlock; observe seat movement distance.
+Rollback/Notes: Excessive travel may hit rear passengers.
+
+-----------------------------------
+Fuel Reserve Warnings
+-----------------------------------
+Low Fuel Warning 1 (Permanent)
+Purpose: Define range threshold for permanent low fuel warning.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO | KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Alters permanent warning trigger.
+Values: 10 km | 10 mi | 20 km | 20 mi | 30 km | 30 mi | 40 km | 50 km | Not active
+Verify: Drive with low fuel; check alert.
+Rollback/Notes: Permanent warning stays until refuel.
+
+Low Fuel Warning 2 (Temporary)
+Purpose: Define range threshold for temporary low fuel warning.
+Coding Type: FDL
+ECU/Module: KOMBI L7_BASIS | KOMBI L6 BO | KOMBI_CT_RD1
+Prerequisites: None.
+iDrive Impact: Alters secondary warning trigger.
+Values: 40 mi | 50 km | 50 mi | 60 km | 70 km | 80 km | 90 km | Not active
+Verify: Drive with fuel below set threshold; check alert.
+Rollback/Notes: Temporary warning clears once above threshold.
+
+-----------------------------------
+HUD
+-----------------------------------
+HUD Music Lists
+Purpose: Enable/disable music list display in Head-Up Display.
+Coding Type: FDL
+ECU/Module: KOMBI L6 BO (Instrument Cluster)
+Prerequisites: HUD-equipped vehicle.
+iDrive Impact: Adds/removes HUD music list display.
+Values: Active | Not active
+Verify: Cycle through HUD content; check music list visibility.
+Rollback/Notes: Cosmetic preference only.
+
+HUD Phone Book
+Purpose: Enable/disable phone book display in HUD.
+Coding Type: FDL
+ECU/Module: KOMBI L6 BO
+Prerequisites: HUD + connected phone.
+iDrive Impact: Adds/removes HUD phone book option.
+Values: Active | Not active
+Verify: Cycle HUD menus while phone paired.
+Rollback/Notes: Disable if cluttered.
+
+HUD Telephone List
+Purpose: Enable/disable telephone list display in HUD.
+Coding Type: FDL
+ECU/Module: KOMBI L6 BO
+Prerequisites: HUD + telephony functions.
+iDrive Impact: Adds/removes HUD telephone list.
+Values: Active | Not active
+Verify: Use steering wheel controls; confirm list in HUD.
+Rollback/Notes: Cosmetic.
+
+HUD Voice Input
+Purpose: Enable/disable HUD display of voice command input.
+Coding Type: FDL
+ECU/Module: KOMBI L6 BO
+Prerequisites: HUD + voice control.
+iDrive Impact: Adds/removes HUD feedback during voice entry.
+Values: Active | Not active
+Verify: Trigger voice command; check HUD feedback.
+Rollback/Notes: Disable if distracting.
+
+-----------------------------------
+Headlight Cleaning
+-----------------------------------
+Headlight Cleaning Blocking Time
+Purpose: Set minimum time interval between headlight cleaning activations.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Headlight washer system.
+iDrive Impact: None; timing behavior only.
+Values: 1–10 minutes (increments of 1 minute)
+Verify: Trigger cleaning repeatedly; confirm lockout duration.
+Rollback/Notes: Longer intervals save fluid.
+
+Headlight Cleaning Pause Between Pulses
+Purpose: Set pause between water injection pulses during cleaning.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Headlight washer system.
+iDrive Impact: None; timing only.
+Values: 200–2000 ms (increments of 200 ms)
+Verify: Activate cleaning; observe pause timing.
+Rollback/Notes: Shorter pauses use more fluid.
+
+Headlight Cleaning System Deactivation Speed Threshold
+Purpose: Define speed above which headlight cleaning is disabled.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Headlight washer system.
+iDrive Impact: None; speed-dependent behavior.
+Values: 10–150 km/h (increments of 10 km/h)
+Verify: Drive above threshold; confirm no cleaning activation.
+Rollback/Notes: Higher speeds reduce mess.
+
+Headlight Washers
+Purpose: Activate/deactivate headlight washer system.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Washer hardware installed.
+iDrive Impact: Enables or disables washer function entirely.
+Values: Active | Not active
+Verify: Pull washer stalk; confirm headlight spray.
+Rollback/Notes: Disable to save fluid if not needed.
+
+Number of Washing Operations Before Headlight Cleaning
+Purpose: Define how many windshield wash operations trigger headlight cleaning.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Headlight washers.
+iDrive Impact: Sets frequency of headlight cleaning cycles.
+Values: 1 | 5 | 10 operations
+Verify: Trigger windshield washers repeatedly; check headlight spray.
+Rollback/Notes: Use higher count to conserve fluid.
+
+Number of Water Injection Pulses During Headlight Cleaning
+Purpose: Define number of water pulses per cleaning cycle.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Headlight washers.
+iDrive Impact: Sets spray repetition.
+Values: 1 | 2 | 3 pulses
+Verify: Trigger cleaning; count spray pulses.
+Rollback/Notes: More pulses use more fluid.
+
+Water Injection Duration for Headlight Cleaning
+Purpose: Set duration of each spray pulse.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Headlight washers.
+iDrive Impact: Adjusts length of spray.
+Values: 200–2000 ms (increments of 200 ms)
+Verify: Activate cleaning; observe spray length.
+Rollback/Notes: Longer pulses consume more fluid.
+
+-----------------------------------
+LED Conversion
+-----------------------------------
+LED Conversion – Brake Force Display
+Purpose: Enable LED adaptation for Brake Force Display lamps.
+Coding Type: FDL
+ECU/Module: REM_01 (Rear Electronic Module)
+Prerequisites: BFD lamps replaced with LEDs.
+iDrive Impact: Prevents error messages/flicker.
+Values: Active
+Verify: Hard braking; check BFD LEDs function without error.
+Rollback/Notes: Only enable if LEDs installed.
+
+LED Conversion – Bi-Xenon
+Purpose: Enable LED adaptation when replacing bi-xenon lamps with LEDs.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Bi-xenon replaced with LEDs.
+iDrive Impact: Prevents bulb errors/flicker.
+Values: Active
+Verify: Test headlights; confirm no errors.
+Rollback/Notes: Do not enable with xenon still installed.
+
+LED Conversion – Brake Light
+Purpose: Enable LED adaptation for rear brake lights.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Brake lights replaced with LEDs.
+iDrive Impact: Prevents error codes.
+Values: Active
+Verify: Press brake; confirm LED operation.
+Rollback/Notes: Only with LED hardware.
+
+LED Conversion – Center Brake Light
+Purpose: Enable LED adaptation for center brake light.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Center brake light replaced with LED.
+iDrive Impact: Prevents error codes.
+Values: Active
+Verify: Press brake; check center LED.
+Rollback/Notes: Same as above.
+
+LED Conversion – Daytime Running Lights
+Purpose: Enable LED adaptation for DRLs.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: DRLs replaced with LEDs.
+iDrive Impact: Prevents flicker/errors.
+Values: Active
+Verify: Observe DRL output.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Fog Lights
+Purpose: Enable LED adaptation for fog lamps.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Fog lamps replaced with LEDs.
+iDrive Impact: Prevents flicker/errors.
+Values: Active
+Verify: Test fog lamps.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Front Turn Signals
+Purpose: Enable LED adaptation for front turn indicators.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Front turn signals replaced with LEDs.
+iDrive Impact: Prevents hyperflash/errors.
+Values: Active
+Verify: Signal left/right; check rate.
+Rollback/Notes: LEDs only.
+
+LED Conversion – High Beam
+Purpose: Enable LED adaptation for high beams.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: High beams replaced with LEDs.
+iDrive Impact: Prevents flicker/errors.
+Values: Active
+Verify: Test high beams.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Inner Tail Lights
+Purpose: Enable LED adaptation for inner tail lights.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Inner tail lights replaced with LEDs.
+iDrive Impact: Prevents errors.
+Values: Active
+Verify: Turn on lights; confirm LEDs.
+Rollback/Notes: LEDs only.
+
+LED Conversion – License Plate Light
+Purpose: Enable LED adaptation for license plate lights.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Plate lights replaced with LEDs.
+iDrive Impact: Prevents errors.
+Values: Active
+Verify: Turn on lights; confirm LEDs.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Low Beam
+Purpose: Enable LED adaptation for low beams.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Low beams replaced with LEDs.
+iDrive Impact: Prevents flicker/errors.
+Values: Active
+Verify: Test low beams.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Outer Tail Lights
+Purpose: Enable LED adaptation for outer tail lights.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Outer tail lights replaced with LEDs.
+iDrive Impact: Prevents errors.
+Values: Active
+Verify: Lights on; confirm LEDs.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Position Lights
+Purpose: Enable LED adaptation for position lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Position lights replaced with LEDs.
+iDrive Impact: Prevents errors/flicker.
+Values: Active
+Verify: Lights on; confirm LEDs.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Rear Fog Light
+Purpose: Enable LED adaptation for rear fog light.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Rear fog light replaced with LED.
+iDrive Impact: Prevents errors.
+Values: Active
+Verify: Fog lights on; confirm LED.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Rear Turn Signals
+Purpose: Enable LED adaptation for rear indicators.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Rear turn signals replaced with LEDs.
+iDrive Impact: Prevents hyperflash/errors.
+Values: Active
+Verify: Signal; confirm LED blink rate.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Reversing Light
+Purpose: Enable LED adaptation for reversing lights.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Reverse lights replaced with LEDs.
+iDrive Impact: Prevents errors.
+Values: Active
+Verify: Engage reverse; confirm LEDs.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Side Turn Signals
+Purpose: Enable LED adaptation for side indicators.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Side indicators replaced with LEDs.
+iDrive Impact: Prevents hyperflash/errors.
+Values: Active
+Verify: Signal; confirm LED rate.
+Rollback/Notes: LEDs only.
+
+LED Conversion – Sidemarkers
+Purpose: Enable LED adaptation for sidemarker lamps.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Sidemarkers replaced with LEDs.
+iDrive Impact: Prevents errors/flicker.
+Values: Active
+Verify: Lights on; check LEDs.
+Rollback/Notes: LEDs only.
+
+-----------------------------------
+Lighting
+-----------------------------------
+Cornering Lights – Activation
+Purpose: Enable cornering lights (requires fog lights).
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Vehicle equipped with fog lights.
+iDrive Impact: None; function engages automatically with steering/turn signals.
+Values: Active
+Verify: Low speed + steering input/indicator; fogs illuminate as cornering lights.
+Rollback/Notes: Revert if glare or regulatory issues occur.
+
+Cornering Lights – Deactivation
+Purpose: Disable factory cornering lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: None.
+iDrive Impact: None.
+Values: Active (deactivation applied)
+Verify: Repeat cornering test; lights no longer engage.
+Rollback/Notes: Restore previous value to re-enable.
+
+Door Handle Lights on Reverse
+Purpose: Turn on door-handle lights automatically when reverse is engaged.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Exterior handle lights present.
+iDrive Impact: None; behavior change only.
+Values: Active | Not active
+Verify: Engage reverse at night; confirm handle lights.
+Rollback/Notes: Disable if excessive battery draw is a concern.
+
+Fog Lights – Deactivation
+Purpose: Prevent bulb errors when fog lights are removed.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Fog lights physically removed.
+iDrive Impact: None; suppresses error monitoring.
+Values: Fog lights deactivated
+Verify: No fog light errors in cluster after removal.
+Rollback/Notes: Re-enable if fogs are reinstalled.
+
+Fog Lights Off with High Beam
+Purpose: Switch off fog lights automatically when high beam is active.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Fog lights installed.
+iDrive Impact: None; logic only.
+Values: Active | Not active
+Verify: Turn on fogs, then high beam; fogs extinguish if Active.
+Rollback/Notes: Market rules may require fogs off with high beam.
+
+Fog Lights with Parking Lights
+Purpose: Allow fog lights to operate with parking lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Fog lights installed.
+iDrive Impact: None; expands allowable combinations.
+Values: Active | Not active
+Verify: Activate parking lights; confirm fogs can switch on.
+Rollback/Notes: Verify local lighting regulations.
+
+Hazard Warning After Emergency Braking
+Purpose: Flash hazard lights automatically after emergency braking.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: None.
+iDrive Impact: None; safety behavior.
+Values: Active | Not active
+Verify: Controlled hard stop at speed; hazards should engage if Active.
+Rollback/Notes: Ensure it doesn’t conflict with BFD behavior.
+
+Rain/Light Sensor Sensitivity
+Purpose: Adjust sensitivity for automatic wipers/lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Rain/light sensor.
+iDrive Impact: Changes auto trigger thresholds.
+Values: Insensitive | Normal | Sensitive | Very sensitive
+Verify: Spray windshield/shadow sensor; observe response timing.
+Rollback/Notes: Too sensitive may cause frequent cycling.
+
+Sidemarkers (US) – Deactivate
+Purpose: Disable US sidemarkers; code left and right separately.
+Coding Type: FDL
+ECU/Module: TMS_03 Left | TMS_03 Right (Headlight Driver Modules)
+Prerequisites: Headlamps with sidemarker circuits.
+iDrive Impact: None; lamps off.
+Values: Deactivated
+Verify: Nighttime walk-around; sidemarkers off.
+Rollback/Notes: Check legality in your region.
+
+-----------------------------------
+Mirrors
+-----------------------------------
+Automatic Mirror Tilt (Reverse)
+Purpose: Tilt right mirror when reversing (selector must be on driver side).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors.
+iDrive Impact: Adds auto-tilt behavior.
+Values: Active | Not active
+Verify: Selector on driver; engage reverse; mirror tilts.
+Rollback/Notes: Disable if visibility worsens.
+
+Automatic Mirror Tilt – Amount
+Purpose: Set tilt percentage for right mirror in reverse.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Auto mirror tilt Active.
+iDrive Impact: Adjusts tilt depth.
+Values: 10% | 20% | 30% | 40% | 50% | 60% | 70% | 80% | 90% | 100%
+Verify: Engage reverse; confirm desired tilt.
+Rollback/Notes: Excessive tilt may lose curb view.
+
+Fold Mirrors with Convenient Closing
+Purpose: Fold mirrors during convenient closing (not for convertibles).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors.
+iDrive Impact: Mirrors fold when holding lock.
+Values: Active | Not active
+Verify: Hold lock on remote; mirrors fold.
+Rollback/Notes: Disable if accidental triggers occur.
+
+Fold/Unfold Mirrors Automatically
+Purpose: Auto-fold on lock and auto-unfold on unlock (remote/Comfort Access).
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors; not for convertibles.
+iDrive Impact: Adds automatic behavior.
+Values: Active
+Verify: Lock/unlock; mirrors fold/unfold.
+Rollback/Notes: May slightly increase actuator wear.
+
+Mirror Folding Speed Threshold
+Purpose: Set max speed at which mirrors can be folded.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors.
+iDrive Impact: Limits folding while moving.
+Values: 5 | 10 | 20 | 30 | 40 | 50 km/h
+Verify: Attempt fold above/below threshold; confirm behavior.
+Rollback/Notes: Lower values increase safety.
+
+Mirror Unfolding Speed Threshold
+Purpose: Set speed at which mirrors auto-unfold.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors.
+iDrive Impact: Unfolds automatically when exceeding threshold.
+Values: 5 | 10 | 20 | 30 | 40 | 50 km/h
+Verify: Drive off slowly; confirm auto-unfold at set speed.
+Rollback/Notes: Set low to avoid driving with folded mirrors.
+
+Unfold Mirrors with Convenient Opening
+Purpose: Unfold mirrors when using convenient opening.
+Coding Type: FDL
+ECU/Module: FEM_01
+Prerequisites: Power-folding mirrors; convenient opening Active.
+iDrive Impact: Mirrors unfold with window open command.
+Values: Active | Not active
+Verify: Hold unlock; mirrors should unfold.
+Rollback/Notes: Disable if frequent accidental activation.
+
+-----------------------------------
+PDC (Park Distance Control)
+-----------------------------------
+Activate PDC When Rolling Backwards
+Purpose: Auto-activate PDC when the vehicle rolls backward without reverse selected.
+Coding Type: FDL
+ECU/Module: PMA_PDC (PDC) | REM_01 (Rear Electronic Module)
+Prerequisites: PDC sensors installed.
+iDrive Impact: PDC activates in additional scenarios.
+Values: Active | Not active
+Verify: On slight incline, release brake to roll back; PDC should engage.
+Rollback/Notes: Disable if too sensitive.
+
+PDC Deactivation During Trailer Operation
+Purpose: Automatically disable PDC when trailer operation is detected.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: Trailer module/sensing present.
+iDrive Impact: Suppresses nuisance alerts with trailer attached.
+Values: Active
+Verify: Connect trailer; confirm PDC mutes.
+Rollback/Notes: Ensure trailer detection wiring functional.
+
+PDC Distance Switch-Off Threshold
+Purpose: Distance traveled after which PDC turns off automatically.
+Coding Type: FDL
+ECU/Module: PMA_PDC | REM_01
+Prerequisites: PDC equipped.
+iDrive Impact: Defines auto-timeout by distance.
+Values: 10 | 20 | 30 | 40 | 50 | 100 | 150 | 200 | 250 m
+Verify: Drive forward after activation; confirm switch-off near set distance.
+Rollback/Notes: Choose longer distances for tight parking zones.
+
+PDC Speed Switch-Off Threshold
+Purpose: Vehicle speed at which PDC turns off automatically.
+Coding Type: FDL
+ECU/Module: PMA_PDC | REM_01
+Prerequisites: PDC equipped.
+iDrive Impact: Sets auto-timeout by speed.
+Values: 5 | 10 | 15 | 20 | 30 | 36 | 40 | 50 km/h
+Verify: Accelerate; confirm deactivation around set speed.
+Rollback/Notes: 15–20 km/h is a common balance.
+
+Speed Switch-Off Threshold – Visual and Acoustic Warnings
+Purpose: Speed at which both PDC visual and acoustic warnings are disabled.
+Coding Type: FDL
+ECU/Module: REM_01
+Prerequisites: PDC equipped.
+iDrive Impact: Disables entire warning suite above threshold.
+Values: 5 | 10 | 15 | 20 | 30 | 40 | 50 km/h
+Verify: Approach obstacle then exceed threshold; warnings cease.
+Rollback/Notes: Keep threshold modest to retain low-speed protection.
+
+-----------------------------------
+Rear view camera
+-----------------------------------
+Rear View Camera – Distance Switch-Off Threshold
+Purpose: Define distance traveled before rear view camera switches off automatically.
+Coding Type: FDL
+ECU/Module: PMA_PDC (Park Distance Control) | REM_01 (Rear Electronic Module)
+Prerequisites: Rear camera system installed.
+iDrive Impact: Limits camera active distance.
+Values: 10 | 20 | 30 | 40 | 50 | 100 | 150 | 200 | 250 m
+Verify: Engage reverse; drive forward; confirm camera switches off near set distance.
+Rollback/Notes: Longer distances keep camera active longer after reversing.
+
+Rear View Camera – Speed Switch-Off Threshold
+Purpose: Define speed above which rear view camera deactivates.
+Coding Type: FDL
+ECU/Module: PMA_PDC | REM_01
+Prerequisites: Rear camera system installed.
+iDrive Impact: Defines auto switch-off by speed.
+Values: 5 | 10 | 15 | 20 | 30 | 36 | 40 | 50 km/h
+Verify: Drive forward after reversing; confirm camera off at set speed.
+Rollback/Notes: Typical factory value ~15–20 km/h.
+
+-----------------------------------
+Retrofit
+-----------------------------------
+HiFi Loudspeaker System
+Purpose: Enable coding for retrofitted HiFi loudspeaker system.
+Coding Type: FDL
+ECU/Module: HU_NBT (Headunit)
+Prerequisites: HiFi hardware retrofit installed.
+iDrive Impact: Adjusts audio output and EQ options.
+Values: Active
+Verify: Check iDrive audio menu for expanded settings; test sound.
+Rollback/Notes: Requires proper wiring retrofit.
+
+LCI Tail Lights
+Purpose: Enable coding for retrofitted LCI (facelift) tail lights.
+Coding Type: FDL
+ECU/Module: REM_01 (Rear Electronic Module)
+Prerequisites: LCI tail lights + wiring changes per retrofit guide.
+iDrive Impact: Proper error-free operation of LCI lights.
+Values: Active
+Verify: Test all light functions after coding.
+Rollback/Notes: Always follow BMW retrofit instructions.
+
+Steering Wheel with Paddles
+Purpose: Enable paddle shifters for retrofitted steering wheel.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Paddle wheel hardware installed.
+iDrive Impact: Paddle input recognized for gear shifting.
+Values: Active | Not active
+Verify: Test paddle inputs in manual mode.
+Rollback/Notes: Must confirm transmission supports paddle inputs.
+        “Front Electronic Module” FEM_01 control unit
+
+-----------------------------------
+Seat heating/cooling
+-----------------------------------
+Front Backrests – Temperature Level 1
+Purpose: Define temperature of heated front backrests at Level 1.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Heated seats option.
+iDrive Impact: Adjusts heat curve.
+Values: 30–35 °C
+Verify: Activate seat heating Level 1; confirm temp rise.
+Rollback/Notes: Cosmetic tuning only.
+
+Front Backrests – Temperature Level 2
+Purpose: Define temperature of heated front backrests at Level 2.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 36–41 °C
+Verify: Use seat heating Level 2; check warmth.
+Rollback/Notes: Same as above.
+
+Front Backrests – Temperature Level 3
+Purpose: Define temperature of heated front backrests at Level 3.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 42–47 °C
+Verify: Activate Level 3; confirm heating strength.
+Rollback/Notes: High temps may feel excessive.
+
+Front Seats – Temperature Level 1
+Purpose: Define temperature of front seats at Level 1.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 30–34 °C
+Verify: Activate Level 1; confirm warmth.
+Rollback/Notes: Cosmetic adjustment.
+
+Front Seats – Temperature Level 2
+Purpose: Define temperature of front seats at Level 2.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 35–40 °C
+Verify: Activate Level 2.
+Rollback/Notes: As above.
+
+Front Seats – Temperature Level 3
+Purpose: Define temperature of front seats at Level 3.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 41–46 °C
+Verify: Activate Level 3; confirm heating intensity.
+Rollback/Notes: As above.
+
+Rear Backrests – Temperature Level 1
+Purpose: Define temperature of heated rear backrests at Level 1.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 30–35 °C
+Verify: Activate rear seat heating Level 1.
+Rollback/Notes: Cosmetic adjustment.
+
+Rear Backrests – Temperature Level 2
+Purpose: Define temperature of heated rear backrests at Level 2.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 36–41 °C
+Verify: Activate Level 2.
+Rollback/Notes: As above.
+
+Rear Backrests – Temperature Level 3
+Purpose: Define temperature of heated rear backrests at Level 3.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 42–47 °C
+Verify: Activate Level 3.
+Rollback/Notes: As above.
+
+Rear Seats – Temperature Level 1
+Purpose: Define temperature of heated rear seats at Level 1.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 30–34 °C
+Verify: Activate Level 1.
+Rollback/Notes: As above.
+
+Rear Seats – Temperature Level 2
+Purpose: Define temperature of heated rear seats at Level 2.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 35–40 °C
+Verify: Activate Level 2.
+Rollback/Notes: As above.
+
+Rear Seats – Temperature Level 3
+Purpose: Define temperature of heated rear seats at Level 3.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 41–46 °C
+Verify: Activate Level 3.
+Rollback/Notes: As above.
+
+Seat Heating/Cooling – Setting Memory
+Purpose: Define how long seat heating/cooling settings are remembered.
+Coding Type: FDL
+ECU/Module: CBFS_PLX_1 (Passenger Seat Module) | CFAS_PLX_1 (Driver Seat Module)
+Prerequisites: Seats with memory.
+iDrive Impact: Affects persistence of heating/cooling selection.
+Values: 15 minutes | 24 hours | Do not save | Unlimited
+Verify: Set heating, shut down/restart; confirm memory persistence.
+Rollback/Notes: Choose based on personal preference for retention.
+
+-----------------------------------
+Seatbelt reminder
+-----------------------------------
+Initial seat belt reminder after start
+Purpose: Enable/disable initial acoustic reminder after vehicle start.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C (Advanced Crash Safety Module)
+Prerequisites: None.
+iDrive Impact: Audible reminder at startup.
+Values: Active | Not active
+Verify: Start vehicle unbelted; confirm chime.
+Rollback/Notes: May be subject to legal requirements.
+
+Seatbelt Indicator – Driver Seat
+Purpose: Enable/disable cluster indicator for driver seatbelt.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: Active | Not active
+Verify: Drive unbelted; confirm icon behavior.
+Rollback/Notes: Disable only where legally permitted.
+
+Seatbelt Indicator – Passenger Seat
+Purpose: Enable/disable cluster indicator for passenger seatbelt.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: Active | Not active
+Verify: Passenger unbelted; confirm icon.
+Rollback/Notes: As above.
+
+Seatbelt Indicator – Rear Seats
+Purpose: Enable/disable cluster indicator for rear seatbelts.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: Active | Not active
+Verify: Occupy rear seat unbelted; check display.
+Rollback/Notes: May reduce safety feedback.
+
+Seatbelt Reminder – Distance
+Purpose: Define distance before reminder activates.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: 50 | 100 | 200 | 500 m
+Verify: Start unbelted; drive set distance; chime triggers.
+Rollback/Notes: Choose short distance for early alert.
+
+Seatbelt Reminder – Driver Seat
+Purpose: Enable/disable acoustic & visual reminder for driver.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: Active | Not active
+Verify: Drive unbelted; confirm chime and icon.
+Rollback/Notes: Safety-critical; use with caution.
+
+Seatbelt Reminder – Duration
+Purpose: Define duration for which reminder stays active.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: 5 | 10 | 15 | 20 | 30 | 45 | 60 | 90 | 100 seconds
+Verify: Drive unbelted; measure chime duration.
+Rollback/Notes: Longer durations increase compliance.
+
+Seatbelt Reminder – Passenger Seat
+Purpose: Enable/disable acoustic & visual reminder for passenger.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: Active | Not active
+Verify: Passenger unbelted; confirm warning.
+Rollback/Notes: Same safety caution as driver.
+
+Seatbelt Reminder – Speed
+Purpose: Define minimum speed at which reminder activates.
+Coding Type: FDL
+ECU/Module: ACSM_4B | ACSM_4C
+Values: 8 | 10 | 20 | 30 | 40 | 50 km/h
+Verify: Drive unbelted above set speed; check chime.
+Rollback/Notes: Use low threshold for maximum safety.
+
+-----------------------------------
+Side view camera
+-----------------------------------
+Activation Speed Threshold
+Purpose: Define max speed where side view camera can be manually activated.
+Coding Type: FDL
+ECU/Module: TRSVC (Allround View Camera)
+Prerequisites: Side cameras installed.
+Values: 15 km/h | No speed limit
+Verify: Engage side view; check if active at set speeds.
+Rollback/Notes: No speed limit may allow use while cruising.
+
+Deactivation Speed Threshold
+Purpose: Define speed at which side camera automatically deactivates.
+Coding Type: FDL
+ECU/Module: TRSVC
+Values: 15 km/h | No speed limit
+Verify: Drive forward; confirm cutoff at set speed.
+Rollback/Notes: Match activation/deactivation for consistency.
+
+-----------------------------------
+Sport displays
+-----------------------------------
+Sport Displays
+Purpose: Enable/disable sport gauges in iDrive (power/torque).
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Prerequisites: Engine ECU must transmit data.
+Values: Active | Not active
+Verify: iDrive → Vehicle Info → Sport Displays.
+Rollback/Notes: May remain visible but inactive if ECU doesn’t support.
+
+Sport Displays – Color
+Purpose: Choose color scheme of Sport Displays.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Values: Orange | Red
+Verify: Open Sport Displays; check color.
+Rollback/Notes: Cosmetic only.
+
+-----------------------------------
+Steering wheel heating
+-----------------------------------
+Steering Wheel Heating – Memory
+Purpose: Save and restore steering wheel heating state on restart.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Prerequisites: Heated steering wheel option.
+Values: 15 minutes | 24 hours | Do not save | Unlimited
+Verify: Activate heating; restart vehicle; check memory.
+Rollback/Notes: Unlimited retains state indefinitely.
+
+-----------------------------------
+Tailgate
+-----------------------------------
+Boot Lid Opening Delay
+Purpose: Define delay for remote boot opening to avoid accidental activation.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 0.5s | 1s | 5s | 10s | No delay
+Verify: Hold trunk button; measure delay.
+Rollback/Notes: Increase delay for pocket-press prevention.
+
+Close Tailgate with Interior Button
+Purpose: Enable/disable tailgate closing from cabin switch.
+Coding Type: FDL
+ECU/Module: HKL_III | HKFM
+Values: Active | Not active
+Verify: Press interior button; tailgate closes.
+Rollback/Notes: Disable if unintended use possible.
+
+Close Tailgate – Interior Button Without Long Press
+Purpose: Allow closing via interior button without holding.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Active | Not active
+Verify: Tap button once; tailgate closes.
+Rollback/Notes: May increase accidental activation.
+
+Close Tailgate with Remote
+Purpose: Enable/disable closing tailgate via remote.
+Coding Type: FDL
+ECU/Module: HKL_III | HKFM
+Values: Active | Not active
+Verify: Hold remote button; tailgate closes.
+Rollback/Notes: Disable if safety concern.
+
+Close Tailgate with Remote Without Long Press
+Purpose: Allow tailgate to close with single press instead of hold.
+Coding Type: FDL
+ECU/Module: HKL_III | HKFM
+Values: Active | Not active
+Verify: Tap button; confirm closure.
+Rollback/Notes: Same as above.
+
+Close Tailgate with Remote (Alt. Code)
+Purpose: Alternate coding path for remote close without long press.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Active | Not active
+Verify: Tap remote button; confirm.
+Rollback/Notes: Hardware-dependent.
+
+Tailgate Function – Remote Control
+Purpose: Define tailgate function triggered by remote button.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Open | Open and close
+Verify: Press remote button; confirm behavior.
+Rollback/Notes: Ensure consistent with region.
+
+Tailgate Function – Interior Button (Pull)
+Purpose: Define function when interior button is pulled.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Close | Deactivated
+Verify: Pull button; confirm action.
+Rollback/Notes: Safety-critical setting.
+
+Tailgate Function – Interior Button (Push)
+Purpose: Define function when interior button is pushed.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Deactivated | Open | Open and close
+Verify: Push button; confirm behavior.
+Rollback/Notes: Safety-critical.
+
+Warning Sound – Remote Close
+Purpose: Enable/disable chime when tailgate closes by remote.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Active | Not active
+Verify: Close tailgate by remote; listen for chime.
+Rollback/Notes: Disable in noise-sensitive areas.
+
+Warning Sound – Interior Close
+Purpose: Enable/disable chime when tailgate closes via interior button.
+Coding Type: FDL
+ECU/Module: HKFM2
+Values: Active | Not active
+Verify: Close from interior; check chime.
+Rollback/Notes: As above.
+
+-----------------------------------
+Transmission
+-----------------------------------
+Sport Automatic Transmission
+Purpose: Enable/disable Sport Automatic Transmission (SAT) mode.
+Coding Type: FDL
+ECU/Module: GKEB23 (Electronic Transmission Control)
+Prerequisites: Vehicle equipped with automatic transmission.
+Values: Active | Not active
+Verify: Check gear selector behavior; confirm SAT functions (faster shifts, sport logic).
+Rollback/Notes: Enable only if SAT hardware/software present.
+
+-----------------------------------
+Turn signals
+-----------------------------------
+Turn Signals Flashing on Locking
+Purpose: Define number of indicator flashes when locking vehicle.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Values: 1 | 2 | 3 | Off
+Verify: Lock car via remote/CA; count flashes.
+Rollback/Notes: Common factory default = 2.
+
+Turn Signals Flashing on Unlocking
+Purpose: Define number of indicator flashes when unlocking vehicle.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 1 | 2 | 3 | Off
+Verify: Unlock car; count flashes.
+Rollback/Notes: Common default = 2.
+
+-----------------------------------
+US sidemarkers
+-----------------------------------
+US Sidemarker Brightness
+Purpose: Adjust brightness of US sidemarker lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Off | Very low | Low | Medium | Relatively high | High | Very high
+Verify: Switch on parking/DRL; check brightness.
+Rollback/Notes: Match with DRL brightness for consistency.
+
+US Sidemarker Light Function
+Purpose: Define light function that triggers sidemarkers.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Standing lights | Daytime running light
+Verify: Test with each function active; confirm behavior.
+Rollback/Notes: Regional regulations may apply.
+
+US Sidemarkers
+Purpose: Enable/disable sidemarker configuration (mirrors, separate lights, or signals).
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Mirror turn signals | Off | Separate lights | Turn signals
+Verify: Walk-around at night; confirm setup.
+Rollback/Notes: Ensure consistent with lighting wiring.
+
+-----------------------------------
+Video
+-----------------------------------
+Additional Video Codecs and Formats
+Purpose: Enable playback of Ogg, Xvid, and VCD media formats.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Values: Active
+Verify: Insert USB/DVD with supported codec; confirm playback.
+Rollback/Notes: Not officially supported by BMW.
+
+Video in Motion (NBT/CIC)
+Purpose: Allow video playback while driving.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT
+Values: Active
+Verify: Play video while moving; confirm continues.
+Rollback/Notes: Legal restrictions in some regions.
+
+Video in Motion (NBT EVO)
+Purpose: Alternate coding path for iDrive EVO headunits.
+Coding Type: FDL
+ECU/Module: HU_NBT_EVO
+Values: Active | Not active
+Verify: Same as above, for EVO.
+Rollback/Notes: Market dependent.
+
+Video via USB
+Purpose: Enable playback of video from USB drives.
+Coding Type: FDL
+ECU/Module: HU_NBT | HU_NBT_EVO
+Values: Active
+Verify: Connect USB stick with video files; confirm playback.
+Rollback/Notes: Supported formats vary by firmware.
+
+-----------------------------------
+Warnings
+-----------------------------------
+Camera Warning
+Purpose: Disable iDrive warning message for camera system.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Values: Not active
+Verify: Start vehicle; confirm warning screen absent.
+Rollback/Notes: May be safety-related.
+
+Night Vision Warning
+Purpose: Disable iDrive warning message for night vision system.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Values: Not active
+Verify: Access night vision; confirm no warning shown.
+Rollback/Notes: As above.
+
+Startup Warning
+Purpose: Disable general iDrive startup legal warning.
+Coding Type: FDL
+ECU/Module: HU_CIC | HU_NBT | HU_NBT_EVO
+Values: Not active
+Verify: Restart iDrive; confirm warning absent.
+Rollback/Notes: Common coding change; purely cosmetic.
+
+-----------------------------------
+Welcome Lights
+-----------------------------------
+    Welcome Light activation
+Welcome Light Activation
+Purpose: Define light switch positions that activate Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01 (Front Electronic Module)
+Values: Light switch on Auto | Light switch on Auto or 2 | Not active
+Verify: Lock/unlock vehicle; confirm Welcome Lights activate based on switch.
+Rollback/Notes: Some markets limit availability.
+
+Welcome Light in Darkness Only
+Purpose: Restrict Welcome Lights to activate only in darkness.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Active | Not active
+Verify: Test at daytime and nighttime; confirm restriction.
+Rollback/Notes: Helps conserve battery.
+
+Welcome Light Duration
+Purpose: Define active duration of Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 5 | 10 | 15 | 20 | 30 | 45 | 60 seconds
+Verify: Unlock at night; measure light duration.
+Rollback/Notes: Longer durations increase battery load.
+
+Welcome Lights Brightness
+Purpose: Adjust brightness of Welcome Lights (halogen/xenon only).
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 10–100% (10% increments)
+Verify: Activate Welcome Lights; compare intensity.
+Rollback/Notes: LED systems not supported.
+
+Welcome Lights – Central Turn Signals
+Purpose: Activate central turn signals with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Confirm front/rear central indicators illuminate.
+Rollback/Notes: Cosmetic preference.
+
+Welcome Lights – Cornering Lights
+Purpose: Use cornering lights as part of Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock vehicle; cornering lights should illuminate.
+Rollback/Notes: Adds side light spread.
+
+Welcome Lights – Daytime Running Light
+Purpose: Activate DRLs with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock vehicle; DRLs should illuminate.
+Rollback/Notes: Redundant if DRLs already bright.
+
+Welcome Lights – Design Lights
+Purpose: Activate design (styling) lights with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Observe decorative lights during activation.
+Rollback/Notes: Purely cosmetic.
+
+Welcome Lights – Fog Lights
+Purpose: Activate fog lights with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock vehicle; fogs should illuminate.
+Rollback/Notes: May draw significant current.
+
+Welcome Lights – Front Turn Signals
+Purpose: Activate front turn signals with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock; confirm flashers illuminate softly or fully.
+Rollback/Notes: Cosmetic.
+
+Welcome Lights – High Beam 1
+Purpose: Use high beam circuit 1 with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock; high beam 1 illuminates.
+Rollback/Notes: Avoid blinding intensity.
+
+Welcome Lights – High Beam 2
+Purpose: Use high beam circuit 2 with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Same as above, but for secondary high beam.
+Rollback/Notes: Combine carefully with other Welcome options.
+
+Welcome Lights – Low Beam
+Purpose: Use low beams as Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock; low beams active.
+Rollback/Notes: May drain battery more than sidelights.
+
+Welcome Lights – Parking Lights
+Purpose: Use parking lights for Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock; parking lights illuminate.
+Rollback/Notes: Common OEM default.
+
+Welcome Lights – Sidemarkers
+Purpose: Activate sidemarkers with Welcome Lights.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Hard on | Not active | Soft on
+Verify: Unlock; sidemarkers illuminate.
+Rollback/Notes: Cosmetic; brightness adjustable separately.
+
+-----------------------------------
+Window cleaning
+-----------------------------------
+Automatic Rear Wiper in Reverse
+Purpose: Enable/disable auto rear wiper when reverse engaged (if front wiper active).
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Active | Not active
+Verify: Turn on front wipers; engage reverse; confirm rear wipe.
+Rollback/Notes: Helpful in wet climates.
+
+Wipe Cycles After Front Washing
+Purpose: Define number of wipes after front windshield wash.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 1–5 wipes
+Verify: Trigger front washer; count wipes.
+Rollback/Notes: Match to washer fluid delivery.
+
+Wipe Cycles After Rear Washing
+Purpose: Define number of wipes after rear windshield wash.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: 1–5 wipes
+Verify: Trigger rear washer; count wipes.
+Rollback/Notes: As above.
+
+Wiper Level Switchback When Stationary
+Purpose: Auto-reset wiper speed to lower level when car is stationary.
+Coding Type: FDL
+ECU/Module: FEM_01
+Values: Active | Not active
+Verify: Leave wipers on high speed; stop vehicle; check reset.
+Rollback/Notes: Prevents noise/smearing when parked.
